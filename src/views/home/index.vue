@@ -44,7 +44,7 @@
                 <p>再犯罪风险评估</p>
                 <p>一键进入在线测评及查看测评记录</p>
             </div>
-            <span>0</span>
+            <span>0  </span>
             <img src="/static/img/right.png" class="icon" />
         </div>
         <img src="/static/img/home_bottom_banner.png" width="100%" class="bottom_banner" />
