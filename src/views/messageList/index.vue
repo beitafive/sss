@@ -1,9 +1,9 @@
 <template>
 	<div class="box">
-		<div class="message-box w-flex" v-for="(item,index) in navList" :key="index">
+		<div class="message-box w-flex" v-for="(item,index) in navList" :key="index" @click="goDetails(item)">
 			<div class="message-top w-flex">
 				<span class="message-left">{{item.name}}</span>
-				<span class="message-right">{{item.time}} <img src="../../../public/static/img/right.png" /></span>
+				<span class="message-right w-flex">{{item.time}} <img src="../../../public/static/img/right.png" /></span>
 			</div>
 			<div class="message-bottom w-flex">
 				<span class="tag" :class="item.tag == '未读'? 'read' : 'noread'">{{item.tag}}</span>
@@ -20,12 +20,13 @@
 		data(){
 			return{
 				navList:[{
+						id:'1',
 						name:"下城司法所",
 						time:'2019-04-04  12:00:30',
 						tag:'已读',
 						details:'请于2019年2月3日13:30到XX司法所报道司法所报道…'
 					},
-					{
+					{		id:'2',
 							name:"警察局",
 							time:'2019-10-4 18:23:44',
 							tag:'未读',
@@ -35,7 +36,13 @@
 			}
 		},
 		methods:{
-			
+			goDetails(item){
+				this.$router.push({
+					path:'messageDetails',
+					query:{id:item.id}
+					
+				})
+			}
 		},
 		created:{
 			
@@ -70,10 +77,11 @@
 			}
 			.message-right{
 				font-size:.24rem;
-				color: #8F8E94;
+				color:#8F8E94;
 				text-align: right;
 				line-height:.24rem;
 				img{
+					margin-left:.12rem;
 					width:.14rem;
 					height:.24rem;
 				}
@@ -98,6 +106,9 @@
 				background:#B5B5B5;
 			}
 			.messagedetails{
+				font-size:.24rem;
+				line-height:.24rem;
+				color:#8F8E94;
 				width:5.96rem;
 				overflow: hidden;
 				text-overflow:ellipsis;
