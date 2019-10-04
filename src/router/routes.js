@@ -29,5 +29,17 @@ export default [
         name: 'mine',
         component:  () => import(/* webpackChunkName: "mine" */ '@/views/mine/index.vue'),
         meta: { title: '个人中心' }
-    }
+    },
+	{
+	    path: '/messageList',
+	    name: 'messageList',
+	    component:  () => import(/* webpackChunkName: "mine" */ '@/views/messageList/index.vue'),
+	    meta: { title: '消息通知' }
+	},
+	{
+	    path: '/messageDetails',
+	    name: 'messageDetails',
+	    component:  () => import(/* webpackChunkName: "mine" */ '@/views/messageList/pages/messageDetails.vue'),
+	    meta: { title: '消息通知' }
+	}
 ]
