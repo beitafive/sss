@@ -21,3 +21,6 @@ html,body{ height:100%; }
 
 .w-flex{ display: flex; }
 .w-bold { font-weight: bold; }
+.amap-logo,.amap-copyright{
+    display: none!important;
+}

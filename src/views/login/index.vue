@@ -12,9 +12,9 @@
                 <input v-model="password" placeholder="密码" type="password" />
                 <img src="/static/img/pwd.png" class="pwd" />
             </div>
-            <div class="login-btn">登录</div>
+            <div class="login-btn" @click="login">登录</div>
 
-            <div class="scan-btn w-flex">
+            <div class="scan-btn w-flex" @click="toFace">
                 <img src="/static/img/login_scan.png" />刷脸登录
             </div>
         </div>
@@ -29,6 +29,17 @@
                 username: '',
                 password: '',
                 isPwd: true
+            }
+        },
+        methods: {
+            login () {
+                this.$http.get(this.$api.login, {
+                    username: this.username,
+                    userpwd: this.password
+                })
+            },
+            toFace () {
+                this.$app.face_login()
             }
         }
     }
