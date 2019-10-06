@@ -23,7 +23,7 @@
 
 <style scoped lang="scss">
     .w-nav {
-        color: #868789; font-size: .2rem; position: fixed; bottom: 0; left: 0; width: 100%; height: 1.36rem; box-sizing: border-box; padding-bottom: .08rem; background-image: url("/static/img/nav_bg.png"); background-size: 100%; justify-content: space-around; align-items: flex-end;
+        color: #868789; font-size: .2rem; position: fixed; bottom: 0; left: 0; width: 100%; height: 1.36rem; padding-bottom: .08rem; box-sizing: border-box; background-image: url("/static/img/nav_bg.png"); background-size: 100%; justify-content: space-around; align-items: flex-end;
         .w-nav-item {
             text-align: center; width: 1.2rem;
             img { width: .48rem; height: .48rem; }

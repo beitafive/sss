@@ -4,7 +4,7 @@ export default [
         path: '/',
         name: 'home',
         component:  () => import(/* webpackChunkName: "home" */ '@/views/home/index.vue'),
-        meta: { title: '首页' }
+        meta: { title: '首页', showNav: true }
     },
     {
         path: '/login',
@@ -22,13 +22,13 @@ export default [
         path: '/rule',
         name: 'rule',
         component:  () => import(/* webpackChunkName: "rule" */ '@/views/rule/index.vue'),
-        meta: { title: '规章制度' }
+        meta: { title: '规章制度', showNav: true }
     },
     {
         path: '/mine',
         name: 'mine',
         component:  () => import(/* webpackChunkName: "mine" */ '@/views/mine/index.vue'),
-        meta: { title: '个人中心' }
+        meta: { title: '个人中心', showNav: true }
     },
     {
         path: '/location',

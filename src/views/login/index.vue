@@ -26,8 +26,8 @@
         name: "index",
         data () {
             return {
-                username: '',
-                password: '',
+                username: '362366117908031111',
+                password: '111111',
                 isPwd: true
             }
         },
@@ -36,6 +36,11 @@
                 this.$http.get(this.$api.login, {
                     username: this.username,
                     userpwd: this.password
+                }).then(res => {
+                    if (res.state === '1') {
+                        this.$store.dispatch('setUserInfo', res.data[0])
+                        this.$router.replace('/')
+                    }
                 })
             },
             toFace () {
@@ -55,7 +60,7 @@
             .form-item {
                 height: .96rem; align-items: center; border-bottom: 1px solid #DDDCDE; font-size: .32rem; color: #666;
                 .icon { width: .36rem; margin-right: .32rem; }
-                input { height: .96rem; font-size: .32rem; flex: 1; }
+                input { height: .94rem; font-size: .32rem; flex: 1; }
                 .pwd { width: .34rem; }
             }
             .login-btn { width: 5rem; height: 1rem; font-size: .36rem; text-align: center; line-height: 1rem; border-radius: .5rem; background: #4A5AFF; color: #fff; margin: .8rem auto; }
