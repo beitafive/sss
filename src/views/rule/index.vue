@@ -73,8 +73,6 @@
 			padding:.26rem .24rem .24rem;
 			justify-content:space-between;
 			align-items:center;
-			height:.8rem;
-			width:100%;
 			.rules-left{
 				max-width:4rem;
 				font-size:.3rem;
@@ -110,6 +108,7 @@
 			 width:6.24rem;
 			 height:.8rem;
 			 font-size:.28rem;
+			 line-height:.4rem;
 			 color:rgba(102,102,102,1);
 			 display: -webkit-box;
 			 -webkit-box-orient: vertical;

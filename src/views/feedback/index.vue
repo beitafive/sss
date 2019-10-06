@@ -44,10 +44,8 @@
 		 padding-left:.32rem;
 	}
 	.top{
-		 width:100%;
 		 border-bottom:.005rem solid #DDDCDE;
 		.title{
-			 width:100%;
 			 height:.86rem;
 			 align-items:center;
 			 font-size:.32rem;

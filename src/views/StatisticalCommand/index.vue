@@ -204,14 +204,11 @@
 		background: rgba(255, 255, 255, 1);
 		border-radius: .12rem;
 		margin-bottom: .2rem;
-
 		.bottom-top {
 			padding: .26rem .24rem .24rem;
 			justify-content: space-between;
 			align-items: center;
-			height: .8rem;
-			width: 100%;
-
+			height:.8rem;
 			.bottom-left {
 				max-width: 4rem;
 				font-size: .3rem;
@@ -243,7 +240,7 @@
 
 		.bottom-btm {
 			width: 100%;
-			height: 1.04rem;
+			height: 1rem;
 			justify-content: center;
 
 			.bottom-text {
@@ -255,6 +252,7 @@
 				-webkit-box-orient: vertical;
 				-webkit-line-clamp: 2; //这里是在第二行有省略号
 				overflow: hidden;
+				line-height:.4rem;
 			}
 		}
 
