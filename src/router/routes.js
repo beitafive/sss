@@ -48,4 +48,11 @@ export default [
     //     component:  () => import(/* webpackChunkName: "message" */ '@/views/messageList/pages/messageDetails.vue'),
     //     meta: { title: '消息通知' }
 	// }
+	,
+	{
+	    path: '/ruledetail',
+	    name: 'ruledetail',
+	    component:  () => import(/* webpackChunkName: "rule" */ '@/views/rule/pages/detail.vue'),
+	    meta: { title: '规章制度' }
+	},
 ]
