@@ -3,8 +3,8 @@
         <div class="mine-info w-flex">
             <img src="/static/img/mine_bg.png" />
             <div>
-                <p><span>贝塔</span>/ 电子商务</p>
-                <p>管理等级：严管</p>
+                <p><span>{{userInfo.userCName}}</span> / 电子商务</p>
+                <p>管理等级：{{userInfo.mangaerLevel}}</p>
                 <p>罪名：非法经营罪</p>
             </div>
         </div>
@@ -37,7 +37,23 @@
 
 <script>
     export default {
-        name: "index"
+        name: "index",
+        computed: {
+            userInfo () {
+                return this.$store.getters.mine
+            }
+        },
+        mounted () {
+            this.getHead()
+        },
+        methods: {
+            getHead () {
+                this.$http.get('/app/file/download.action', {
+                    imgid: this.userInfo.faceImgids,
+                    isthumb: true
+                })
+            }
+        }
     }
 </script>
 
@@ -48,7 +64,7 @@
             height: 2.8rem; padding-top: .38rem; box-sizing: border-box;
             img { width: 1.4rem; height: 1.4rem; object-fit: cover; border: 3px solid #7279FC; border-radius: 100%; margin: 0 .36rem 0 .6rem; }
             div {
-                color: #fff; box-sizing: border-box; padding-top: .1rem; font-size: .26rem;
+                color: #fff; box-sizing: border-box; padding-top: .1rem; font-size: .24rem;
                 p:nth-of-type(1) {
                     font-size: .28rem;
                     span { font-size: .32rem; }
