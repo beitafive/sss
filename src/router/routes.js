@@ -53,6 +53,28 @@ export default [
 	    path: '/ruledetail',
 	    name: 'ruledetail',
 	    component:  () => import(/* webpackChunkName: "rule" */ '@/views/rule/pages/detail.vue'),
-	    meta: { title: '规章制度' }
+	    meta: { title: '规章制度详情' }
 	},
+	{
+	    path: '/feedback',
+	    name: 'feedback',
+	    component:  () => import(/* webpackChunkName: "rule" */ '@/views/feedback/index.vue'),
+	    meta: { title: '问题反馈' }
+	},
+	{
+	    path: '/StatisticalCommand',
+	    name: 'StatisticalCommand',
+	    component:  () => import(/* webpackChunkName: "rule" */ '@/views/StatisticalCommand/index.vue'),
+	    meta: { title: '位置上报指令' }
+	},{
+	    path: '/StatisticalCommands',
+	    name: 'StatisticalCommands',
+	    component:  () => import(/* webpackChunkName: "rule" */ '@/views/StatisticalCommand/pages/detail.vue'),
+	    meta: { title: '位置上报指令' }
+	},{
+	    path: '/noReport',
+	    name: 'noReport',
+	    component:  () => import(/* webpackChunkName: "rule" */ '@/views/StatisticalCommand/pages/noReport.vue'),
+	    meta: { title: '位置上报指令' }
+	}
 ]

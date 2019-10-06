@@ -60,6 +60,7 @@
 		flex-direction:column;
 		align-items:center;
 		background:rgba(240,239,245,1);
+		padding-top:.2rem;
 	}
 	.rules-box{
 		width:6.72rem;
