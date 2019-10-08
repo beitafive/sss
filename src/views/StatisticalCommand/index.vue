@@ -208,7 +208,7 @@
 			padding: .26rem .24rem .24rem;
 			justify-content: space-between;
 			align-items: center;
-			height:.8rem;
+			height:.3rem;
 			.bottom-left {
 				max-width: 4rem;
 				font-size: .3rem;
@@ -258,7 +258,6 @@
 
 		.bottom-btn {
 			border-top: .02rem solid #E9E9E9;
-			width: 100%;
 			height: .8rem;
 			align-items: center;
 			justify-content: space-between;

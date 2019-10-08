@@ -81,7 +81,7 @@
 		border-radius: .12rem;
 		margin-top: .2rem;
 		.bottom-top {
-			height:.8rem;
+			height:.3rem;
 			padding: .26rem .24rem .24rem;
 			justify-content: space-between;
 			align-items: center;

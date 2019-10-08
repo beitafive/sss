@@ -102,7 +102,7 @@
 		line-height:.44rem;
 	}
 	.Enclosure{
-		width:6.56rem;
+		width:6.36rem;
 		margin-top:.34rem;
 		padding-left:.2rem;
 		align-items:center;
