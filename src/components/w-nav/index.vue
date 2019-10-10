@@ -1,5 +1,5 @@
 <template>
-    <div class="w-nav w-flex">
+    <div class="w-nav w-flex" v-if="showNav">
         <router-link tag="div" class="w-nav-item" to="/">
            <img :src="$route.path === '/' ? '/static/img/home_active.png' : '/static/img/home_normal.png'" /><br>
             首页
@@ -17,7 +17,12 @@
 
 <script>
     export default {
-        name: "index"
+        name: "index",
+        computed: {
+            showNav () {
+                return this.$store.getters.show_nav
+            }
+        }
     }
 </script>
 

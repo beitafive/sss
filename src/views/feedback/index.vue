@@ -80,7 +80,7 @@ export default {
 .btn-box {
   .feedback-btn {
     background: #fff;
-    background-image: url("/static/img/bg_btn.png");
+    background-image: url("../../assets/img/bg_btn.png");
     background-size: 100%;
     background-repeat: no-repeat;
     width: 4.8rem;

@@ -1,7 +1,7 @@
 <template>
   <div class="map">
     <div class="map-title w-flex">
-      西溪景苑清晖园东区
+      {{address.addressComponent.township}}
       <img src="/static/img/times.png" />
       <span>{{ nowDate }}</span>
     </div>
@@ -9,10 +9,14 @@
     <div class="location-info">
       <div class="location">
         <p>我的位置</p>
-        <p>{{ address }}</p>
+        <p>{{ address.formatted_address }}</p>
       </div>
     </div>
-    <div class="upload-btn"></div>
+    <div class="btns">
+      位置上报<br/>
+      <span>{{nowTime.hour}}:{{nowTime.minute}}</span>
+    </div>
+    <div class="tips">今日你还未完成位置上报</div>
   </div>
 </template>
 
@@ -24,13 +28,15 @@ export default {
   data() {
     return {
       nowDate: "",
-      address: ""
+      nowTime: "",
+      address: {addressComponent: {}}
     };
   },
   mounted() {
     this.initMap();
     this.getLocation();
     this.nowDate = time2Obj().symbolStr;
+    this.nowTime = time2Obj()
   },
   methods: {
     initMap() {
@@ -47,7 +53,7 @@ export default {
         methods: "get",
         responseType: "json"
       }).then(res => {
-        this.address = res.data.regeocode.formatted_address;
+        this.address = res.data.regeocode;
       });
     }
   }
@@ -81,8 +87,7 @@ export default {
   .location-info {
     padding: 0 0.32rem;
     .location {
-      height: 1.8rem;
-      padding-top: 0.28rem;
+      padding: 0.28rem 0;
       border-bottom: 1px solid #dddcde;
       p:nth-of-type(1) {
         font-size: 0.32rem;
@@ -97,7 +102,25 @@ export default {
       }
     }
   }
-  .location-btn {
+  .btns {
+    width: 3.12rem;
+    height: 3.12rem;
+    background-image: url("../../assets/img/loca_btn.png");
+    background-size: 100%;
+    text-align: center;
+    color: #fff;
+    box-sizing: border-box;
+    padding-top: 1rem;
+    font-size: .36rem;
+    margin: .2rem auto 0;
+    span {
+      display: inline-block;
+      font-size:.32rem;
+      margin-top: .2rem;
+    }
+  }
+  .tips {
+    color: #8F8E94; font-size: .24rem; text-align: center;
   }
 }
 </style>

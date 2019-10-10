@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     show_nav: '',
     userInfo: {},
-    location: ''
+    location: '',
   },
   getters: {
     mine (state) {
@@ -15,6 +15,9 @@ export default new Vuex.Store({
     },
     location (state) {
       return state.location
+    },
+    show_nav (state) {
+      return state.show_nav
     }
   },
   mutations: {
@@ -23,6 +26,9 @@ export default new Vuex.Store({
     },
     setLocation ( state, data ) {
       state.location = data
+    },
+    setNavState (state, data) {
+      state.show_nav = data
     }
   },
   actions: {
@@ -31,6 +37,9 @@ export default new Vuex.Store({
     },
     setLocation ( {commit}, data ) {
       commit('setLocation', data)
+    },
+    setNavState ( {commit}, data) {
+      commit('setNavState', data)
     }
   }
 })

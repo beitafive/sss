@@ -57,10 +57,10 @@
         data () {
             return {
                 navList: [
-                    { img: '@/assets/img/home_nav_1.png', count: 0, route: '/' },
-                    { img: '@/assets/img/home_nav_2.png', count: 0, route: '/' },
-                    { img: '@/assets/img/home_nav_3.png', count: 0, route: '/' },
-                    { img: '@/assets/img/home_nav_4.png', count: 0, route: '/' }
+                    { img: require('@/assets/img/home_nav_1.png'), count: 0, route: '/' },
+                    { img: require('@/assets/img/home_nav_2.png'), count: 0, route: '/' },
+                    { img: require('@/assets/img/home_nav_3.png'), count: 0, route: '/' },
+                    { img: require('@/assets/img/home_nav_4.png'), count: 0, route: '/' }
                     ],
                 tips_count: 0,
                 info: {
