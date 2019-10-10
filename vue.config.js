@@ -9,6 +9,7 @@ const resolve = dir => {
 
 module.exports = {
     publicPath: '/sss/docs/',
+    outputDir: 'docs',
     lintOnSave: true,
     chainWebpack: config => {
         // alias
