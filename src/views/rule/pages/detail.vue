@@ -29,15 +29,15 @@
 			<div class="Enclosure w-flex">
 				附件
 			</div>
-			<div class="pic-list w-flex"  v-for="(item,index) in picList" :key='index'>
-				<img class="LabelImg" src="../../../../public/static/img/icon_fjxz.png" /><span>{{item.name}}</span><img class="rightImg" src="../../../../public/static/img/right.png" />
+			<div class="pic-list w-flex" >
+				<img class="LabelImg" src="../../../../public/static/img/icon_fjxz.png" /><span>{{info.fileNames}}</span><img class="rightImg" src="../../../../public/static/img/right.png" />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import { formatTime } from "../../../utils/time"
+	import { formatTime } from "@/utils/time"
 	export default {
         name: "detail",
 		data () {

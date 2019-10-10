@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="home-tips w-flex">
-            <img src="/static/img/home_tips.png" />
+            <img src="@/assets/img/home_tips.png" />
             <div> 您有一条来自XX司法所的消息通知，请asdjkhjaskkasjhdk及时查看</div>
             <span v-if="info.noticeNum !== '0'">{{info.noticeNum}}</span>
         </div>
@@ -26,28 +26,28 @@
         <div class="home-record">
             <div class="record"><span>记录</span></div>
             <div class="days">每日位置上报</div>
-            <div class="tips w-flex"><img src="/static/img/red_icon.png" />您有新的位置上报指令，请及时上报</div>
+            <div class="tips w-flex"><img src="@/assets/img/red_icon.png" />您有新的位置上报指令，请及时上报</div>
         </div>
 
         <div class="tips-box w-flex" @click="toCmd">
-            <img src="/static/img/tips_1.png" class="logo" />
+            <img src="@/assets/img/tips_1.png" class="logo" />
             <div>
                 <p>位置上报指令</p>
                 <p>今日还未有指令</p>
             </div>
             <span v-if="info.lcorderNum !== '0'">{{info.lcorderNum}}</span>
-            <img src="/static/img/right.png" class="icon" />
+            <img src="@/assets/img/right.png" class="icon" />
         </div>
         <div class="tips-box w-flex">
-            <img src="/static/img/tips_2.png" class="logo" />
+            <img src="@/assets/img/tips_2.png" class="logo" />
             <div>
                 <p>再犯罪风险评估</p>
                 <p>一键进入在线测评及查看测评记录</p>
             </div>
             <span v-if="info.remark4 !== '0'">{{info.remark4}}</span>
-            <img src="/static/img/right.png" class="icon" />
+            <img src="@/assets/img/right.png" class="icon" />
         </div>
-        <img src="/static/img/home_bottom_banner.png" width="100%" class="bottom_banner" />
+        <img src="@/assets/img/home_bottom_banner.png" width="100%" class="bottom_banner" />
     </div>
 </template>
 
@@ -57,10 +57,10 @@
         data () {
             return {
                 navList: [
-                    { img: '/static/img/home_nav_1.png', count: 0, route: '/' },
-                    { img: '/static/img/home_nav_2.png', count: 0, route: '/' },
-                    { img: '/static/img/home_nav_3.png', count: 0, route: '/' },
-                    { img: '/static/img/home_nav_4.png', count: 0, route: '/' }
+                    { img: '@/assets/img/home_nav_1.png', count: 0, route: '/' },
+                    { img: '@/assets/img/home_nav_2.png', count: 0, route: '/' },
+                    { img: '@/assets/img/home_nav_3.png', count: 0, route: '/' },
+                    { img: '@/assets/img/home_nav_4.png', count: 0, route: '/' }
                     ],
                 tips_count: 0,
                 info: {
@@ -90,7 +90,7 @@
 
 <style scoped lang="scss">
     .home {
-        height: 100%; background-image: url("/static/img/home_top_bg.png"); background-size: 100%; background-repeat: no-repeat; padding: 1.02rem .32rem .8rem; color: #fff; font-size:.28rem;
+        height: 100%; background-image: url("../../assets/img/home_top_bg.png"); background-size: 100%; background-repeat: no-repeat; padding: 1.02rem .32rem .8rem; color: #fff; font-size:.28rem;
         .home-top {
             justify-content: space-between;
             .home-date {
@@ -122,7 +122,7 @@
         }
 
         .home-record {
-            height: 2.08rem; padding: .28rem .24rem; box-sizing: border-box; margin-top: .32rem; background-image: url("/static/img/record_bg.png"); background-size: 100%; background-repeat: no-repeat;
+            height: 2.08rem; padding: .28rem .24rem; box-sizing: border-box; margin-top: .32rem; background-image: url("../../assets/img/record_bg.png"); background-size: 100%; background-repeat: no-repeat;
             .record { text-shadow:0px 2px 2px rgba(255,124,2,0.7); text-align: right; }
             .days { margin: .26rem 0 .32rem; text-align: center; font-size: .36rem; font-weight: bold; }
             .tips {

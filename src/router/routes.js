@@ -35,6 +35,18 @@ export default [
         name: 'location',
         component:  () => import(/* webpackChunkName: "location" */ '@/views/location/index.vue'),
         meta: { title: '位置上报' }
+    },
+    {
+        path: '/location/record',
+        name: 'locationRecord',
+        component:  () => import(/* webpackChunkName: "location" */ '@/views/location/pages/record.vue'),
+        meta: { title: '我的记录' }
+    },
+    {
+        path: '/location/detail',
+        name: 'locationDetail',
+        component:  () => import(/* webpackChunkName: "location" */ '@/views/location/pages/detail.vue'),
+        meta: { title: '详情' }
     }
 	// {
     //     path: '/messageList',
