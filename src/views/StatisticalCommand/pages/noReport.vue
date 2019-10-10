@@ -1,6 +1,6 @@
 <template>
 	<div class="box w-flex">
-		<img src="../../../../public/static/img/pic_ljsb@3x.png" alt="">
+		<img src="/static/img/pic_ljsb@3x.png" alt="">
 		<div class="btn-box w-flex">
 			<button class="feedback-btn">立即上报</button>
 		</div>
@@ -15,16 +15,16 @@
 		name:'index',
 		data(){
 			return{
-				
+
 			}
 		},
 		methods:{
-			
+
 		},
 		created:{
-			
+
 		}
-		
+
 	}
 </script>
 

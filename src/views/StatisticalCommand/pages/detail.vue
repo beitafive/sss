@@ -13,7 +13,7 @@
 				</div>
 			</div>
 			<div class="bottom-btn  w-flex">
-				<span class="w-flex"><img src="../../../../public/static/img/icon_time2@3x.png" alt="">{{item.time}}</span>
+				<span class="w-flex"><img src="/static/img/icon_time2@3x.png" alt="">{{item.time}}</span>
 				<button>立即上报</button>
 			</div>
 		</div>
@@ -68,7 +68,7 @@
 <style scoped lang="scss">
 	.box {
 		flex-direction: column;
-		justify-content: cneter;
+		justify-content: center;
 		align-items: center;
 		position: relative;
 		background: #F0EFF5;
@@ -126,7 +126,7 @@
 			height: .8rem;
 			align-items: center;
 			justify-content: space-between;
-			
+
 			span {
 				align-items: center;
 				margin-left: .26rem;

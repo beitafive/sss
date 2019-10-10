@@ -3,7 +3,7 @@
 		<div class="message-box w-flex" v-for="(item,index) in navList" :key="index" @click="goDetails(item)">
 			<div class="message-top w-flex">
 				<span class="message-left">{{item.name}}</span>
-				<span class="message-right w-flex">{{item.time}} <img src="../../../public/static/img/right.png" /></span>
+				<span class="message-right w-flex">{{item.time}} <img src="/static/img/right.png" /></span>
 			</div>
 			<div class="message-bottom w-flex">
 				<span class="tag" :class="item.tag == '未读'? 'read' : 'noread'">{{item.tag}}</span>
@@ -11,7 +11,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 </template>
 
 <script>
@@ -40,14 +40,14 @@
 				this.$router.push({
 					path:'messageDetails',
 					query:{id:item.id}
-					
+
 				})
 			}
 		},
 		created:{
-			
+
 		}
-		
+
 	}
 </script>
 
@@ -86,7 +86,7 @@
 					height:.24rem;
 				}
 			}
-			
+
 		}
 		.message-bottom{
 			.tag{
@@ -97,7 +97,7 @@
 				border-radius:.02rem;
 				text-align:center;
 				margin:0 .2rem 0 .04rem;
-				
+
 			}
 			.read{
 				background :#FC2626;
