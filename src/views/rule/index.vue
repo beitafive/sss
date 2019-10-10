@@ -1,8 +1,8 @@
 <template>
 	<div class="box w-flex">
-		<div class="rules-box"  v-for="(item,index) in navList" :key="index" @click="goDetails(item)">
+		<div class="rules-box"  v-for="(item,index) in info" :key="index" @click="goDetails(item)">
 			<div class="rules-top w-flex">
-				<span class="rules-left">{{item.name}}</span>
+				<span class="rules-left">{{item.orgName}}</span>
 				<span class="rules-right w-flex">{{item.time}} <img src="../../../public/static/img/right.png" /></span>
 			</div>
 			<div class="rules-mind">
@@ -10,7 +10,7 @@
 			</div>
 			<div class="rules-btm w-flex">
 				<div class="rules-text">
-					{{item.details}}
+					{{item.content}}
 				</div>
 				
 			</div>
@@ -19,30 +19,35 @@
 </template>
 
 <script>
-	export default{
+	import { formatTime } from '@/utils/time'
+	export default {
 		name:'index',
 		data(){
 			return{
-				navList:[{
-						id:'1',
-						name:"下城司法所",
-						time:'2019-04-04  12:00:30',
-						details:'这里是规章制度内容文字这里是规章制度内容文字这里是规章制度内容文字adssadsadsadsadsa阿萨德萨达四大adsd'
-					},
-					{		id:'2',
-							name:"下城司法所",
-							time:'2019-10-4 18:23:44',
-							details:'这里是规章制度内容文字这里是规章制度内容文字这里是规章制度内容文字这里是规章制度内容文字这里是规章制度内容文字这里是规章制度内容文字这里是规章制度内容文字这里是规章制度内容文字这里是规章制度内容文字'
-						}
-				]
+				info: []
 			}
 		},
+		mounted () {
+			this.getList()
+		},
 		methods:{
+			getList() {
+				this.$http.get(this.$api.rule.list, {
+					useruuid: localStorage.uuid,
+					page: 1
+				}).then(res => {
+					if (res.state === '1') {
+						res.data.map((item) => {
+							item.time = formatTime(item.time)
+						})
+						this.info = res.data
+					}
+				})
+			},
 			goDetails(item){
 				this.$router.push({
 					path:'/ruledetail',
-					query:{id:item.id}
-					
+					query:{id: item.uuid}
 				})
 			}
 		},

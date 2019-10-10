@@ -14,13 +14,13 @@
         <div class="home-nav w-flex">
             <div class="nav-item" v-for="(item, index) in navList" :key="index">
                 <img :src="item.img" />
-                <div>{{item.count}}</div>
+                <div v-if="item.count">{{item.count}}</div>
             </div>
         </div>
         <div class="home-tips w-flex">
             <img src="/static/img/home_tips.png" />
             <div> 您有一条来自XX司法所的消息通知，请asdjkhjaskkasjhdk及时查看</div>
-            <span>{{tips_count}}</span>
+            <span v-if="info.noticeNum !== '0'">{{info.noticeNum}}</span>
         </div>
 
         <div class="home-record">
@@ -29,13 +29,13 @@
             <div class="tips w-flex"><img src="/static/img/red_icon.png" />您有新的位置上报指令，请及时上报</div>
         </div>
 
-        <div class="tips-box w-flex">
+        <div class="tips-box w-flex" @click="toCmd">
             <img src="/static/img/tips_1.png" class="logo" />
             <div>
                 <p>位置上报指令</p>
                 <p>今日还未有指令</p>
             </div>
-            <span>0</span>
+            <span v-if="info.lcorderNum !== '0'">{{info.lcorderNum}}</span>
             <img src="/static/img/right.png" class="icon" />
         </div>
         <div class="tips-box w-flex">
@@ -44,7 +44,7 @@
                 <p>再犯罪风险评估</p>
                 <p>一键进入在线测评及查看测评记录</p>
             </div>
-            <span>0  </span>
+            <span v-if="info.remark4 !== '0'">{{info.remark4}}</span>
             <img src="/static/img/right.png" class="icon" />
         </div>
         <img src="/static/img/home_bottom_banner.png" width="100%" class="bottom_banner" />
@@ -62,18 +62,27 @@
                     { img: '/static/img/home_nav_3.png', count: 0, route: '/' },
                     { img: '/static/img/home_nav_4.png', count: 0, route: '/' }
                     ],
-                tips_count: 0
+                tips_count: 0,
+                info: {
+                    noticeNum: 0
+                }
             }
         },
         mounted () {
-
+            this.getInfo()
         },
         methods: {
             getInfo () {
-                this.$http.post(this.$api.index.base_info, {
-                    username: '123',
-                    password: '2323'
+                this.$http.get(this.$api.index.base_info, {
+                    useruuid: localStorage.uuid
+                }).then(res => {
+                    if (res.state === '1') {
+                        this.info = res.data[0]
+                    }
                 })
+            },
+            toCmd () {
+                this.$push('/StatisticalCommand')
             }
         }
     }
@@ -81,7 +90,7 @@
 
 <style scoped lang="scss">
     .home {
-        height: 100%; background-image: url("/static/img/home_top_bg.png"); background-size: 100%; background-repeat: no-repeat; box-sizing: border-box; padding: 1.02rem .32rem 0; color: #fff; font-size:.28rem;
+        height: 100%; background-image: url("/static/img/home_top_bg.png"); background-size: 100%; background-repeat: no-repeat; padding: 1.02rem .32rem .8rem; color: #fff; font-size:.28rem;
         .home-top {
             justify-content: space-between;
             .home-date {

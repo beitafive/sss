@@ -2,29 +2,29 @@
     <div class="box">
 		<div class="top paddL">
 				<p class="title w-flex">标题</p>
-				<div class="title-text">
-					关于《XXXX》的规章制度
-				</div>
+				<div class="title-text">{{info.title}}</div>
 		</div>
 		<div class="top paddL">
 			<div class="title-bar  w-flex">
-				<span class="title-left">类型</span><span class="title-right">刑法</span>
+				<span class="title-left">类型</span><span class="title-right">{{info.typeName}}</span>
 			</div>
 			<p class="title w-flex">法律法规内容</p>
 			<div class="title-text">
-				此处是法律法规内容文字
+				{{info.content}}
 			</div>
 		</div>
 		<div class="top paddL">
-			<p class="title w-flex">来源</p>
 			<div class="title-bar  w-flex">
-				<span class="title-left">矫正机构</span><span class="title-right">仙居县司法局富应执法中队</span>
+				<span class="title-left">来源</span><span class="title-right">{{info.source}}</span>
 			</div>
 			<div class="title-bar  w-flex">
-				<span class="title-left">登记人</span><span class="title-right">张三</span>
+				<span class="title-left">矫正机构</span><span class="title-right">{{info.orgName}}</span>
 			</div>
 			<div class="title-bar  w-flex">
-				<span class="title-left">登记日期</span><span class="title-right">2019-07-12  08:41:50</span>
+				<span class="title-left">登记人</span><span class="title-right">{{info.remark1}}</span>
+			</div>
+			<div class="title-bar  w-flex">
+				<span class="title-left">登记日期</span><span class="title-right">{{info.time}}</span>
 			</div>
 			<div class="Enclosure w-flex">
 				附件
@@ -37,63 +37,67 @@
 </template>
 
 <script>
-    export default {
+	import { formatTime } from "../../../utils/time"
+	export default {
         name: "detail",
-		data(){
+		data () {
 			return{
-				picList:[{
-					name:'文件标题文件标题.doc',
-					
-				},{
-					name:'文件标题文件标题.doc',
-					
-				},
-				{
-					name:'文件标题文件标题.doc',
-					
-				},
-				{
-					name:'文件标题文件标题.doc',
-					
-				}
-				]
+				picList:[],
+				info: {}
+			}
+		},
+		mounted () {
+			this.getInfo()
+		},
+		methods: {
+			getInfo () {
+				this.$http.get(this.$api.rule.detail, {
+					useruuid: localStorage.uuid,
+					uuid: this.$route.query.id
+				}).then(res => {
+					if (res.state === '1') {
+						this.info = res.data[0]
+						this.info.time = formatTime(this.info.time)
+					}
+				})
 			}
 		}
     }
 </script>
 
 <style scoped lang="scss">
-	.box{
-		height:100%;
+.box{
+	height:100%;
+}
+.paddL{
+	padding-left:.32rem;
+}
+.top{
+	border-bottom:.005rem solid #DDDCDE;
+	.title-bar {
+		width: 100%;
+		height: .88rem;
+		align-items: center;
+		font-size: .32rem;
+		color: rgba(51, 51, 51, 1);
+		border-bottom: .005rem solid #DDDCDE;
+
+		.title-left {
+			width: 1.28rem;
+		}
+
+		.title-right {
+			margin-left: .52rem;
+			color: rgba(143, 142, 148, 1);
+		}
 	}
- .paddL{
-	 padding-left:.32rem;
- }
- .top{
-	 width:100%;
-	 border-bottom:.005rem solid #DDDCDE;
-	 .title-bar{
+	.title{
 		width:100%;
-		height:.88rem;
+		height:.86rem;
 		align-items:center;
 		font-size:.32rem;
 		color:rgba(51,51,51,1);
 		border-bottom:.005rem solid #DDDCDE;
-		.title-left{
-			width:1.28rem;
-		}
-		.title-right{
-			margin-left:.52rem;
-			color:rgba(143,142,148,1);
-		}
-	 }
-	.title{
-		 width:100%;
-		 height:.86rem;
-		 align-items:center;
-		 font-size:.32rem;
-		 color:rgba(51,51,51,1);
-		 border-bottom:.005rem solid #DDDCDE;
 	} 
 	.title-text{
 		min-height:1.7rem;

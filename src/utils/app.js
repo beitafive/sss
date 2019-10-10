@@ -9,5 +9,9 @@ export default {
     // 获取经纬度
     get_location (cb) {
        ZLJNativeApi.getlocation({callback: cb})
+    },
+    // 跳转
+    open_new_url (url) {
+        ZLJNativeApi.push({urlStr: 'www.baidu.com' + url})
     }
 }

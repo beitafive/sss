@@ -11,3 +11,7 @@ export function time2Obj(time, symbol = '-') {
     obj.str = obj.symbolStr + ' ' + obj.hour + ':' + obj.minute + ':' + obj.second;
     return obj;
 }
+
+export function formatTime(str) {
+    return str.slice(0, 4) + '-' + str.slice(4, 6) + '-' + str.slice(6, 8) + ' ' + str.slice(8, 10) + ':' + str.slice(10, 12) + ':' + str.slice(12, 14)
+}
