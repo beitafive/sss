@@ -13,7 +13,6 @@ Vue.use(Vant)
 Vue.prototype.$app = app
 Vue.prototype.$api = api
 Vue.prototype.$http = http
-let ZLJNativeApi = null
 Vue.prototype.$push = (url) => {
   if (ZLJNativeApi) {
     app.open_new_url(url)
