@@ -1,6 +1,6 @@
 <template>
     <div class="login">
-        <img src="/static/img/china.png" class="china" />
+        <img src="@/assets/img/china.png" class="china" />
         <div class="login-title w-bold">浙里矫</div>
         <div class="form-box">
             <div class="form-item w-flex">
