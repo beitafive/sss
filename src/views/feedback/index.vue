@@ -35,8 +35,7 @@ export default {
     remaketextLength() {
       this.textLength = this.textNumber.length;
     }
-  },
-  created: {}
+  }
 };
 </script>
 

@@ -12,7 +12,7 @@
         <p>{{ address.formatted_address }}</p>
       </div>
     </div>
-    <div class="btns">
+    <div class="btns" @click="upload">
       位置上报<br/>
       <span>{{nowTime.hour}}:{{nowTime.minute}}</span>
     </div>
@@ -29,32 +29,49 @@ export default {
     return {
       nowDate: "",
       nowTime: "",
+      lon:'',
+      lat: '',
       address: {addressComponent: {}}
     };
   },
+    computed: {
+      mine () {
+          return this.$store.getters.userInfo
+      }
+    },
   mounted() {
     this.initMap();
-    this.getLocation();
     this.nowDate = time2Obj().symbolStr;
     this.nowTime = time2Obj()
   },
   methods: {
     initMap() {
-      var map = new AMap.Map("maps", {
-        resizeEnable: true, //是否监控地图容器尺寸变化
-        zoom: 121, //初始化地图层级
-        center: [116.397428, 39.90923] //初始化地图中心点
-      });
+        this.$app.get_location((lon, lat)=>{
+            this.lon = lon
+            this.lat = lat
+            var map = new AMap.Map("maps", {
+                resizeEnable: true, //是否监控地图容器尺寸变化
+                zoom: 121, //初始化地图层级
+                center: [lon, lat] //初始化地图中心点
+            });
+            axios({
+                url: `https://restapi.amap.com/v3/geocode/regeo?location=${lon},${lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
+                methods: "get",
+                responseType: "json"
+            }).then(res => {
+                this.address = res.data.regeocode;
+            });
+        })
     },
-    getLocation() {
-      axios({
-        url:
-          "https://restapi.amap.com/v3/geocode/regeo?location=116.310003,39.991957&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065",
-        methods: "get",
-        responseType: "json"
-      }).then(res => {
-        this.address = res.data.regeocode;
-      });
+    upload () {
+        this.$http.get(this.$api.location.upload, {
+            useruuid: this.mine.userUuid,
+            sqjzryXm: this.mine.userCName,
+            longitude: this.lon,
+            latitude: this.lat,
+            posName: this.address.addressComponent.township,
+            detailAddr: this.address.formatted_address
+        })
     }
   }
 };

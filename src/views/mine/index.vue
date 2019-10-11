@@ -1,7 +1,7 @@
 <template>
     <div class="mine">
         <div class="mine-info w-flex">
-            <img src="/static/img/mine_bg.png" />
+            <img :src="'https://api.fengtengfei.cn/JudicialZjjzFx/app/file/download.action?imgid=' + userInfo.faceImgids" />
             <div>
                 <p><span>{{userInfo.userCName}}</span> / 电子商务</p>
                 <p>管理等级：{{userInfo.mangaerLevel}}</p>
@@ -18,7 +18,7 @@
         <div class="borders"></div>
         <div class="mine-title">其他</div>
         <div class="mine-list w-flex">
-            <div class="mine-item">
+            <div class="mine-item" @click="toQa">
                 <img src="@/assets/img/wenti.png" />
                 问题反馈
             </div>
@@ -30,7 +30,6 @@
                 <img src="@/assets/img/password.png" />
                 修改密码
             </div>
-
         </div>
     </div>
 </template>
@@ -52,6 +51,9 @@
                     imgid: this.userInfo.faceImgids,
                     isthumb: true
                 })
+            },
+            toQa () {
+                this.$push('/feedback')
             }
         }
     }

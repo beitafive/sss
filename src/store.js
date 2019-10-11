@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     show_nav: '',
-    userInfo: {},
+    userInfo: localStorage.userInfo ? JSON.parse(localStorage.userInfo) : {},
     location: '',
   },
   getters: {

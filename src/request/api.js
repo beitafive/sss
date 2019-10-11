@@ -17,5 +17,6 @@ export default {
     location: {
         list: '/pri/position/reportlist.action',
         upload: '/pri/position/reportadd.action'
-    }
+    },
+    feedback: '/pri/problem/add.action'
 }
