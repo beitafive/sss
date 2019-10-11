@@ -23,7 +23,9 @@ Vue.prototype.$push = (url) => {
 }
 
 Vue.config.productionTip = false
-
+http.get(api.get_user_info, {
+    useruuid: localStorage.uuid
+})
 new Vue({
   router,
   store,

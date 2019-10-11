@@ -25,7 +25,7 @@
 
         <div class="home-record">
             <div class="record"><span>记录</span></div>
-            <div class="days">每日位置上报</div>
+            <div class="days" @click="toLocation">每日位置上报</div>
             <div class="tips w-flex"><img src="@/assets/img/red_icon.png" />您有新的位置上报指令，请及时上报</div>
         </div>
 
@@ -83,6 +83,9 @@
             },
             toCmd () {
                 this.$push('/StatisticalCommand')
+            },
+            toLocation () {
+                this.$push('/location')
             }
         }
     }
