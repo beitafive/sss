@@ -11,7 +11,7 @@
         <div class="mine-title">日常管理</div>
         <div class="mine-list w-flex">
             <div class="mine-item">
-                <img src="/static/img/xuexi.png" />
+                <img src="@/assets/img/xuexi.png" />
                 在线学习
             </div>
         </div>
@@ -19,15 +19,15 @@
         <div class="mine-title">其他</div>
         <div class="mine-list w-flex">
             <div class="mine-item">
-                <img src="/static/img/wenti.png" />
+                <img src="@/assets/img/wenti.png" />
                 问题反馈
             </div>
             <div class="mine-item">
-                <img src="/static/img/jiaozheng.png" />
+                <img src="@/assets/img/jiaozheng.png" />
                 矫正小组
             </div>
             <div class="mine-item">
-                <img src="/static/img/password.png" />
+                <img src="@/assets/img/password.png" />
                 修改密码
             </div>
 
@@ -59,7 +59,7 @@
 
 <style scoped lang="scss">
     .mine {
-        height: 100%; background-image: url("/static/img/mine_bg.png"); background-size: 100%; background-repeat: no-repeat;
+        height: 100%; background-image: url("../../assets/img/mine_bg.png"); background-size: 100%; background-repeat: no-repeat;
         .mine-info {
             height: 2.8rem; padding-top: .38rem; box-sizing: border-box;
             img { width: 1.4rem; height: 1.4rem; object-fit: cover; border: 3px solid #7279FC; border-radius: 100%; margin: 0 .36rem 0 .6rem; }
