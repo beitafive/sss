@@ -1,21 +1,21 @@
 <template>
     <div class="login">
-        <img src="/static/img/china.png" class="china" />
+        <img src="@/assets/img/china.png" class="china" />
         <div class="login-title w-bold">浙里矫</div>
         <div class="form-box">
             <div class="form-item w-flex">
-                <img src="/static/img/login_user.png" class="icon" />
+                <img src="@/assets/img/login_user.png" class="icon" />
                 <input v-model="username" placeholder="用户名" />
             </div>
             <div class="form-item w-flex">
-                <img src="/static/img/login_pwd.png" class="icon" />
+                <img src="@/assets/img/login_pwd.png" class="icon" />
                 <input v-model="password" placeholder="密码" type="password" />
-                <img src="/static/img/pwd.png" class="pwd" />
+                <img src="@/assets/img/pwd.png" class="pwd" />
             </div>
             <div class="login-btn" @click="login">登录</div>
 
             <div class="scan-btn w-flex" @click="toFace">
-                <img src="/static/img/login_scan.png" />刷脸登录
+                <img src="@/assets/img/login_scan.png" />刷脸登录
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
 
 <style scoped lang="scss">
     .login {
-        height: 100%; padding-top: .5rem; background-image: url("/static/img/login_bg.png"); background-size: 100%; background-repeat: no-repeat;
+        height: 100%; padding-top: .5rem; background-image: url("../../assets/img/login_bg.png"); background-size: 100%; background-repeat: no-repeat;
         .china { width: 30%; margin-left: 35%; }
         .login-title { text-align: center; font-size: .5rem; color: #fff; margin: .22rem 0 2.7rem; }
         .form-box {
