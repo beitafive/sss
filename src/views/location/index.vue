@@ -2,7 +2,7 @@
   <div class="map">
     <div class="map-title w-flex">
       {{address.addressComponent.township}}
-      <img src="/static/img/times.png" />
+      <img src="@/assets/img/times.png" />
       <span>{{ nowDate }}</span>
     </div>
     <div id="maps"></div>

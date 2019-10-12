@@ -1,16 +1,16 @@
 <template>
 	<div class="box w-flex">
 		<div class="header w-flex">
-			<img class="header-img" src="../../../public/static/img/pic_tx108@3x.png" alt="">
+			<img class="header-img" src="@/assets/img/pic_tx108@3x.png" alt="">
 			<div class="header-name w-flex">
 				<span>张宏伟</span>
-				<img src="../../../public/static/img/pic_wwc@3x.png" alt="">
+				<img src="@/assets/img/pic_wwc@3x.png" alt="">
 				<!-- <img src="../../../public/static/img/pic_ywc@3x.png" alt=""> -->
 			</div>
 			<div class="header-time w-flex">
-				<img class="time-img" src="../../../public/static/img/icon_riqib@3x.png" alt="">
+				<img class="time-img" src="@/assets/img/icon_riqib@3x.png" alt="">
 				<span>2019-05-05</span>
-				<img class="down-img" src="../../../public/static/img/icon_xz@3x.png" alt="">
+				<img class="down-img" src="@/assets/img/icon_xz@3x.png" alt="">
 			</div>
 		</div>
 		<div class="mind w-flex">
@@ -18,7 +18,7 @@
 				<p>3<i>次</i></p>
 				<span>指令总计</span>
 			</div>
-			<img src="../../../public/static/img/line_wzsbzl.png" alt="">
+			<img src="@/assets/img/line_wzsbzl.png" alt="">
 			<div>
 				<p>1<i>次</i></p>
 				<span>按指令要求按时上报</span>
@@ -94,7 +94,7 @@
 <style scoped lang="scss">
 	.box {
 		flex-direction: column;
-		justify-content: cneter;
+		justify-content: center;
 		align-items: center;
 		position: relative;
 		background: #F0EFF5;
@@ -105,7 +105,7 @@
 		position: relative;
 		width: 100%;
 		height: 2.4rem;
-		background-image: url("/static/img/bg_wzsbzl@3x.png");
+		background-image: url("../../assets/img/bg_wzsbzl@3x.png");
 		background-size: 100%;
 		background-repeat: no-repeat;
 		margin-bottom: .88rem;
@@ -143,7 +143,7 @@
 			color: #FFFFFF;
 			align-items: center;
 			justify-content: center;
-			background-image: url("/static/img/bg_riqi.png");
+			background-image: url("../../assets/img/bg_riqi.png");
 			background-size: 100%;
 			background-repeat: no-repeat;
 
@@ -168,7 +168,7 @@
 		height: 1.32rem;
 		justify-content: center;
 		align-items: center;
-		background-image: url("/static/img/bg_yj.png");
+		background-image: url("../../assets/img/bg_yj.png");
 		background-size: 100%;
 		background-repeat: no-repeat;
 		position: absolute;

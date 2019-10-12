@@ -30,7 +30,7 @@
 				附件
 			</div>
 			<div class="pic-list w-flex" >
-				<img class="LabelImg" src="../../../../public/static/img/icon_fjxz.png" /><span>{{info.fileNames}}</span><img class="rightImg" src="../../../../public/static/img/right.png" />
+				<img class="LabelImg" src="@/assets/img/icon_fjxz.png" /><span>{{info.fileNames}}</span><img class="rightImg" src="@/assets/img/right.png" />
 			</div>
 		</div>
 	</div>
@@ -98,7 +98,7 @@
 		font-size:.32rem;
 		color:rgba(51,51,51,1);
 		border-bottom:.005rem solid #DDDCDE;
-	} 
+	}
 	.title-text{
 		min-height:1.7rem;
 		font-size:.32rem;
@@ -140,5 +140,5 @@
 		}
 	}
  }
- 
+
 </style>

@@ -13,7 +13,7 @@
 				</div>
 			</div>
 			<div class="bottom-btn  w-flex">
-				<span class="w-flex"><img src="/static/img/icon_time2@3x.png" alt="">{{item.time}}</span>
+				<span class="w-flex"><img src="@/assets/img/icon_time2@3x.png" alt="">{{item.time}}</span>
 				<button>立即上报</button>
 			</div>
 		</div>

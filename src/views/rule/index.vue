@@ -9,7 +9,7 @@
       <div class="rules-top w-flex">
         <span class="rules-left">{{ item.orgName }}</span>
         <span class="rules-right w-flex"
-          >{{ item.time }} <img src="/static/img/right.png"
+          >{{ item.time }} <img src="@/assets/img/right.png"
         /></span>
       </div>
       <div class="rules-mind"></div>

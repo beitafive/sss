@@ -1,6 +1,6 @@
 <template>
 	<div class="box w-flex">
-		<img src="/static/img/pic_ljsb@3x.png" alt="">
+		<img src="@/assets/img/pic_ljsb@3x.png" alt="">
 		<div class="btn-box w-flex">
 			<button class="feedback-btn">立即上报</button>
 		</div>
@@ -31,7 +31,7 @@
 <style scoped lang="scss">
 	.box {
 		flex-direction: column;
-		justify-content: cneter;
+		justify-content: center;
 		align-items: center;
 		height: 100%;
 		img{
@@ -42,7 +42,7 @@
 		.btn-box{
 			.feedback-btn{
 				background:#fff;
-				background-image: url("/static/img/bg_btn.png");
+				background-image: url("../../../assets/img/bg_btn.png");
 				background-size: 100%;
 				background-repeat: no-repeat;
 				width:4.8rem;
