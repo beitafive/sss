@@ -24,6 +24,8 @@ Vue.prototype.$push = (url) => {
 Vue.config.productionTip = false
 http.get(api.get_user_info, {
     useruuid: localStorage.uuid
+}).then(res => {
+    store.dispatch('setUserInfo', res.data[0])
 })
 new Vue({
   router,
