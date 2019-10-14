@@ -9,6 +9,7 @@ export function time2Obj(time, symbol = '-') {
     obj.second = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds().toString();
     obj.symbolStr = obj.year + symbol + obj.month + symbol + obj.day;
     obj.str = obj.symbolStr + ' ' + obj.hour + ':' + obj.minute + ':' + obj.second;
+    obj.dateStr = time.getFullYear().toString() + ((time.getMonth() + 1) >= 10 ? (time.getMonth() + 1) : '0' + (time.getMonth() + 1).toString());
     return obj;
 }
 

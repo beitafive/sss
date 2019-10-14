@@ -1,7 +1,7 @@
 <template>
     <div class="w-nav w-flex" v-if="showNav">
         <router-link tag="div" class="w-nav-item" to="/">
-           <img :src="$route.path === '/' ? '@/assets/img/home_active.png' : '@/assets/img/home_normal.png'" /><br>
+           <img :src="$route.path === '/' ? require('@/assets/img/home_active.png') : require('@/assets/img/home_normal.png')" /><br>
             首页
         </router-link>
         <router-link tag="div" class="w-nav-item" to="/rule">
@@ -9,7 +9,7 @@
             规章制度
         </router-link>
         <router-link tag="div" class="w-nav-item" to="/mine">
-            <img :src="$route.path === '/mine' ? '@/assets/img/mine_active.png' : '@/assets/img/mine_normal.png'" /><br>
+            <img :src="$route.path === '/mine' ? require('@/assets/img/mine_active.png') : require('@/assets/img/mine_normal.png')" /><br>
             个人中心
         </router-link>
     </div>
