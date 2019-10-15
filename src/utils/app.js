@@ -13,5 +13,9 @@ export default {
     // 跳转
     open_new_url (url) {
         ZLJNativeApi.push({urlStr: 'www.baidu.com' + url})
+    },
+    // 传给app uuid
+    send_uuid () {
+        ZLJNativeApi.sendloginInfo()
     }
 }

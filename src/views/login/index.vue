@@ -22,11 +22,13 @@
 </template>
 
 <script>
+    import { formatTimeObj, getOverTime } from "@/utils/time"
+
     export default {
         name: "index",
         data () {
             return {
-                username: '362366117908031111',
+                username: '33032519770506121X',
                 password: '111111',
                 isPwd: true
             }
@@ -38,6 +40,9 @@
                     userpwd: this.password
                 }).then(res => {
                     if (res.state === '1') {
+                        let times = formatTimeObj(res.data[0].sqjzjsrq)
+                        res.data[0].overDate = times.year + '年' + times.month + '月' + times.day + '日'
+                        res.data[0].overTime = getOverTime(res.data[0].sqjzjsrq, res.data[0].sqjzksrq)
                         this.$store.dispatch('setUserInfo', res.data[0])
                         localStorage.userInfo = JSON.stringify(res.data[0])
                         localStorage.uuid = res.data[0].userUuid

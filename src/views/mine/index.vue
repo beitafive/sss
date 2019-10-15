@@ -1,11 +1,11 @@
 <template>
     <div class="mine">
         <div class="mine-info w-flex">
-            <img :src="'https://api.fengtengfei.cn/JudicialZjjzFx/app/file/download.action?imgid=' + userInfo.faceImgids" />
+            <img :src="'https://api.fengtengfei.cn/JudicialZjjzFx/app/file/download.action?fileuuid=' + userInfo.faceImgids" />
             <div>
                 <p><span>{{userInfo.userCName}}</span> / 电子商务</p>
                 <p>管理等级：{{userInfo.mangaerLevel}}</p>
-                <p>罪名：非法经营罪</p>
+                <p>罪名：{{userInfo.charge}}</p>
             </div>
         </div>
         <div class="mine-title">日常管理</div>
@@ -42,16 +42,7 @@
                 return this.$store.getters.mine
             }
         },
-        mounted () {
-            this.getHead()
-        },
         methods: {
-            getHead () {
-                this.$http.get('/app/file/download.action', {
-                    imgid: this.userInfo.faceImgids,
-                    isthumb: true
-                })
-            },
             toQa () {
                 this.$push('/feedback')
             }

@@ -3,11 +3,11 @@
         <div class="home-top w-flex">
             <div class="home-date">
                 <div>期满解矫到期时间：<br/>
-                    2019年2月20日</div>
-                <div>离解矫还剩2年3个月03天</div>
+                    {{mine.overDate}}</div>
+                <div>离解矫还剩{{mine.overTime.year}}年{{mine.overTime.month}}个月{{mine.overTime.day}}天</div>
             </div>
             <div class="date-tips">
-                两年四个月<br/>
+                {{mine.sqjzqx}}<br/>
                 矫正期限
             </div>
         </div>
@@ -66,6 +66,11 @@
                 info: {
                     noticeNum: 0
                 }
+            }
+        },
+        computed: {
+            mine () {
+                return this.$store.getters.mine
             }
         },
         mounted () {

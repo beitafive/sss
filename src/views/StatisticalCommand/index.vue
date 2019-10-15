@@ -74,20 +74,10 @@
 				}
 			},
 			methods: {
-					goDetails(item) {
-						this.$router.push({
-							path: '/StatisticalCommands',
-							query: {
-								id: item.id
-							}
-
-						})
-					}
-				},
-				created: {
-
+				goDetails(item) {
+					this.$push(`/location?id=${item.id}`)
 				}
-
+			}
 		}
 </script>
 
