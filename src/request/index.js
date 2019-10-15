@@ -1,4 +1,5 @@
 import axios from 'axios'
+import qs from 'qs'
 import { Toast } from 'vant'
 
 const http = axios.create({
@@ -25,6 +26,8 @@ export default {
         })
     },
     post: (url, data) => {
-        return http.post(url, data)
+        return http.post(url, {
+            data: qs.stringify(data)
+        })
     }
 }
