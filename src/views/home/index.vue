@@ -90,7 +90,7 @@
                 this.$push('/StatisticalCommand')
             },
             toLocation () {
-                this.$push('/location')
+                this.$push('/location?type=1')
             },
             toRecord () {
                 this.$push('/location/record')

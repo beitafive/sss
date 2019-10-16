@@ -46,7 +46,8 @@
                         this.$store.dispatch('setUserInfo', res.data[0])
                         localStorage.userInfo = JSON.stringify(res.data[0])
                         localStorage.uuid = res.data[0].userUuid
-                        this.$router.replace('/')
+                        this.$app.send_uuid(res.data[0].userUuid)
+                        this.$push('/')
                     }
                 })
             },
