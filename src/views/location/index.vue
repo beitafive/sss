@@ -47,7 +47,8 @@ export default {
   methods: {
     initMap() {
       if (this.$route.query.type === '1') {
-        this.$app.get_location((lon, lat)=>{
+        this.$app.get_location((lon, lat, a, b)=>{
+          alert(lon, lat, a, b)
           this.lon = lon
           this.lat = lat
           var map = new AMap.Map("maps", {
