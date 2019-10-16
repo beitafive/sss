@@ -17,9 +17,9 @@ Vue.prototype.$api = api
 Vue.prototype.$http = http
 Vue.prototype.$push = (url) => {
   // if (ZLJNativeApi) {
-    app.open_new_url(url)
+  //   app.open_new_url(url)
   // } else {
-  //   router.push(url)
+    router.push(url)
   // }
 }
 
