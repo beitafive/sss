@@ -49,7 +49,7 @@ export default {
         })
     },
     goDetails(item) {
-    	this.$push(`/ruledetail/?id=${item.uuid}`)
+        this.$push(`/ruledetail/?id=${item.uuid}`)
     }
   }
 }

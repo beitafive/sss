@@ -30,7 +30,7 @@
 				附件
 			</div>
 			<div class="pic-list w-flex" >
-				<img class="LabelImg" src="@/assets/img/icon_fjxz.png" /><span>{{info.fileNames}}</span><img class="rightImg" src="@/assets/img/right.png" />
+				<img class="LabelImg" src="@/assets/img/icon_fjxz.png" /><a :href="'https://api.fengtengfei.cn/JudicialZjjzFx/app/file/download.action?fileuuid=' + info.fileIds" download="filename">{{info.fileNames}}</a><img class="rightImg" src="@/assets/img/right.png" />
 			</div>
 		</div>
 	</div>
@@ -133,7 +133,7 @@
 			height:.24rem;
 			margin-right: .24rem;
 		}
-		span{
+		a{
 			flex:1;
 			font-size:.28rem;
 			color:rgba(51,51,51,1);

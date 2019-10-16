@@ -7,6 +7,8 @@ import api from './request/api'
 import app from './utils/app'
 import Vant from 'vant'
 import 'vant/lib/index.css'
+import { formatTimeObj, getOverTime } from "./utils/time"
+import { getQueryString } from "./utils/common";
 
 Vue.use(Vant)
 
@@ -22,13 +24,22 @@ Vue.prototype.$push = (url) => {
 }
 
 Vue.config.productionTip = false
+
+
 http.get(api.get_user_info, {
-    useruuid: localStorage.uuid
+    useruuid: getQueryString('uuid') || localStorage.uuid
 }).then(res => {
+    let times = formatTimeObj(res.data[0].sqjzjsrq)
+    res.data[0].overDate = times.year + '年' + times.month + '月' + times.day + '日'
+    res.data[0].overTime = getOverTime(res.data[0].sqjzjsrq, res.data[0].sqjzksrq)
     store.dispatch('setUserInfo', res.data[0])
+    localStorage.userInfo = JSON.stringify(res.data[0])
+
 })
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')
+
+

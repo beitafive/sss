@@ -9,13 +9,24 @@ export function time2Obj(time, symbol = '-') {
     obj.second = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds().toString();
     obj.symbolStr = obj.year + symbol + obj.month + symbol + obj.day;
     obj.str = obj.symbolStr + ' ' + obj.hour + ':' + obj.minute + ':' + obj.second;
-    obj.dateStr = time.getFullYear().toString() + ((time.getMonth() + 1) >= 10 ? (time.getMonth() + 1) : '0' + (time.getMonth() + 1).toString());
+    obj.dateStr = obj.year.toString() + obj.month.toString();
+    obj.timeStr = obj.dateStr + obj.hour + obj.minute + obj.second;
     return obj;
 }
 
 export function formatTime(str) {
     return str.slice(0, 4) + '-' + str.slice(4, 6) + '-' + str.slice(6, 8) + ' ' + str.slice(8, 10) + ':' + str.slice(10, 12) + ':' + str.slice(12, 14)
 }
+
+export function getOverTime(str1, str2) {
+    let times = Date.parse(new Date(formatTime(str1))) - Date.parse(new Date(formatTime(str2)))
+    return {
+        year: Math.floor(times / 31536000000),
+        month: Math.floor(times / 2592000000 % 12),
+        day: Math.floor(times % 86400000)
+    }
+}
+
 export function formatTimeObj(str) {
     return {
         year: str.slice(0, 4),

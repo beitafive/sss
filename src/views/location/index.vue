@@ -34,11 +34,11 @@ export default {
       address: {addressComponent: {}}
     };
   },
-    computed: {
-      mine () {
-          return this.$store.getters.userInfo
-      }
-    },
+  computed: {
+    mine () {
+        return this.$store.getters.userInfo
+    }
+  },
   mounted() {
     this.initMap();
     this.nowDate = time2Obj().symbolStr;
