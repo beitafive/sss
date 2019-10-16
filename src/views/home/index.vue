@@ -24,7 +24,7 @@
         </div>
 
         <div class="home-record">
-            <div class="record"><span>记录</span></div>
+            <div class="record"><span @click="toRecord">记录</span></div>
             <div class="days" @click="toLocation">每日位置上报</div>
             <div class="tips w-flex"><img src="@/assets/img/red_icon.png" />您有新的位置上报指令，请及时上报</div>
         </div>
@@ -86,6 +86,9 @@
             },
             toLocation () {
                 this.$push('/location')
+            },
+            toRecord () {
+                this.$push('/location/record')
             }
         }
     }

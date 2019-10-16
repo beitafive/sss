@@ -46,23 +46,28 @@ export default {
   },
   methods: {
     initMap() {
+      if (this.$route.query.type === '1') {
         this.$app.get_location((lon, lat)=>{
-            this.lon = lon
-            this.lat = lat
-            var map = new AMap.Map("maps", {
-                resizeEnable: true, //是否监控地图容器尺寸变化
-                zoom: 121, //初始化地图层级
-                center: [lon, lat] //初始化地图中心点
-            });
-            axios({
-                url: `https://restapi.amap.com/v3/geocode/regeo?location=${lon},${lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
-                methods: "get",
-                responseType: "json"
-            }).then(res => {
-                this.address = res.data.regeocode;
-            });
+          this.lon = lon
+          this.lat = lat
+          var map = new AMap.Map("maps", {
+            resizeEnable: true, //是否监控地图容器尺寸变化
+            zoom: 121, //初始化地图层级
+            center: [lon, lat] //初始化地图中心点
+          });
+          axios({
+            url: `https://restapi.amap.com/v3/geocode/regeo?location=${lon},${lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
+            methods: "get",
+            responseType: "json"
+          }).then(res => {
+            this.address = res.data.regeocode;
+          });
         })
+      } else {
+
+      }
     },
+    // 上传位置
     upload () {
         this.$http.get(this.$api.location.upload, {
             useruuid: this.mine.userUuid,

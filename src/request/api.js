@@ -1,7 +1,7 @@
 
 export default {
     login: '/pri/userlogin.action',
-    get_user_info: '/pri/app/getuserinfo.action',
+    get_user_info: '/pri/getuserinfo.action',
     index: {
         base_info: '/pri/index/corrperstat.action'
     },
