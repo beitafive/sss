@@ -12,10 +12,10 @@ export default {
     },
     // 跳转
     open_new_url (url) {
-        ZLJNativeApi.push({urlStr: 'www.baidu.com' + url})
+        ZLJNativeApi.push({urlStr: 'https://beitafive.github.io/sss/#' + url})
     },
     // 传给app uuid
-    send_uuid () {
-        ZLJNativeApi.sendloginInfo()
+    send_uuid (uuid) {
+        ZLJNativeApi.sendloginInfo({uuid: uuid})
     }
 }
