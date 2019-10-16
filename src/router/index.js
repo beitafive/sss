@@ -11,6 +11,7 @@ const route = new Router({
 })
 route.beforeEach((to, from, next) => {
     store.dispatch('setNavState', to.meta.showNav || false)
+    document.title = to.meta.title
     next()
     // ...
 })
