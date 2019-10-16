@@ -29,8 +29,7 @@ export default {
     return {
       nowDate: "",
       nowTime: "",
-      lon:'',
-      lat: '',
+      system: {},
       address: {addressComponent: {}}
     };
   },
@@ -47,16 +46,15 @@ export default {
   methods: {
     initMap() {
       if (this.$route.query.type === '1') {
-        this.$app.get_location((lon, lat)=>{
-          this.lon = lon
-          this.lat = lat
+        this.$app.get_location((info)=>{
+          this.system = JSON.parse(info)
           var map = new AMap.Map("maps", {
             resizeEnable: true, //是否监控地图容器尺寸变化
             zoom: 121, //初始化地图层级
-            center: [lon, lat] //初始化地图中心点
+            center: [this.system.lon, this.system.lat] //初始化地图中心点
           });
           axios({
-            url: `https://restapi.amap.com/v3/geocode/regeo?location=${lon},${lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
+            url: `https://restapi.amap.com/v3/geocode/regeo?location=${this.system.lon},${this.system.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
             methods: "get",
             responseType: "json"
           }).then(res => {
