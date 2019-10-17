@@ -28,8 +28,8 @@
         name: "index",
         data () {
             return {
-                username: '33032519770506121X',
-                password: '111111',
+                username: '',
+                password: '',
                 isPwd: true
             }
         },
