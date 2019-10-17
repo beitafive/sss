@@ -33,11 +33,13 @@ http.get(api.get_user_info, {
     res.data[0].overDate = times.year + '年' + times.month + '月' + times.day + '日'
     res.data[0].overTime = getOverTime(res.data[0].sqjzjsrq, res.data[0].sqjzksrq)
     store.dispatch('setUserInfo', res.data[0])
+    localStorage.uuid = res.data[0].userUuid
+    new Vue({
+        router,
+        store,
+        render: h => h(App)
+    }).$mount('#app')
 })
-new Vue({
-    router,
-    store,
-    render: h => h(App)
-}).$mount('#app')
+
 
 
