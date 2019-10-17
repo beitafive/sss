@@ -10,6 +10,9 @@ export function time2Obj(time, symbol = '-') {
     obj.symbolStr = obj.year + symbol + obj.month + symbol + obj.day;
     obj.str = obj.symbolStr + ' ' + obj.hour + ':' + obj.minute + ':' + obj.second;
     obj.dateStr = obj.year.toString() + obj.month.toString();
+    obj.dateStr2 = obj.dateStr + obj.day.toString();
+    obj.dateStr4 = obj.hour.toString() + obj.minute.toString() + obj.second.toString();
+    obj.dateStr3 = obj.dateStr2 + obj.dateStr4;
     obj.timeStr = obj.dateStr + obj.hour + obj.minute + obj.second;
     return obj;
 }

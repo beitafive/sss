@@ -3,8 +3,11 @@
 
 export default {
     // 人脸登陆
-    face_login: (cb) => {
-        ZLJNativeApi.facelogin({callback: cb})
+    face_login: () => {
+        ZLJNativeApi.facelogin()
+    },
+    face_location: (cb) => {
+        ZLJNativeApi.facelocation({callback: cb})
     },
     // 获取经纬度
     get_location (cb) {

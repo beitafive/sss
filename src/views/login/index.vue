@@ -9,8 +9,9 @@
             </div>
             <div class="form-item w-flex">
                 <img src="@/assets/img/login_pwd.png" class="icon" />
-                <input v-model="password" placeholder="密码" type="password" />
-                <img src="@/assets/img/pwd.png" class="pwd" />
+                <input v-model="password" placeholder="密码" :type="isPwd ? 'password' : 'text'" />
+                <img src="@/assets/img/pwd.png" class="pwd" @click="isPwd = false" v-if="isPwd"/>
+                <img src="@/assets/img/no_pwd.png" class="pwd" @click="isPwd = true" v-else/>
             </div>
             <div class="login-btn" @click="login">登录</div>
 

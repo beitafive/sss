@@ -1,100 +1,140 @@
 <template>
   <div class="box w-flex">
     <div class="header w-flex">
-      <img class="header-img" src="@/assets/img/pic_tx108@3x.png" alt="" />
+      <img :src="'https://api.fengtengfei.cn/JudicialZjjzFx/app/file/download.action?fileuuid=' + mine.faceImgids" class="header-img" />
       <div class="header-name w-flex">
-        <span>张宏伟</span>
-        <img src="@/assets/img/pic_wwc@3x.png" alt="" />
-        <!-- <img src="../../../public/static/img/pic_ywc@3x.png" alt=""> -->
+        <span>{{mine.userCName}}</span>
+        <img src="@/assets/img/pic_wwc@3x.png" alt="" v-if="total !== success" />
+         <img src="../../../public/static/img/pic_ywc@3x.png" alt="" v-else>
       </div>
-      <div class="header-time w-flex">
+      <div class="header-time w-flex" @click="show = true">
         <img class="time-img" src="@/assets/img/icon_riqib@3x.png" alt="" />
-        <span>2019-05-05</span>
+        <span>{{showDate}}</span>
         <img class="down-img" src="@/assets/img/icon_xz@3x.png" alt="" />
       </div>
     </div>
     <div class="mind w-flex">
       <div>
-        <p>3<i>次</i></p>
+        <p>{{total}}<i>次</i></p>
         <span>指令总计</span>
       </div>
       <img src="@/assets/img/line_wzsbzl.png" alt="" />
       <div>
-        <p>1<i>次</i></p>
+        <p>{{success}}<i>次</i></p>
         <span>按指令要求按时上报</span>
       </div>
     </div>
     <div
       class="bottom-box"
-      v-for="(item, index) in navList"
+      v-for="(item, index) in list"
       :key="index"
-      @click="goDetails(item)"
     >
       <div class="bottom-top w-flex">
-        <span class="bottom-left">{{ item.name }}</span>
+        <span class="bottom-left">{{ item.deptName }}</span>
         <span
           class="bottom-right w-flex"
-          :class="item.state == '待上报' ? 'report' : ''"
-          >{{ item.state }}</span
+          :class="item.type == 3 ? 'report' : ''"
+          >{{ item.type === 1 ? '已上报' : item.type === 2 ? '待上报' : '未上报'}}</span
         >
       </div>
       <div class="bottom-mind"></div>
       <div class="bottom-btm w-flex">
         <div class="bottom-text">
-          {{ item.details }}
+          {{ item.orderDesc }}
         </div>
       </div>
       <div class="bottom-btn  w-flex">
-        <span>上报截止时间：{{ item.time }}</span>
-        <button>立即上报</button>
+        <span>上报截止时间：{{ item.endTime }}</span>
+        <button @click="goDetails(item)" v-if="item.type !== 3">{{item.type === 2 ? '立即上报' : '查看详情'}}</button>
       </div>
     </div>
+    <van-popup v-model="show" position="bottom" :style="{ height: '40%' }">
+      <van-datetime-picker
+        v-model="date"
+        type="date"
+        @cancel="show = false"
+        @confirm="selectTime"
+        :min-date="minDate"
+        :formatter="formatter"
+      />
+    </van-popup>
   </div>
 </template>
 
 <script>
+import { time2Obj, formatTimeObj } from "@/utils/time";
 export default {
   name: "index",
   data() {
     return {
-      navList: [
-        {
-          id: "1",
-          name: "余杭区司法局南苑司法所",
-          state: "待上报",
-          details:
-            "请于2019年4月1日  15:30前完成位置上报。完成位置上报。请于2019年4月1日  15:30前完成位置上报。完成位置上报。",
-          time: "12:30"
-        },
-        {
-          id: "2",
-          name: "下城司法所",
-          state: "已上报",
-          details: "请于2019年4月1日  15:30前完成位置上报。完成位置上报。",
-          time: "12:30"
-        },
-        {
-          id: "3",
-          name: "下城司法所",
-          state: "已上报",
-          details: "请于2019年4月1日  15:30前完成位置上报。完成位置上报。",
-          time: "12:30"
-        }
-      ]
+      show: false,
+      date: new Date(),
+      total: 0,
+      success: 0,
+      currentDate: new Date(),
+      list: []
     };
   },
+  computed: {
+    mine () {
+      return this.$store.getters.mine
+    },
+    showDate() {
+      return time2Obj(this.currentDate).year + "-" + time2Obj(this.currentDate).month + '-' + time2Obj(this.currentDate).day;
+    }
+  },
   mounted () {
-  	this.getList()
+    this.getList()
   },
   methods: {
     goDetails(item) {
-      this.$push(`/location?id=${item.id}`);
+      if (item.type === 1) {
+        let obj = {
+          location: item.dwszdmc,
+          address: '',
+          lon: item.jd,
+          lat: item.wd,
+          date: item.send_time.month + '月' + item.send_time.day + '日',
+          time: item.send_time.hour + ':' + item.send_time.minute
+        }
+        sessionStorage.recordItem = JSON.stringify(obj)
+        this.$push(`/location/detail`)
+      } else {
+        this.$push(`/location?type=2&id=${item.orderId}`)
+      }
     },
-  	getList () {
-    	this.$http.get(this.$api.cmd.all, {
-    		useruuid: localStorage.uuid
-		})
-	}
+    getList () {
+      this.$http.get(this.$api.cmd.all, {
+        useruuid: localStorage.uuid
+        // datetime: time2Obj(this.currentDate).dateStr2
+      }).then(res => {
+        if (res.state === '1') {
+          let nowStr = time2Obj().dateStr3
+          for (let i = 0, len = res.data.length; i < len; i++) {
+            if (res.data[i].sendTime) {
+              this.success++
+              res.data[i].send_time = formatTimeObj(res.data[i].sendTime)
+              res.data[i].type = 1
+            } else {
+              if (nowStr >= res.data[i].endDelayTime) {
+                res.data[i].type = 3
+              } else {
+                res.data[i].type = 2
+              }
+            }
+            res.data[i].endTime = formatTimeObj(res.data[i].endDelayTime).symbolStr
+          }
+          this.total = res.data.length
+          this.list = res.data
+        }
+      })
+	},
+    selectTime (val) {
+      this.currentDate = val
+      this.success = 0
+      this.getList()
+      this.show = false
+    }
   }
 };
 </script>
@@ -102,7 +142,6 @@ export default {
 <style scoped lang="scss">
 .box {
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   position: relative;
   background: #f0eff5;
@@ -121,6 +160,7 @@ export default {
   .header-img {
     width: 1.2rem;
     height: 1.2rem;
+    border-radius: 100%;
     margin: 0.32rem 0.28rem 0 0.24rem;
   }
 
@@ -165,7 +205,6 @@ export default {
 
     .down-img {
       width: 0.2rem;
-      height: 0.12rem;
     }
   }
 }
@@ -186,13 +225,13 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: cneter;
+    align-items: center;
     text-align: center;
 
     p {
       color: #333333;
       font-size: 0.36rem;
-
+      margin-bottom: .14rem;
       i {
         font-size: 0.24rem;
       }

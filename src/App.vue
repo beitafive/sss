@@ -8,5 +8,5 @@
   }
 </script>
 <style scoped>
-  #app { height: 100%; box-sizing: border-box; padding-bottom: 1rem; }
+  #app { height: 100%; box-sizing: border-box; }
 </style>

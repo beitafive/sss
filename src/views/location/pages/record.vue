@@ -48,7 +48,7 @@ export default {
       list: [{
         day: '06',
         month: '03',
-        list: [ { time: '22:22', location: '西溪景苑清晖园东区', address: '浙江省余杭区五常街道丰岭路138号西溪景苑清晖园东区', lon: '116.40', lat: '39.90' } ]
+        list: []
       }]
     };
   },
@@ -75,7 +75,8 @@ export default {
           dateTime: time2Obj(this.date).dateStr
         }).then(res => {
           if (res.state === '1') {
-            // this.list = formatRecord(res.data)
+            this.list = formatRecord(res.data)
+            this.count = res.data.length
           }
           this.show = false;
         })
