@@ -29,11 +29,14 @@ Vue.config.productionTip = false
 http.get(api.get_user_info, {
     useruuid: getQueryString('uuid') || localStorage.uuid
 }).then(res => {
-    let times = formatTimeObj(res.data[0].sqjzjsrq)
-    res.data[0].overDate = times.year + '年' + times.month + '月' + times.day + '日'
-    res.data[0].overTime = getOverTime(res.data[0].sqjzjsrq, res.data[0].sqjzksrq)
-    store.dispatch('setUserInfo', res.data[0])
-    localStorage.uuid = res.data[0].userUuid
+    if (res.state === '1') {
+        let times = formatTimeObj(res.data[0].sqjzjsrq)
+        res.data[0].overDate = times.year + '年' + times.month + '月' + times.day + '日'
+        res.data[0].overTime = getOverTime(res.data[0].sqjzjsrq, res.data[0].sqjzksrq)
+        store.dispatch('setUserInfo', res.data[0])
+        localStorage.uuid = res.data[0].userUuid
+    }
+
     new Vue({
         router,
         store,
