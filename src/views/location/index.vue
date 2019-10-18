@@ -45,19 +45,20 @@ export default {
   },
   methods: {
     initMap() {
-      this.$app.get_location((info)=>{
-        this.system = JSON.parse(info)
+      let that = this
+      this.$app.get_location(function(info){
+        that.system = JSON.parse(info)
         var map = new AMap.Map("maps", {
           resizeEnable: true, //是否监控地图容器尺寸变化
           zoom: 121, //初始化地图层级
-          center: [this.system.lon, this.system.lat] //初始化地图中心点
+          center: [that.system.lon, that.system.lat] //初始化地图中心点
         });
         axios({
-          url: `https://restapi.amap.com/v3/geocode/regeo?location=${this.system.lon},${this.system.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
+          url: `https://restapi.amap.com/v3/geocode/regeo?location=${that.system.lon},${that.system.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
           methods: "get",
           responseType: "json"
         }).then(res => {
-          this.address = res.data.regeocode;
+          that.address = res.data.regeocode;
         });
       })
     },
@@ -73,21 +74,22 @@ export default {
           detailAddr: this.address.formatted_address
         })
       } else {
-        this.$app.face_location(()=>{
-          this.$http.get(this.$api.cmd.upload, {
+        let that = this
+        this.$app.face_location(function(){
+          that.$http.get(that.$api.cmd.upload, {
             useruuid: localStorage.uuid,
-            orderId: this.$route.query.id,
+            orderId: that.$route.query.id,
             dwrq: time2Obj().dateStr2,
             dwsj: time2Obj().datestr4,
-            dwsblx: this.system.device,
-            dwsbh: this.system.deviceToken,
-            jd: this.system.lon,
-            wd: this.system.lat,
-            swszdmc: this.address.addressComponent.township,
+            dwsblx: that.system.device,
+            dwsbh: that.system.deviceToken,
+            jd: that.system.lon,
+            wd: that.system.lat,
+            swszdmc: that.address.addressComponent.township,
             dwzt: 'Y6901'
           }).then(res => {
             if (res.state === '1') {
-              this.$toast.success('上报成功')
+              that.$toast.success('上报成功')
             }
           })
         })
