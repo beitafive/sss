@@ -45,7 +45,20 @@ export default {
   },
   methods: {
     initMap () {
+      this.$toast.loading()
       this.$app.get_location(this.callBack)
+      setTimeout(() => {
+        let ios = JSON.parse(sessionStorage.ios)
+        this.system = ios
+        axios({
+          url: `https://restapi.amap.com/v3/geocode/regeo?location=${ios.lon},${ios.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
+          methods: "get",
+          responseType: "json"
+        }).then(res => {
+          this.address = res.data.regeocode;
+          this.$toast.clear()
+        });
+      },300)
     },
     callBack (info) {
       let ios = JSON.parse(info)
@@ -54,13 +67,7 @@ export default {
         zoom: 121, //初始化地图层级
         center: [ios.lon, ios.lat] //初始化地图中心点
       });
-      axios({
-        url: `https://restapi.amap.com/v3/geocode/regeo?location=${ios.lon},${ios.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
-        methods: "get",
-        responseType: "json"
-      }).then(res => {
-        this.address = res.data.regeocode;
-      });
+      sessionStorage.ios = info
     },
     // 上传位置
     upload () {
@@ -74,7 +81,12 @@ export default {
           detailAddr: this.address.formatted_address
         })
       } else {
-        this.$app.face_location(this.callLocation)
+        this.$app.face_location(function () {
+          window.location.href = window.location.href + '&face=1'
+        })
+      }
+      if (this.$route.query.face) {
+        this.callLocation()
       }
     },
     callLocation () {
