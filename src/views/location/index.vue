@@ -45,21 +45,22 @@ export default {
   },
   methods: {
     initMap () {
-      this.$app.get_location((info) => {
-        let ios = JSON.parse(info)
-        var map = new AMap.Map("maps", {
-          resizeEnable: true, //是否监控地图容器尺寸变化
-          zoom: 121, //初始化地图层级
-          center: [ios.lon, ios.lat] //初始化地图中心点
-        });
-        axios({
-          url: `https://restapi.amap.com/v3/geocode/regeo?location=${ios.lon},${ios.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
-          methods: "get",
-          responseType: "json"
-        }).then(res => {
-          this.address = res.data.regeocode;
-        });
-      })
+      this.$app.get_location(this.callBack)
+    },
+    callBack (info) {
+      let ios = JSON.parse(info)
+      var map = new AMap.Map("maps", {
+        resizeEnable: true, //是否监控地图容器尺寸变化
+        zoom: 121, //初始化地图层级
+        center: [ios.lon, ios.lat] //初始化地图中心点
+      });
+      axios({
+        url: `https://restapi.amap.com/v3/geocode/regeo?location=${ios.lon},${ios.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
+        methods: "get",
+        responseType: "json"
+      }).then(res => {
+        this.address = res.data.regeocode;
+      });
     },
     // 上传位置
     upload () {
@@ -73,27 +74,27 @@ export default {
           detailAddr: this.address.formatted_address
         })
       } else {
-        let that = this
-        this.$app.face_location(function(){
-          that.$http.get(that.$api.cmd.upload, {
-            useruuid: localStorage.uuid,
-            orderId: that.$route.query.id,
-            dwrq: time2Obj().dateStr2,
-            dwsj: time2Obj().datestr4,
-            dwsblx: that.system.device,
-            dwsbh: that.system.deviceToken,
-            jd: that.system.lon,
-            wd: that.system.lat,
-            swszdmc: that.address.addressComponent.township,
-            dwzt: 'Y6901'
-          }).then(res => {
-            if (res.state === '1') {
-              that.$toast.success('上报成功')
-            }
-          })
-        })
+        this.$app.face_location(this.callLocation)
       }
-
+    },
+    callLocation () {
+      let that = this
+      that.$http.get(that.$api.cmd.upload, {
+        useruuid: localStorage.uuid,
+        orderId: that.$route.query.id,
+        dwrq: time2Obj().dateStr2,
+        dwsj: time2Obj().datestr4,
+        dwsblx: that.system.device,
+        dwsbh: that.system.deviceToken,
+        jd: that.system.lon,
+        wd: that.system.lat,
+        swszdmc: that.address.addressComponent.township,
+        dwzt: 'Y6901'
+      }).then(res => {
+        if (res.state === '1') {
+          that.$toast.success('上报成功')
+        }
+      })
     }
   }
 };
