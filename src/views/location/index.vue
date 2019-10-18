@@ -71,22 +71,23 @@ export default {
     },
     // 上传位置
     upload () {
-      if (this.$route.query.type === 1) {
-        this.$http.get(this.$api.location.upload, {
-          useruuid: this.mine.userUuid,
-          sqjzryXm: this.mine.userCName,
-          longitude: this.lon,
-          latitude: this.lat,
-          posName: this.address.addressComponent.township,
-          detailAddr: this.address.formatted_address
-        })
-      } else {
-        this.$app.face_location(function () {
-          window.location.href = window.location.href + '&face=1'
-        })
-      }
       if (this.$route.query.face) {
         this.callLocation()
+      } else {
+        if (this.$route.query.type === 1) {
+          this.$http.get(this.$api.location.upload, {
+            useruuid: this.mine.userUuid,
+            sqjzryXm: this.mine.userCName,
+            longitude: this.lon,
+            latitude: this.lat,
+            posName: this.address.addressComponent.township,
+            detailAddr: this.address.formatted_address
+          })
+        } else {
+          this.$app.face_location(function () {
+            window.location.href = window.location.href + '&face=1'
+          })
+        }
       }
     },
     callLocation () {
