@@ -46,7 +46,15 @@ export default {
   methods: {
     initMap () {
       this.$toast.loading()
-      this.$app.get_location(this.callBack)
+      this.$app.get_location(function () {
+        let ios = JSON.parse(info)
+        var map = new AMap.Map("maps", {
+          resizeEnable: true, //是否监控地图容器尺寸变化
+          zoom: 121, //初始化地图层级
+          center: [ios.lon, ios.lat] //初始化地图中心点
+        });
+        sessionStorage.ios = info
+      })
       setTimeout(() => {
         let ios = JSON.parse(sessionStorage.ios)
         this.system = ios
@@ -59,15 +67,6 @@ export default {
           this.$toast.clear()
         });
       },300)
-    },
-    callBack (info) {
-      let ios = JSON.parse(info)
-      var map = new AMap.Map("maps", {
-        resizeEnable: true, //是否监控地图容器尺寸变化
-        zoom: 121, //初始化地图层级
-        center: [ios.lon, ios.lat] //初始化地图中心点
-      });
-      sessionStorage.ios = info
     },
     // 上传位置
     upload () {
