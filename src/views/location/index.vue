@@ -44,21 +44,20 @@ export default {
     this.nowTime = time2Obj()
   },
   methods: {
-    initMap() {
-      let that = this
-      this.$app.get_location(function(info){
-        that.system = JSON.parse(info)
+    initMap () {
+      this.$app.get_location((info) => {
+        let ios = JSON.parse(info)
         var map = new AMap.Map("maps", {
           resizeEnable: true, //是否监控地图容器尺寸变化
           zoom: 121, //初始化地图层级
-          center: [that.system.lon, that.system.lat] //初始化地图中心点
+          center: [ios.lon, ios.lat] //初始化地图中心点
         });
         axios({
-          url: `https://restapi.amap.com/v3/geocode/regeo?location=${that.system.lon},${that.system.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
+          url: `https://restapi.amap.com/v3/geocode/regeo?location=${ios.lon},${ios.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
           methods: "get",
           responseType: "json"
         }).then(res => {
-          that.address = res.data.regeocode;
+          this.address = res.data.regeocode;
         });
       })
     },
