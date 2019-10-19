@@ -73,7 +73,7 @@ export default {
       if (this.$route.query.face) {
         this.callLocation()
       } else {
-        if (this.$route.query.type === 1) {
+        if (this.$route.query.type === '1') {
           this.$http.get(this.$api.location.upload, {
             useruuid: this.mine.userUuid,
             sqjzryXm: this.mine.userCName,
