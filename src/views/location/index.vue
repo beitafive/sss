@@ -46,7 +46,7 @@ export default {
   methods: {
     initMap () {
       this.$toast.loading()
-      this.$app.get_location(function () {
+      this.$app.get_location(function(info) {
         let ios = JSON.parse(info)
         var map = new AMap.Map("maps", {
           resizeEnable: true, //是否监控地图容器尺寸变化
