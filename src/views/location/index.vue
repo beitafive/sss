@@ -75,7 +75,7 @@ export default {
       } else {
         if (this.$route.query.type === '1') {
           this.$http.get(this.$api.location.upload, {
-            useruuid: this.mine.userUuid,
+            useruuid: localStorage.uuid,
             sqjzryXm: this.mine.userCName,
             longitude: this.lon,
             latitude: this.lat,
