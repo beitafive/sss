@@ -81,6 +81,10 @@ export default {
             latitude: this.lat,
             posName: this.address.addressComponent.township,
             detailAddr: this.address.formatted_address
+          }).then(res => {
+            if (res.state === '1') {
+              this.$toast.success('上报成功')
+            }
           })
         } else {
           this.$app.face_location(function () {
