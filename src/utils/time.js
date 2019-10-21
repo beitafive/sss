@@ -18,7 +18,7 @@ export function time2Obj(time, symbol = '/') {
 }
 
 export function formatTime(str) {
-    return str.slice(0, 4) + '-' + str.slice(4, 6) + '-' + str.slice(6, 8) + ' ' + str.slice(8, 10) + ':' + str.slice(10, 12) + ':' + str.slice(12, 14)
+    return str.slice(0, 4) + '/' + str.slice(4, 6) + '/' + str.slice(6, 8) + ' ' + str.slice(8, 10) + ':' + str.slice(10, 12) + ':' + str.slice(12, 14)
 }
 
 export function getOverTime(str1, str2) {
@@ -38,6 +38,6 @@ export function formatTimeObj(str) {
         hour: str.slice(8, 10),
         minute: str.slice(10, 12),
         second: str.slice(12, 14),
-        symbolStr: str.slice(0, 4) + '-' + str.slice(4, 6) + '-' + str.slice(6, 8) + ' ' + str.slice(8, 10) + ':' + str.slice(10, 12) + ':' + str.slice(12, 14)
+        symbolStr: str.slice(0, 4) + '/' + str.slice(4, 6) + '/' + str.slice(6, 8) + ' ' + str.slice(8, 10) + ':' + str.slice(10, 12) + ':' + str.slice(12, 14)
     }
 }

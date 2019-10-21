@@ -3,7 +3,7 @@
         <div class="mine-info w-flex">
             <img :src="'https://api.fengtengfei.cn/JudicialZjjzFx/app/file/download.action?fileuuid=' + userInfo.faceImgids" />
             <div>
-                <p><span>{{userInfo.userCName}}</span> / 电子商务</p>
+                <p><span>{{userInfo.userCName}}</span> / {{userInfo.companyName}}</p>
                 <p>管理等级：{{userInfo.mangaerLevel}}</p>
                 <p>罪名：{{userInfo.charge}}</p>
             </div>
