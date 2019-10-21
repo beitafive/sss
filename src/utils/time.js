@@ -1,4 +1,4 @@
-export function time2Obj(time, symbol = '-') {
+export function time2Obj(time, symbol = '/') {
     time = time ? new Date(time) : new Date();
     let obj = new Object();
     obj.year = time.getFullYear();

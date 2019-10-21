@@ -12,7 +12,7 @@ http.interceptors.request.use((config) => {
 })
 
 http.interceptors.response.use(function(data){
-    if (data.data.state === '-1') {
+    if (data.data.state === '-1' && !data.config.url.includes('userlogin')) {
         Toast(data.data.message)
     }
     return data.data;   //只有return data后才能完成响应

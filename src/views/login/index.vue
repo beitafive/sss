@@ -10,9 +10,10 @@
             <div class="form-item w-flex">
                 <img src="@/assets/img/login_pwd.png" class="icon" />
                 <input v-model="password" placeholder="密码" :type="isPwd ? 'password' : 'text'" />
-                <img src="@/assets/img/pwd.png" class="pwd" @click="isPwd = false" v-if="isPwd"/>
-                <img src="@/assets/img/no_pwd.png" class="pwd" @click="isPwd = true" v-else/>
+                <img src="@/assets/img/no_pwd.png" class="pwd" @click="isPwd = true" v-if="isPwd"/>
+                <img src="@/assets/img/pwd.png" class="pwd" @click="isPwd = false" v-else/>
             </div>
+            <van-checkbox v-model="remember" shape="square">复选框</van-checkbox>
             <div class="login-btn" @click="login">登录</div>
 
             <div class="scan-btn w-flex" @click="toFace">
@@ -31,11 +32,18 @@
             return {
                 username: '',
                 password: '',
-                isPwd: true
+                isPwd: true,
+                remember: false
             }
         },
         methods: {
             login () {
+                if (this.username === '') {
+                    return this.$toast('用户名不能为空')
+                }
+                if (this.password === '') {
+                    return this.$toast('密码不能为空')
+                }
                 this.$http.get(this.$api.login, {
                     username: this.username,
                     userpwd: this.password

@@ -19,21 +19,21 @@
         </div>
         <div class="home-tips w-flex">
             <img src="@/assets/img/home_tips.png" />
-            <div> 您有一条来自XX司法所的消息通知，请asdjkhjaskkasjhdk及时查看</div>
+            <div> 您有一条来自XX司法所的消息通知，请及时查看</div>
             <span v-if="info.noticeNum !== '0'">{{info.noticeNum}}</span>
         </div>
 
         <div class="home-record">
             <div class="record"><span @click="toRecord">记录</span></div>
             <div class="days" @click="toLocation">每日位置上报</div>
-            <div class="tips w-flex"><img src="@/assets/img/red_icon.png" />您有新的位置上报指令，请及时上报</div>
+<!--            <div class="tips w-flex"><img src="@/assets/img/red_icon.png" />您有新的位置上报指令，请及时上报</div>-->
         </div>
 
         <div class="tips-box w-flex" @click="toCmd">
             <img src="@/assets/img/tips_1.png" class="logo" />
             <div>
                 <p>位置上报指令</p>
-                <p>今日还未有指令</p>
+                <p>一键进入查看位置上报完成情况</p>
             </div>
             <span v-if="info.lcorderNum !== '0'">{{info.lcorderNum}}</span>
             <img src="@/assets/img/right.png" class="icon" />
