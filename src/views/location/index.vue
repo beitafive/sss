@@ -76,9 +76,9 @@ export default {
         if (this.$route.query.type === '1') {
           this.$http.get(this.$api.location.upload, {
             useruuid: localStorage.uuid,
-            sqjzryXm: this.mine.userCName,
-            longitude: this.lon,
-            latitude: this.lat,
+            sqjzryXm: this.$store.state.userInfo.userCName,
+            longitude: this.system.lon,
+            latitude: this.system.lat,
             posName: this.address.addressComponent.township,
             detailAddr: this.address.formatted_address
           }).then(res => {
@@ -94,21 +94,20 @@ export default {
       }
     },
     callLocation () {
-      let that = this
-      that.$http.get(that.$api.cmd.upload, {
+      this.$http.get(this.$api.cmd.upload, {
         useruuid: localStorage.uuid,
-        orderId: that.$route.query.id,
+        orderId: this.$route.query.id,
         dwrq: time2Obj().dateStr2,
         dwsj: time2Obj().datestr4,
-        dwsblx: that.system.device,
-        dwsbh: that.system.deviceToken,
-        jd: that.system.lon,
-        wd: that.system.lat,
-        swszdmc: that.address.addressComponent.township,
+        dwsblx: this.system.device,
+        dwsbh: this.system.deviceToken,
+        jd: this.system.lon,
+        wd: this.system.lat,
+        swszdmc: this.address.addressComponent.township,
         dwzt: 'Y6901'
       }).then(res => {
         if (res.state === '1') {
-          that.$toast.success('上报成功')
+          this.$toast.success('上报成功')
         }
       })
     }
