@@ -1,7 +1,7 @@
 <template>
   <div class="map">
     <div class="map-title w-flex">
-      {{address.addressComponent.township}}
+      {{address.addressComponent.neighborhood.name}}
       <img src="@/assets/img/times.png" />
       <span>{{ nowDate }}</span>
     </div>
@@ -30,7 +30,9 @@ export default {
       nowDate: "",
       nowTime: "",
       system: {},
-      address: {addressComponent: {}}
+      address: {addressComponent: {
+          neighborhood: { name: '' }
+        }}
     };
   },
   computed: {
@@ -50,7 +52,7 @@ export default {
         let ios = JSON.parse(info)
         var map = new AMap.Map("maps", {
           resizeEnable: true, //是否监控地图容器尺寸变化
-          zoom: 121, //初始化地图层级
+          zoom: 10, //初始化地图层级
           center: [ios.lon, ios.lat] //初始化地图中心点
         });
         sessionStorage.ios = info
