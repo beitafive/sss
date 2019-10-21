@@ -105,8 +105,8 @@ export default {
     },
     getList () {
       this.$http.get(this.$api.cmd.all, {
-        useruuid: localStorage.uuid
-        // datetime: time2Obj(this.currentDate).dateStr2
+        useruuid: localStorage.uuid,
+        datetime: time2Obj(this.currentDate).dateStr2
       }).then(res => {
         if (res.state === '1') {
           let nowStr = time2Obj().dateStr3
