@@ -50,6 +50,18 @@ export default {
       this.$toast.loading()
       this.$app.get_location(function(info) {
         let ios = JSON.parse(info)
+        var icon = new AMap.Icon({
+          size: new AMap.Size(40, 50),    // 图标尺寸
+          image: '/static/img/map_icon.png',  // Icon的图像
+          // imageOffset: new AMap.Pixel(0, -60),  // 图像相对展示区域的偏移量，适于雪碧图等
+          imageSize: new AMap.Size(20, 30)   // 根据所设置的大小拉伸或压缩图片
+        });
+        var marker = new AMap.Marker({
+          position: new AMap.LngLat(ios.lon, ios.lat),
+          offset: new AMap.Pixel(-10, -10),
+          icon: icon, // 添加 Icon 实例
+          zoom: 13
+        });
         var map = new AMap.Map("maps", {
           resizeEnable: true, //是否监控地图容器尺寸变化
           zoom: 10, //初始化地图层级
