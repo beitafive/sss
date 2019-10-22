@@ -48,22 +48,11 @@ export default {
   methods: {
     initMap () {
       this.$toast.loading()
-      var map = {}
       this.$app.get_location(function(info) {
         let ios = JSON.parse(info)
-        map = new AMap.Map("maps", {
-          resizeEnable: true, //是否监控地图容器尺寸变化
-          zoom: 10, //初始化地图层级
-          center: [ios.lon, ios.lat] //初始化地图中心点
-        });
-        sessionStorage.ios = info
-      })
-      setTimeout(() => {
-        let ios = JSON.parse(sessionStorage.ios)
-        this.system = ios
         var icon = new AMap.Icon({
           size: new AMap.Size(40, 50),    // 图标尺寸
-          image: require('@/assets/img/map_icon.png'),  // Icon的图像
+          image: 'static/img/map_icon.png',  // Icon的图像
           // imageOffset: new AMap.Pixel(0, -60),  // 图像相对展示区域的偏移量，适于雪碧图等
           imageSize: new AMap.Size(20, 30)   // 根据所设置的大小拉伸或压缩图片
         });
@@ -73,7 +62,17 @@ export default {
           icon: icon, // 添加 Icon 实例
           zoom: 13
         });
+        var map = new AMap.Map("maps", {
+          resizeEnable: true, //是否监控地图容器尺寸变化
+          zoom: 10, //初始化地图层级
+          center: [ios.lon, ios.lat] //初始化地图中心点
+        });
         map.add(marker)
+        sessionStorage.ios = info
+      })
+      setTimeout(() => {
+        let ios = JSON.parse(sessionStorage.ios)
+        this.system = ios
         axios({
           url: `https://restapi.amap.com/v3/geocode/regeo?location=${ios.lon},${ios.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
           methods: "get",
