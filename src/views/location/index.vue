@@ -48,8 +48,17 @@ export default {
   methods: {
     initMap () {
       this.$toast.loading()
+      var map = {}
       this.$app.get_location(function(info) {
         let ios = JSON.parse(info)
+        map = new AMap.Map("maps", {
+          resizeEnable: true, //是否监控地图容器尺寸变化
+          zoom: 10, //初始化地图层级
+          center: [ios.lon, ios.lat] //初始化地图中心点
+        });
+        sessionStorage.ios = info
+      })
+      setTimeout(() => {
         var icon = new AMap.Icon({
           size: new AMap.Size(40, 50),    // 图标尺寸
           image: require('@/assets/img/map_icon.png'),  // Icon的图像
@@ -62,14 +71,7 @@ export default {
           icon: icon, // 添加 Icon 实例
           zoom: 13
         });
-        var map = new AMap.Map("maps", {
-          resizeEnable: true, //是否监控地图容器尺寸变化
-          zoom: 10, //初始化地图层级
-          center: [ios.lon, ios.lat] //初始化地图中心点
-        });
-        sessionStorage.ios = info
-      })
-      setTimeout(() => {
+        map.add(marker)
         let ios = JSON.parse(sessionStorage.ios)
         this.system = ios
         axios({
