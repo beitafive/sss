@@ -26,7 +26,7 @@ export default {
   name: "detail",
   data () {
     return {
-      info: JSON.parse(sessionStorage.recordItem)
+      info: JSON.parse(localStorage.recordItem)
     }
   },
   computed: {
@@ -39,11 +39,25 @@ export default {
   },
   methods: {
     initMap () {
+      var icon = new AMap.Icon({
+        size: new AMap.Size(40, 50),    // 图标尺寸
+        image: '@/assets/img/map_icon.png',  // Icon的图像
+        imageOffset: new AMap.Pixel(0, -60),  // 图像相对展示区域的偏移量，适于雪碧图等
+        imageSize: new AMap.Size(40, 50)   // 根据所设置的大小拉伸或压缩图片
+      });
+      var marker = new AMap.Marker({
+        position: new AMap.LngLat(this.info.lon, this.info.lat),
+        offset: new AMap.Pixel(-10, -10),
+        icon: icon, // 添加 Icon 实例
+        title: this.info.location,
+        zoom: 10
+      });
       var map = new AMap.Map("maps", {
         resizeEnable: true, //是否监控地图容器尺寸变化
-        zoom: 121, //初始化地图层级
+        zoom: 10, //初始化地图层级
         center: [this.info.lon, this.info.lat] //初始化地图中心点
       });
+      map.add(marker)
     }
   }
 };

@@ -86,7 +86,7 @@ export default {
         date: item.month + '月' + item.day + '日',
         ...times
       }
-      sessionStorage.recordItem = JSON.stringify(obj)
+      localStorage.recordItem = JSON.stringify(obj)
       this.$push('/location/detail')
     }
   }

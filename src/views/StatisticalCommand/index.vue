@@ -97,7 +97,7 @@ export default {
           date: item.send_time.month + '月' + item.send_time.day + '日',
           time: item.send_time.hour + ':' + item.send_time.minute
         }
-        sessionStorage.recordItem = JSON.stringify(obj)
+        localStorage.recordItem = JSON.stringify(obj)
         this.$push(`/location/detail`)
       } else {
         this.$push(`/location?type=2&id=${item.orderId}`)
