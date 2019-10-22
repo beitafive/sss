@@ -21,12 +21,13 @@ export function formatTime(str) {
     return str.slice(0, 4) + '/' + str.slice(4, 6) + '/' + str.slice(6, 8) + ' ' + str.slice(8, 10) + ':' + str.slice(10, 12) + ':' + str.slice(12, 14)
 }
 
-export function getOverTime(str1, str2) {
-    let times = Date.parse(new Date(formatTime(str1))) - Date.parse(new Date(formatTime(str2)))
+export function getOverTime(str1) {
+    let times = Date.parse(new Date(formatTime(str1))) - Date.parse(new Date())
+    console.log(times)
     return {
         year: Math.floor(times / 31536000000),
         month: Math.floor(times / 2592000000 % 12),
-        day: Math.floor(times % 86400000)
+        day: Math.floor(times / 86400000 % 365)
     }
 }
 

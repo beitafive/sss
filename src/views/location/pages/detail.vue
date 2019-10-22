@@ -41,7 +41,7 @@ export default {
     initMap () {
       var icon = new AMap.Icon({
         size: new AMap.Size(40, 50),    // 图标尺寸
-        image: '/static/img/map_icon.png',  // Icon的图像
+        image: require('@/assets/img/map_icon.png'),  // Icon的图像
         // imageOffset: new AMap.Pixel(0, -60),  // 图像相对展示区域的偏移量，适于雪碧图等
         imageSize: new AMap.Size(20, 30)   // 根据所设置的大小拉伸或压缩图片
       });

@@ -17,9 +17,9 @@ Vue.prototype.$api = api
 Vue.prototype.$http = http
 Vue.prototype.$push = (url) => {
   // if (ZLJNativeApi) {
-  //   app.open_new_url(url)
+    app.open_new_url(url)
   // } else {
-    router.push(url)
+  //   router.push(url)
   // }
 }
 
@@ -32,7 +32,7 @@ http.get(api.get_user_info, {
     if (res.state === '1') {
         let times = formatTimeObj(res.data[0].sqjzjsrq)
         res.data[0].overDate = times.year + '年' + times.month + '月' + times.day + '日'
-        res.data[0].overTime = getOverTime(res.data[0].sqjzjsrq, res.data[0].sqjzksrq)
+        res.data[0].overTime = getOverTime(res.data[0].sqjzjsrq)
         store.dispatch('setUserInfo', res.data[0])
         localStorage.uuid = res.data[0].userUuid
     }

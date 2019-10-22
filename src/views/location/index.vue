@@ -52,7 +52,7 @@ export default {
         let ios = JSON.parse(info)
         var icon = new AMap.Icon({
           size: new AMap.Size(40, 50),    // 图标尺寸
-          image: '/static/img/map_icon.png',  // Icon的图像
+          image: require('@/assets/img/map_icon.png'),  // Icon的图像
           // imageOffset: new AMap.Pixel(0, -60),  // 图像相对展示区域的偏移量，适于雪碧图等
           imageSize: new AMap.Size(20, 30)   // 根据所设置的大小拉伸或压缩图片
         });
@@ -84,8 +84,10 @@ export default {
     },
     // 上传位置
     upload () {
-      if (this.$route.query.face) {
-        this.callLocation()
+      if (!this.$route.query.face) {
+        this.$app.face_location(function () {
+          window.location.href = window.location.href + '&face=1'
+        })
       } else {
         if (this.$route.query.type === '1') {
           this.$http.get(this.$api.location.upload, {
@@ -101,9 +103,7 @@ export default {
             }
           })
         } else {
-          this.$app.face_location(function () {
-            window.location.href = window.location.href + '&face=1'
-          })
+          this.callLocation()
         }
       }
     },

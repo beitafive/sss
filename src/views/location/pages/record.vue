@@ -72,7 +72,7 @@ export default {
       this.$http
         .get(this.$api.location.list, {
           useruuid: localStorage.uuid,
-          dateTime: time2Obj(this.date).dateStr
+          datetime: time2Obj(this.date).dateStr
         }).then(res => {
           if (res.state === '1') {
             this.list = formatRecord(res.data)
