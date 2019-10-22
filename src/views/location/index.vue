@@ -59,6 +59,8 @@ export default {
         sessionStorage.ios = info
       })
       setTimeout(() => {
+        let ios = JSON.parse(sessionStorage.ios)
+        this.system = ios
         var icon = new AMap.Icon({
           size: new AMap.Size(40, 50),    // 图标尺寸
           image: require('@/assets/img/map_icon.png'),  // Icon的图像
@@ -72,8 +74,6 @@ export default {
           zoom: 13
         });
         map.add(marker)
-        let ios = JSON.parse(sessionStorage.ios)
-        this.system = ios
         axios({
           url: `https://restapi.amap.com/v3/geocode/regeo?location=${ios.lon},${ios.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
           methods: "get",
