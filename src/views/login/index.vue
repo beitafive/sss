@@ -13,7 +13,9 @@
                 <img src="@/assets/img/no_pwd.png" class="pwd" @click="isPwd = true" v-if="isPwd"/>
                 <img src="@/assets/img/pwd.png" class="pwd" @click="isPwd = false" v-else/>
             </div>
-            <van-checkbox v-model="remember" shape="square">记住账号</van-checkbox>
+            <div class="remember-box w-flex">
+                <van-checkbox v-model="remember" shape="square">记住账号</van-checkbox>
+            </div>
             <div class="login-btn" @click="login">登录</div>
 
             <div class="scan-btn w-flex" @click="toFace">
@@ -30,8 +32,8 @@
         name: "index",
         data () {
             return {
-                username: '',
-                password: '',
+                username: localStorage.account || '',
+                password: localStorage.pwd || '',
                 isPwd: true,
                 remember: false
             }
@@ -49,6 +51,13 @@
                     userpwd: this.password
                 }).then(res => {
                     if (res.state === '1') {
+                        if (this.remember) {
+                            localStorage.account = this.username
+                            localStorage.pwd = this.password
+                        } else {
+                            localStorage.removeItem('account')
+                            localStorage.removeItem('pwd')
+                        }
                         let times = formatTimeObj(res.data[0].sqjzjsrq)
                         res.data[0].overDate = times.year + '年' + times.month + '月' + times.day + '日'
                         res.data[0].overTime = getOverTime(res.data[0].sqjzjsrq, res.data[0].sqjzksrq)
@@ -85,6 +94,9 @@
                 align-items: center; justify-content: center; font-size: .28rem; color: #666;
                 img { width: .32rem; height: .32rem; margin-right: .2rem; }
             }
+        }
+        .remember-box {
+            margin-top: .2rem; justify-content: flex-end;
         }
     }
 </style>

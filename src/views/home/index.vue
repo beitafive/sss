@@ -90,7 +90,9 @@
                 this.$push('/StatisticalCommand')
             },
             toLocation () {
-                this.$push('/location?type=1')
+                // this.$app.face_location(function () {
+                    window.location.href = window.location.origin + '/sss/#/location?type=1&face=1'
+                // })
             },
             toRecord () {
                 this.$push('/location/record')

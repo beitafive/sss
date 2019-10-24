@@ -1,5 +1,6 @@
 <template>
   <div class="record">
+    <div id="maps"></div>
     <div class="time-box w-flex" @click="show = true">
       <img src="@/assets/img/time_icon.png" /> {{ showDate }}
       <img src="@/assets/img/icon_xz@3x.png" />
@@ -77,6 +78,26 @@ export default {
           if (res.state === '1') {
             this.list = formatRecord(res.data)
             this.count = res.data.length
+            if (res.data.length) {
+              var icon = new AMap.Icon({
+                size: new AMap.Size(40, 50),    // 图标尺寸
+                image: require('@/assets/img/map_icon.png'),  // Icon的图像
+                // imageOffset: new AMap.Pixel(0, -60),  // 图像相对展示区域的偏移量，适于雪碧图等
+                imageSize: new AMap.Size(20, 30)   // 根据所设置的大小拉伸或压缩图片
+              });
+              var marker = new AMap.Marker({
+                position: new AMap.LngLat(res.data[0].longitude, res.data[0].latitude),
+                offset: new AMap.Pixel(-10, -10),
+                icon: icon, // 添加 Icon 实例
+                zoom: 13
+              });
+              var map = new AMap.Map("maps", {
+                resizeEnable: true, //是否监控地图容器尺寸变化
+                zoom: 10, //初始化地图层级
+                center: [res.data[0].longitude, res.data[0].latitude] //初始化地图中心点
+              });
+              map.add(marker)
+            }
           }
           this.show = false;
         })
@@ -96,20 +117,21 @@ export default {
 <style scoped lang="scss">
 .record {
   height: 100%;
-  padding-top: 0.24rem;
   background-image: url("../../../assets/img/map_bg.png");
   background-size: 100%;
   background-repeat: no-repeat;
+  position: relative;
+  #maps {
+    height: 3rem; margin-bottom: .2rem;
+  }
   .time-box {
     width: 2.02rem;
     height: 0.64rem;
     color: #888;
     align-items: center;
-    background-image: url("../../../assets/img/time_bg.png");
-    background-size: 100%;
-    background-repeat: no-repeat;
     margin-left: 0.34rem;
     font-size: 0.24rem;
+    position: absolute; top: .2rem; left: .2rem; background: #fff; border-radius: .32rem;
     img:nth-of-type(1) {
       width: 0.24rem;
       height: 0.24rem;
@@ -121,7 +143,9 @@ export default {
     }
   }
   .user {
-    margin: .96rem 0 .72rem;
+    position: absolute;
+    left: 0; top: 1.7rem;
+    width: 100%;
     box-sizing: border-box;
     padding: 0 .32rem;
     .user-name {
