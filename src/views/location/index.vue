@@ -100,6 +100,7 @@ export default {
             detailAddr: this.address.formatted_address
           }).then(res => {
             if (res.state === '1') {
+              this.$push('/record')
               this.$toast.success('上报成功')
             }
           })
@@ -122,6 +123,7 @@ export default {
         dwzt: 'Y6901'
       }).then(res => {
         if (res.state === '1') {
+          this.$push('/record')
           this.$toast.success('上报成功')
         }
       })
