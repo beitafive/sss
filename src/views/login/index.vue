@@ -13,7 +13,7 @@
                 <img src="@/assets/img/no_pwd.png" class="pwd" @click="isPwd = true" v-if="isPwd"/>
                 <img src="@/assets/img/pwd.png" class="pwd" @click="isPwd = false" v-else/>
             </div>
-            <van-checkbox v-model="remember" shape="square">复选框</van-checkbox>
+            <van-checkbox v-model="remember" shape="square">记住账号</van-checkbox>
             <div class="login-btn" @click="login">登录</div>
 
             <div class="scan-btn w-flex" @click="toFace">
