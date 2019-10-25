@@ -1,7 +1,7 @@
 <template>
   <div class="map">
     <div class="map-title w-flex">
-      {{address.addressComponent.neighborhood.name}}
+      {{address.addressComponent.neighborhood.name || address.addressComponent.township}}
       <img src="@/assets/img/times.png" />
       <span>{{ nowDate }}</span>
     </div>

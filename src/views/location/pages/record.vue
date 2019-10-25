@@ -46,11 +46,7 @@ export default {
       show: false,
       date: new Date(),
       count: 0,
-      list: [{
-        day: '06',
-        month: '03',
-        list: []
-      }]
+      list: []
     };
   },
   computed: {
