@@ -10,8 +10,8 @@
             <div class="form-item w-flex">
                 <img src="@/assets/img/login_pwd.png" class="icon" />
                 <input v-model="password" placeholder="密码" :type="isPwd ? 'password' : 'text'" />
-                <img src="@/assets/img/no_pwd.png" class="pwd" @click="isPwd = true" v-if="isPwd"/>
-                <img src="@/assets/img/pwd.png" class="pwd" @click="isPwd = false" v-else/>
+                <img src="@/assets/img/no_pwd.png" class="pwd" @click="isPwd = !isPwd" v-if="isPwd"/>
+                <img src="@/assets/img/pwd.png" class="pwd" @click="isPwd = !isPwd" v-else/>
             </div>
             <div class="remember-box w-flex">
                 <van-checkbox v-model="remember" shape="square">记住账号</van-checkbox>
@@ -33,7 +33,7 @@
         data () {
             return {
                 username: localStorage.account || '',
-                password: localStorage.pwd || '',
+                password: '',
                 isPwd: true,
                 remember: false
             }
@@ -53,10 +53,8 @@
                     if (res.state === '1') {
                         if (this.remember) {
                             localStorage.account = this.username
-                            localStorage.pwd = this.password
                         } else {
                             localStorage.removeItem('account')
-                            localStorage.removeItem('pwd')
                         }
                         let times = formatTimeObj(res.data[0].sqjzjsrq)
                         res.data[0].overDate = times.year + '年' + times.month + '月' + times.day + '日'

@@ -88,5 +88,11 @@ export default [
         name: 'noReport',
         component:  () => import(/* webpackChunkName: "rule" */ '@/views/StatisticalCommand/pages/noReport.vue'),
         meta: { title: '位置上报指令' }
-	}
+	},
+    {
+        path: '/test',
+        name: 'test',
+        component:  () => import(/* webpackChunkName: "test" */ '@/views/test.vue'),
+        meta: { title: 'test' }
+    }
 ]

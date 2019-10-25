@@ -111,7 +111,7 @@ export default {
         if (res.state === '1') {
           let nowStr = time2Obj().dateStr3
           for (let i = 0, len = res.data.length; i < len; i++) {
-            if (res.data[i].sendTime) {
+            if (res.data[i].wd) {
               this.success++
               res.data[i].send_time = formatTimeObj(res.data[i].sendTime)
               res.data[i].type = 1
