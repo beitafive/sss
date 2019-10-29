@@ -1,7 +1,7 @@
 <template>
     <div class="mine">
         <div class="mine-info w-flex">
-            <img :src="'https://api.fengtengfei.cn/JudicialZjjzFx/app/file/download.action?fileuuid=' + userInfo.faceImgids" />
+            <img :src="'http://118.178.118.28:7080/JudicialZjjzFx/app/file/download.action?fileuuid=' + userInfo.faceImgids" />
             <div>
                 <p><span>{{userInfo.userCName}}</span> / {{userInfo.departmentName}}</p>
                 <p>管理等级：{{userInfo.mangaerLevel}}</p>

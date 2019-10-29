@@ -8,7 +8,7 @@ const resolve = dir => {
 }
 
 module.exports = {
-    publicPath: '/sss/',
+    publicPath: '/',
     outputDir: 'docs',
     lintOnSave: true,
     chainWebpack: config => {

@@ -1,7 +1,7 @@
 <template>
   <div class="map">
     <div class="map-title w-flex">
-      {{address.addressComponent.neighborhood.name || address.addressComponent.township}}
+      {{address.addressComponent.neighborhood.name.length ? address.addressComponent.neighborhood.name : address.addressComponent.township}}
       <img src="@/assets/img/times.png" />
       <span>{{ nowDate }}</span>
     </div>
@@ -16,12 +16,12 @@
       位置上报<br/>
       <span>{{nowTime.hour}}:{{nowTime.minute}}</span>
     </div>
-    <div class="tips">今日你还未完成位置上报</div>
+    <div class="tips">{{list.length ? '最近一次上报时间:' + lastTime : '今日你还未完成位置上报'}}</div>
   </div>
 </template>
 
 <script>
-import { time2Obj } from "../../utils/time";
+import { time2Obj, formatTime } from "../../utils/time";
 import axios from "axios";
 export default {
   name: "index",
@@ -32,7 +32,9 @@ export default {
       system: {},
       address: {addressComponent: {
           neighborhood: { name: '' }
-        }}
+        }},
+      list: [],
+      lastTime: ''
     };
   },
   computed: {
@@ -48,6 +50,17 @@ export default {
   methods: {
     initMap () {
       this.$toast.loading()
+      this.$http.get(this.$api.location.list, {
+          useruuid: localStorage.uuid,
+          datetime: time2Obj().dateStr
+        }).then(res => {
+        if (res.state === '1') {
+          this.list = res.data
+          if (res.data.length) {
+            this.lastTime = formatTime(res.data[0].posreportTime)
+          }
+        }
+      })
       this.$app.get_location(function(info) {
         let ios = JSON.parse(info)
         var icon = new AMap.Icon({
@@ -96,8 +109,10 @@ export default {
             sqjzryXm: this.$store.state.userInfo.userCName,
             longitude: this.system.lon,
             latitude: this.system.lat,
-            posName: this.address.addressComponent.township,
-            detailAddr: this.address.formatted_address
+            posName: this.address.addressComponent.neighborhood.name.length ? this.address.addressComponent.neighborhood.name : this.address.addressComponent.township,
+            detailAddr: this.address.formatted_address,
+            posreportTime: time2Obj().dateStr3,
+            corrpsnappaccName: this.$store.state.userInfo.userName
           }).then(res => {
             if (res.state === '1') {
               this.$push('/location/record')

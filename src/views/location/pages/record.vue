@@ -19,6 +19,7 @@
         <div class="address">
           <p>{{times.location}}</p>
           <p>{{times.address}}</p>
+          <div class="zhiling" v-if="item.isLcorder">指令上报</div>
         </div>
       </div>
     </div>
@@ -189,8 +190,12 @@ export default {
         p:nth-of-type(2) {
           font-size: .28rem; color: #8F8E94; line-height: .4rem; margin-top: .2rem;
         }
+        .zhiling {
+          background: #E6A23C; margin-top: .1rem; width: 1.2rem; height: .36rem; border-radius: .18rem; text-align: center; line-height: .36rem; color: #fff;
+        }
       }
     }
+
   }
 }
 </style>

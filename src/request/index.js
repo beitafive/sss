@@ -7,7 +7,7 @@ const http = axios.create({
 })
 
 http.interceptors.request.use((config) => {
-    config.url = 'https://api.fengtengfei.cn/JudicialZjjzFx' + config.url
+    config.url = 'http://118.178.118.28:7080/JudicialZjjzFx' + config.url
     return config
 })
 

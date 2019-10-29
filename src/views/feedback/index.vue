@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <form action="https://api.fengtengfei.cn/JudicialZjjzFx/pri/problem/add.action" method="post" enctype="multipart/form-data" target="nm_iframe" id="form">
+    <form action="http://118.178.118.28:7080/JudicialZjjzFx/pri/problem/add.action" method="post" enctype="multipart/form-data" target="nm_iframe" id="form">
       <div class="top paddL">
         <p class="title w-flex">
           <input  name="useruuid" :value="uuid" style="display: none" />

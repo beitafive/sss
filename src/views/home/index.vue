@@ -91,7 +91,7 @@
             },
             toLocation () {
                 this.$app.face_location(function () {
-                    ZLJNativeApi.push('/location?type=1&face=1')
+                    ZLJNativeApi.push({ urlStr: 'http://221.12.4.52:18011/#/location?type=1&face=1'})
                 })
             },
             toRecord () {

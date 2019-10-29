@@ -1,7 +1,7 @@
 <template>
   <div class="box w-flex">
     <div class="header w-flex">
-      <img :src="'https://api.fengtengfei.cn/JudicialZjjzFx/app/file/download.action?fileuuid=' + mine.faceImgids" class="header-img" />
+      <img :src="'http://118.178.118.28:7080/JudicialZjjzFx/app/file/download.action?fileuuid=' + mine.faceImgids" class="header-img" />
       <div class="header-name w-flex">
         <span>{{mine.userCName}}</span>
         <img src="@/assets/img/pic_wwc@3x.png" alt="" v-if="total !== success" />
@@ -33,7 +33,7 @@
         <span class="bottom-left">{{ item.deptName }}</span>
         <span
           class="bottom-right w-flex"
-          :class="item.type == 3 ? 'report' : ''"
+          :class="item.type == 1 ? '' : 'report'"
           >{{ item.type === 1 ? '已上报' : item.type === 2 ? '待上报' : '未上报'}}</span
         >
       </div>
@@ -100,7 +100,9 @@ export default {
         localStorage.recordItem = JSON.stringify(obj)
         this.$push(`/location/detail`)
       } else {
-        this.$push(`/location?type=2&id=${item.orderId}`)
+        this.$app.face_location(() => {
+          ZLJNativeApi.push({ urlStr: `http://221.12.4.52:18011/#/location?type=2&id=${item.orderId}&face=1`})
+        })
       }
     },
     getList () {

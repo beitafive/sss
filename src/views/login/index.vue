@@ -38,6 +38,9 @@
                 remember: false
             }
         },
+        mounted () {
+          this.remember = localStorage.account ? true : false
+        },
         methods: {
             login () {
                 if (this.username === '') {

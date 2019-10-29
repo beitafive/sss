@@ -15,7 +15,7 @@ export default {
     },
     // 跳转
     open_new_url (url) {
-        ZLJNativeApi.push({urlStr: 'https://beitafive.github.io/sss/#' + url})
+        ZLJNativeApi.push({urlStr: 'http://221.12.4.52:18011/#' + url})
     },
     // 传给app uuid
     send_uuid (uuid) {
