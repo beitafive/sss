@@ -100,8 +100,9 @@ export default {
         localStorage.recordItem = JSON.stringify(obj)
         this.$push(`/location/detail`)
       } else {
-        this.$app.face_location(() => {
-          ZLJNativeApi.push({ urlStr: `http://221.12.4.52:18011/#/location?type=2&id=${item.orderId}&face=1`})
+        localStorage.ids = item.orderId
+        this.$app.face_location(function () {
+          ZLJNativeApi.push({ urlStr: `http://221.12.4.52:18011/#/location?type=2&id=${localStorage.ids}`})
         })
       }
     },
@@ -147,7 +148,6 @@ export default {
   align-items: center;
   position: relative;
   background: #f0eff5;
-  height: 100%;
 }
 
 .header {

@@ -1,7 +1,7 @@
 <template>
   <div class="map">
     <div class="map-title w-flex">
-      {{address.addressComponent.neighborhood.name.length ? address.addressComponent.neighborhood.name : address.addressComponent.township}}
+      {{location}}
       <img src="@/assets/img/times.png" />
       <span>{{ nowDate }}</span>
     </div>
@@ -9,7 +9,7 @@
     <div class="location-info">
       <div class="location">
         <p>我的位置</p>
-        <p>{{ address.formatted_address }}</p>
+        <p>{{ address }}</p>
       </div>
     </div>
     <div class="btns" @click="upload">
@@ -30,11 +30,12 @@ export default {
       nowDate: "",
       nowTime: "",
       system: {},
-      address: {addressComponent: {
-          neighborhood: { name: '' }
-        }},
+      address: '',
+      location: '',
+      township: '',
       list: [],
-      lastTime: ''
+      lastTime: '',
+      inter: {}
     };
   },
   computed: {
@@ -46,6 +47,12 @@ export default {
     this.initMap();
     this.nowDate = time2Obj().symbolStr;
     this.nowTime = time2Obj()
+    this.inter = setInterval(() => {
+      this.nowTime = time2Obj()
+    }, 30000)
+  },
+  destroyed() {
+    clearInterval(this.inter)
   },
   methods: {
     initMap () {
@@ -81,47 +88,43 @@ export default {
           center: [ios.lon, ios.lat] //初始化地图中心点
         });
         map.add(marker)
-        sessionStorage.ios = info
+        localStorage.ios = info
       })
       setTimeout(() => {
-        let ios = JSON.parse(sessionStorage.ios)
+        let ios = JSON.parse(localStorage.ios)
         this.system = ios
         axios({
           url: `https://restapi.amap.com/v3/geocode/regeo?location=${ios.lon},${ios.lat}&key=ea4ea3d1c7a9c1bf5e97c1eebcd2e065`,
           methods: "get",
           responseType: "json"
         }).then(res => {
-          this.address = res.data.regeocode;
+          this.location = res.data.regeocode.addressComponent.neighborhood.name.length ? res.data.regeocode.addressComponent.neighborhood.name : res.data.regeocode.addressComponent.township
+          this.address = res.data.regeocode.formatted_address
+          this.township = res.data.regeocode.addressComponent.township
           this.$toast.clear()
-        });
-      },300)
+        })
+      }, 500)
     },
     // 上传位置
     upload () {
-      if (!this.$route.query.face) {
-        this.$app.face_location(function () {
-          window.location.href = window.location.href + '&face=1'
+      if (this.$route.query.type === '1') {
+        this.$http.get(this.$api.location.upload, {
+          useruuid: localStorage.uuid,
+          sqjzryXm: this.$store.state.userInfo.userCName,
+          longitude: this.system.lon,
+          latitude: this.system.lat,
+          posName: this.location,
+          detailAddr: this.address,
+          posreportTime: time2Obj().dateStr3,
+          corrpsnappaccName: this.$store.state.userInfo.userName
+        }).then(res => {
+          if (res.state === '1') {
+            this.$push('/location/record')
+            this.$toast.success('上报成功')
+          }
         })
       } else {
-        if (this.$route.query.type === '1') {
-          this.$http.get(this.$api.location.upload, {
-            useruuid: localStorage.uuid,
-            sqjzryXm: this.$store.state.userInfo.userCName,
-            longitude: this.system.lon,
-            latitude: this.system.lat,
-            posName: this.address.addressComponent.neighborhood.name.length ? this.address.addressComponent.neighborhood.name : this.address.addressComponent.township,
-            detailAddr: this.address.formatted_address,
-            posreportTime: time2Obj().dateStr3,
-            corrpsnappaccName: this.$store.state.userInfo.userName
-          }).then(res => {
-            if (res.state === '1') {
-              this.$push('/location/record')
-              this.$toast.success('上报成功')
-            }
-          })
-        } else {
-          this.callLocation()
-        }
+        this.callLocation()
       }
     },
     callLocation () {
@@ -129,12 +132,13 @@ export default {
         useruuid: localStorage.uuid,
         orderId: this.$route.query.id,
         dwrq: time2Obj().dateStr2,
-        dwsj: time2Obj().datestr4,
+        dwsj: time2Obj().dateStr4,
         dwsblx: this.system.device,
-        dwsbh: this.system.deviceToken,
+        // dwsbh: this.system.deviceToken,
         jd: this.system.lon,
         wd: this.system.lat,
-        swszdmc: this.address.addressComponent.township,
+        posName: this.township,
+        dwszdmc: this.address,
         dwzt: 'Y6901'
       }).then(res => {
         if (res.state === '1') {

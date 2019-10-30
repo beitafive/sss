@@ -21,11 +21,13 @@ export function formatRecord(list) {
           location: list[x].posName,
           address: list[x].detailAddr,
           lon: list[x].longitude,
-          lat: list[x].latitude
+          lat: list[x].latitude,
+          isLcorder: list[x].isLcorder
         })
       }
     }
     arr.push(obj)
   }
+  console.log(arr)
   return arr
 }

@@ -19,7 +19,7 @@
         <div class="address">
           <p>{{times.location}}</p>
           <p>{{times.address}}</p>
-          <div class="zhiling" v-if="item.isLcorder">指令上报</div>
+          <div class="zhiling" v-show="times.isLcorder === '1'">指令上报</div>
         </div>
       </div>
     </div>
