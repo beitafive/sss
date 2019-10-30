@@ -119,7 +119,7 @@ export default {
           corrpsnappaccName: this.$store.state.userInfo.userName
         }).then(res => {
           if (res.state === '1') {
-            this.$push('/location/record')
+            this.$app.replace_new_url('/location/record')
             this.$toast.success('上报成功')
           }
         })
@@ -142,7 +142,7 @@ export default {
         dwzt: 'Y6901'
       }).then(res => {
         if (res.state === '1') {
-          this.$push('/location/record')
+          this.$app.replace_new_url('/location/record')
           this.$toast.success('上报成功')
         }
       })

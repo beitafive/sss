@@ -4,7 +4,7 @@
             <div class="home-date">
                 <div>期满解矫到期时间：<br/>
                     {{mine.overDate}}</div>
-                <div>离解矫还剩{{mine.overTime.year}}年{{mine.overTime.month}}个月{{mine.overTime.day}}天</div>
+                <div>离解矫还剩{{mine.overTime.day}}天</div>
             </div>
             <div class="date-tips">
                 {{mine.sqjzqx}}<br/>

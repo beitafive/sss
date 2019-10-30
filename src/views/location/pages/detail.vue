@@ -24,14 +24,12 @@
 <script>
 export default {
   name: "detail",
-  data () {
-    return {
-      info: JSON.parse(localStorage.recordItem)
-    }
-  },
   computed: {
     mine () {
       return this.$store.getters.mine
+    },
+    info () {
+      return JSON.parse(localStorage.recordItem)
     }
   },
   mounted () {

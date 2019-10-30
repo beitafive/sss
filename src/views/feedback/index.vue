@@ -27,10 +27,10 @@
           </div>
         </div>
       </div>
-      <div class="btn-box w-flex">
-        <div class="feedback-btn" @click="submit">提交</div>
-      </div>
     </form>
+    <div class="btn-box w-flex">
+      <div class="feedback-btn" @click="submit">提交</div>
+    </div>
     <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
   </div>
 </template>

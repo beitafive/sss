@@ -27,7 +27,7 @@ export function getOverTime(str1) {
     return {
         year: Math.floor(times / 31536000000),
         month: Math.floor(times / 2592000000 % 12),
-        day: Math.floor(times / 86400000 % 365)
+        day: Math.floor(times / 86400000)
     }
 }
 
