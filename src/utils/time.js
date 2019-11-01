@@ -23,7 +23,6 @@ export function formatTime(str) {
 
 export function getOverTime(str1) {
     let times = Date.parse(new Date(formatTime(str1))) - Date.parse(new Date())
-    console.log(times)
     return {
         year: Math.floor(times / 31536000000),
         month: Math.floor(times / 2592000000 % 12),

@@ -16,12 +16,12 @@
       位置上报<br/>
       <span>{{nowTime.hour}}:{{nowTime.minute}}</span>
     </div>
-    <div class="tips">{{list.length ? '最近一次上报时间:' + lastTime : '今日你还未完成位置上报'}}</div>
+    <div class="tips">{{lastTime ? '最近一次上报时间:' + lastTime : '今日你还未完成位置上报'}}</div>
   </div>
 </template>
 
 <script>
-import { time2Obj, formatTime } from "../../utils/time";
+import { time2Obj, formatTime, formatTimeObj } from "../../utils/time";
 import axios from "axios";
 export default {
   name: "index",
@@ -63,7 +63,7 @@ export default {
         }).then(res => {
         if (res.state === '1') {
           this.list = res.data
-          if (res.data.length) {
+          if (res.data.length && formatTimeObj(res.data[0].posreportTime).day == time2Obj().day) {
             this.lastTime = formatTime(res.data[0].posreportTime)
           }
         }

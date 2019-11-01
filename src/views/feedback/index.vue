@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <form action="http://118.178.118.28:7080/JudicialZjjzFx/pri/problem/add.action" method="post" enctype="multipart/form-data" target="nm_iframe" id="form">
+    <form method="post" enctype="multipart/form-data" id="form">
       <div class="top paddL">
         <p class="title w-flex">
           <input  name="useruuid" :value="uuid" style="display: none" />
@@ -31,11 +31,12 @@
     <div class="btn-box w-flex">
       <div class="feedback-btn" @click="submit">提交</div>
     </div>
-    <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+<!--    <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>-->
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "index",
   data() {
@@ -72,15 +73,28 @@ export default {
         this.$toast('请填写10字以上的问题描述以便我们提供更好的帮助')
         return null
       }
-      document.querySelector('#form').submit()
-      this.$toast.loading({
+      let datas = $('#form').serializeArray()
+      let formData = new FormData()
+      for (let i = 0, len = datas.length; i < len; i++) {
+        formData.append(datas[i].name, datas[i].value)
+      }
+      const toas = this.$toast.loading({
         mask: true,
-        message: '提交中...',
-        onClose: () => {
-          this.textNumber = ''
-          this.imgList = []
-          this.$toast('提交成功')
-        }
+        message: '提交中...'
+      })
+      axios({
+        method:"post",
+        url:"http://118.178.118.28:7080/JudicialZjjzFx/pri/problem/add.action",
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        data: formData
+      }).then((res)=>{
+        toas.clear()
+        this.$toast.success('提交成功')
+        setTimeout(()=>{
+          window.location.reload()
+        },1500)
       })
 
     }

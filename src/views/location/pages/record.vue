@@ -104,8 +104,11 @@ export default {
         date: item.month + '月' + item.day + '日',
         ...times
       }
-      localStorage.recordItem = JSON.stringify(obj)
-      this.$push('/location/detail')
+      // localStorage.recordItem = JSON.stringify(obj)
+
+      setTimeout(() => {
+        this.$push(`/location/detail?address=${encodeURIComponent(obj.address)}&date=${encodeURIComponent(obj.date)}&lon=${obj.lon}&lat=${obj.lat}&location=${encodeURIComponent(obj.location)}&time=${obj.time}`)
+      },300)
     }
   }
 };

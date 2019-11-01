@@ -29,7 +29,7 @@ export default {
       return this.$store.getters.mine
     },
     info () {
-      return JSON.parse(localStorage.recordItem)
+      return this.$route.query
     }
   },
   mounted () {

@@ -84,21 +84,28 @@ export default {
     }
   },
   mounted () {
+    document.addEventListener('visibilitychange', this.getList)
     this.getList()
+  },
+  destroyed () {
+    document.removeEventListener('visibilitychange', this.getList, false)
   },
   methods: {
     goDetails(item) {
       if (item.type === 1) {
+        let tims = formatTimeObj(item.dwrq + item.dwsj)
         let obj = {
           location: item.dwszdmc,
           address: '',
           lon: item.jd,
           lat: item.wd,
-          date: item.send_time.month + '月' + item.send_time.day + '日',
-          time: item.send_time.hour + ':' + item.send_time.minute
+          date: tims.month + '月' + tims.day + '日',
+          time: tims.hour + ':' + tims.minute
         }
-        localStorage.recordItem = JSON.stringify(obj)
-        this.$push(`/location/detail`)
+        // localStorage.recordItem = JSON.stringify(obj)
+        setTimeout(()=>{
+          this.$push(`/location/detail?address=${encodeURIComponent(obj.address)}&date=${encodeURIComponent(obj.date)}&lon=${obj.lon}&lat=${obj.lat}&location=${encodeURIComponent(obj.location)}&time=${obj.time}`)
+        },300)
       } else {
         localStorage.ids = item.orderId
         this.$app.face_location(function () {
@@ -221,6 +228,7 @@ export default {
   background-repeat: no-repeat;
   position: absolute;
   top: 1.84rem;
+  left:.39rem;
 
   div {
     width: 3.34rem;
