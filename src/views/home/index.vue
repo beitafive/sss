@@ -12,14 +12,14 @@
             </div>
         </div>
         <div class="home-nav w-flex">
-            <div class="nav-item" v-for="(item, index) in navList" :key="index">
+            <div class="nav-item" v-for="(item, index) in navList" :key="index" @click="blankTips">
                 <img :src="item.img" />
                 <div v-if="item.count">{{item.count}}</div>
             </div>
         </div>
         <div class="home-tips w-flex">
             <img src="@/assets/img/home_tips.png" />
-            <div> 您有一条来自XX司法所的消息通知，请及时查看</div>
+            <div> 暂无通知 </div>
             <span v-if="info.noticeNum !== '0'">{{info.noticeNum}}</span>
         </div>
 
@@ -38,7 +38,7 @@
             <span v-if="info.lcorderNum !== '0'">{{info.lcorderNum}}</span>
             <img src="@/assets/img/right.png" class="icon" />
         </div>
-        <div class="tips-box w-flex">
+        <div class="tips-box w-flex" @click="blankTips">
             <img src="@/assets/img/tips_2.png" class="logo" />
             <div>
                 <p>再犯罪风险评估</p>
@@ -47,7 +47,7 @@
             <span v-if="info.remark4 !== '0'">{{info.remark4}}</span>
             <img src="@/assets/img/right.png" class="icon" />
         </div>
-        <img src="@/assets/img/home_bottom_banner.png" width="100%" class="bottom_banner" />
+        <img src="@/assets/img/home_bottom_banner.png" width="100%" class="bottom_banner" @click="blankTips" />
     </div>
 </template>
 
@@ -91,11 +91,14 @@
             },
             toLocation () {
                 this.$app.face_location(function () {
-                    ZLJNativeApi.push({ urlStr: 'http://221.12.4.52:18011/#/location?type=1&face=1'})
+                    ZLJNativeApi.push({ urlStr: 'http://msj.zjsft.gov.cn/#/location?type=1&face=1'})
                 })
             },
             toRecord () {
                 this.$push('/location/record')
+            },
+            blankTips () {
+                this.$toast('此功能尚未开放')
             }
         }
     }

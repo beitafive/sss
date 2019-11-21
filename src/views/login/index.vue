@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <img src="@/assets/img/china.png" class="china" v-if="!is_face" />
-        <img :src="'http://118.178.118.28:7080/JudicialZjjzFx/app/file/download.action?fileuuid=' + mine.faceImgids" class="head" v-else />
+        <img :src="'/webapi/app/file/download.action?fileuuid=' + mine.faceImgids" class="head" v-else />
         <div class="login-title w-bold">浙里矫</div>
         <div class="form-box">
             <div class="form-item w-flex" v-show="!is_face">

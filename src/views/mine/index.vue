@@ -1,7 +1,7 @@
 <template>
     <div class="mine">
         <div class="mine-info w-flex">
-            <img :src="'http://118.178.118.28:7080/JudicialZjjzFx/app/file/download.action?fileuuid=' + userInfo.faceImgids" />
+            <img :src="'/webapi/app/file/download.action?fileuuid=' + userInfo.faceImgids" />
             <div>
                 <p><span>{{userInfo.userCName}}</span> / {{userInfo.departmentName}}</p>
                 <p>管理等级：{{userInfo.mangaerLevel}}</p>
@@ -10,7 +10,7 @@
         </div>
         <div class="mine-title">日常管理</div>
         <div class="mine-list w-flex">
-            <div class="mine-item">
+            <div class="mine-item" @click="blankTips">
                 <img src="@/assets/img/xuexi.png" />
                 在线学习
             </div>
@@ -22,11 +22,11 @@
                 <img src="@/assets/img/wenti.png" />
                 问题反馈
             </div>
-            <div class="mine-item">
+            <div class="mine-item" @click="blankTips">
                 <img src="@/assets/img/jiaozheng.png" />
                 矫正小组
             </div>
-            <div class="mine-item">
+            <div class="mine-item" @click="blankTips">
                 <img src="@/assets/img/password.png" />
                 修改密码
             </div>
@@ -45,6 +45,9 @@
         methods: {
             toQa () {
                 this.$push('/feedback')
+            },
+            blankTips () {
+                this.$toast('此功能尚未开放')
             }
         }
     }

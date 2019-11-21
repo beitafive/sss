@@ -84,7 +84,7 @@ export default {
       })
       axios({
         method:"post",
-        url:"http://118.178.118.28:7080/JudicialZjjzFx/pri/problem/add.action",
+        url:"/webapi/pri/problem/add.action",
         headers: {
           "Content-Type": "multipart/form-data"
         },

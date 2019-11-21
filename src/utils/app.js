@@ -15,11 +15,11 @@ export default {
     },
     // 跳转
     open_new_url (url) {
-        ZLJNativeApi.push({urlStr: 'http://221.12.4.52:18011/#' + url})
+        ZLJNativeApi.push({urlStr: 'http://msj.zjsft.gov.cn/#' + url})
     },
     // 跳转
     replace_new_url (url) {
-        ZLJNativeApi.pushReplace({urlStr: 'http://221.12.4.52:18011/#' + url})
+        ZLJNativeApi.pushReplace({urlStr: 'http://msj.zjsft.gov.cn/#' + url})
     },
     // 传给app uuid
     send_uuid (uuid) {

@@ -101,9 +101,12 @@ export default {
           this.location = res.data.regeocode.addressComponent.neighborhood.name.length ? res.data.regeocode.addressComponent.neighborhood.name : res.data.regeocode.addressComponent.township
           this.address = res.data.regeocode.formatted_address
           this.township = res.data.regeocode.addressComponent.township
+          if (!this.address) {
+            window.location.reload()
+          }
           this.$toast.clear()
         })
-      }, 500)
+      }, 1500)
     },
     // 上传位置
     upload () {

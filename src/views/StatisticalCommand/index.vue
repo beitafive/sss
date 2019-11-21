@@ -1,7 +1,7 @@
 <template>
   <div class="box w-flex">
     <div class="header w-flex">
-      <img :src="'http://118.178.118.28:7080/JudicialZjjzFx/app/file/download.action?fileuuid=' + mine.faceImgids" class="header-img" />
+      <img :src="'/webapi/app/file/download.action?fileuuid=' + mine.faceImgids" class="header-img" />
       <div class="header-name w-flex">
         <span>{{mine.userCName}}</span>
         <img src="@/assets/img/pic_wwc@3x.png" alt="" v-if="total !== success" />
@@ -109,7 +109,7 @@ export default {
       } else {
         localStorage.ids = item.orderId
         this.$app.face_location(function () {
-          ZLJNativeApi.push({ urlStr: `http://221.12.4.52:18011/#/location?type=2&id=${localStorage.ids}`})
+          ZLJNativeApi.push({ urlStr: `http://msj.zjsft.gov.cn/#/location?type=2&id=${localStorage.ids}`})
         })
       }
     },
