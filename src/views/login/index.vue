@@ -20,9 +20,11 @@
             <div class="account-box w-flex" v-show="is_face">
                 <span>账号</span>{{username.replace(username.slice(4,username.length-4), '**********')}}
             </div>
-            <div class="login-btn" @click="login">{{is_face ? '刷脸登录' : '登录'}}</div>
-
-            <div class="scan-btn w-flex" @click="changeLogin">
+            <div class="login-btn" @click="login" :style="{background: agree ? '#4A5AFF' : '#ccc'}">{{is_face ? '刷脸登录' : '登录'}}</div>
+            <div class="user-agree w-flex">
+                <van-checkbox v-model="agree" shape="square">我已经阅读并同意</van-checkbox><span @click="toUser">《用户协议》</span>
+            </div>
+            <div class="scan-btn w-flex" @click="changeLogin" v-show="agree">
                 <img :src="is_face ? require('@/assets/img/pwd_login.png') : require('@/assets/img/login_scan.png')" />{{is_face ? '密码登录' : '刷脸登录'}}
             </div>
         </div>
@@ -39,8 +41,9 @@
                 username: localStorage.account || '',
                 password: '',
                 isPwd: true,
-                remember: false,
-                is_face: false
+                remember: true,
+                is_face: false,
+                agree: true
             }
         },
         computed: {
@@ -49,10 +52,13 @@
             }
         },
         mounted () {
-          this.remember = localStorage.account ? true : false
+//        this.remember = localStorage.account ? true : false
         },
         methods: {
             login () {
+                if (!this.agree) {
+                    return null
+                }
                 if (!this.is_face) {
                     if (this.username === '') {
                         return this.$toast('用户名不能为空')
@@ -87,6 +93,9 @@
             toFace () {
                 this.$app.face_login()
             },
+            toUser () {
+                this.$push('/user')
+            },
             changeLogin () {
                 if (!localStorage.account) {
                     this.$toast('第一次登录需要密码登录')
@@ -116,7 +125,10 @@
                 justify-content: center; color: #666; font-size: .32rem; padding-top: 1rem;
                 span { margin-right: .44rem; }
             }
-            .login-btn { width: 5rem; height: 1rem; font-size: .36rem; text-align: center; line-height: 1rem; border-radius: .5rem; background: #4A5AFF; color: #fff; margin: .8rem auto; }
+            .login-btn { width: 5rem; height: 1rem; font-size: .36rem; text-align: center; line-height: 1rem; border-radius: .5rem; background: #4A5AFF; color: #fff; margin: .8rem auto .3rem; }
+            .user-agree {
+                align-items: center; justify-content: center; margin-bottom: .6rem;
+            }
             .scan-btn {
                 align-items: center; justify-content: center; font-size: .28rem; color: #666;
                 img { width: .32rem; height: .32rem; margin-right: .2rem; }

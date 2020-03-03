@@ -13,6 +13,12 @@ export default [
         meta: { title: '登录' }
     },
     {
+        path: '/user',
+        name: 'user',
+        component:  () => import(/* webpackChunkName: "login" */ '@/views/user.vue'),
+        meta: { title: '用户协议' }
+    },
+    {
         path: '/forget',
         name: 'forget',
         component:  () => import(/* webpackChunkName: "login" */ '@/views/login/pages/forget.vue'),

@@ -98,7 +98,7 @@ export default {
           methods: "get",
           responseType: "json"
         }).then(res => {
-          this.location = res.data.regeocode.addressComponent.neighborhood.name.length ? res.data.regeocode.addressComponent.neighborhood.name : res.data.regeocode.addressComponent.township
+          this.location = res.data.regeocode.addressComponent.neighborhood.name.length ? res.data.regeocode.addressComponent.neighborhood.name : (res.data.regeocode.addressComponent.streetNumber.street + res.data.regeocode.addressComponent.streetNumber.number)
           this.address = res.data.regeocode.formatted_address
           this.township = res.data.regeocode.addressComponent.township
           if (!this.address) {
