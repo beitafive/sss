@@ -53,52 +53,60 @@ export default [
         name: 'locationDetail',
         component:  () => import(/* webpackChunkName: "location" */ '@/views/location/pages/detail.vue'),
         meta: { title: '详情' }
-    }
-	// {
-    //     path: '/messageList',
-    //     name: 'messageList',
-    //     component:  () => import(/* webpackChunkName: "message" */ '@/views/messageList/index.vue'),
-    //     meta: { title: '消息通知' }
-	// },
-	// {
-    //     path: '/messageDetails',
-    //     name: 'messageDetails',
-    //     component:  () => import(/* webpackChunkName: "message" */ '@/views/messageList/pages/messageDetails.vue'),
-    //     meta: { title: '消息通知' }
-	// }
-	,
-	{
+    },
+    {
         path: '/ruledetail',
         name: 'ruledetail',
         component:  () => import(/* webpackChunkName: "rule" */ '@/views/rule/pages/detail.vue'),
         meta: { title: '规章制度详情' }
-	},
-	{
+    },
+    {
         path: '/feedback',
         name: 'feedback',
         component:  () => import(/* webpackChunkName: "rule" */ '@/views/feedback/index.vue'),
         meta: { title: '问题反馈' }
-	},
-	{
+    },
+    {
         path: '/StatisticalCommand',
         name: 'StatisticalCommand',
         component:  () => import(/* webpackChunkName: "rule" */ '@/views/StatisticalCommand/index.vue'),
         meta: { title: '位置上报指令' }
-	},{
+    },
+    {
         path: '/StatisticalCommands',
         name: 'StatisticalCommands',
         component:  () => import(/* webpackChunkName: "rule" */ '@/views/StatisticalCommand/pages/detail.vue'),
         meta: { title: '位置上报指令' }
-	},{
+    },
+    {
         path: '/noReport',
         name: 'noReport',
         component:  () => import(/* webpackChunkName: "rule" */ '@/views/StatisticalCommand/pages/noReport.vue'),
         meta: { title: '位置上报指令' }
-	},
+    },
     {
-        path: '/test',
-        name: 'test',
-        component:  () => import(/* webpackChunkName: "test" */ '@/views/test.vue'),
-        meta: { title: 'test' }
-    }
+        path: '/diary',
+        name: 'diary',
+        component: () => import(/* webpackChunkName: "diary" */ '@/views/diary/index.vue'),
+        meta: { title: '交心日记' }
+    },
+    {
+        path: '/diary/add',
+        name: 'diaryAdd',
+        component: () => import(/* webpackChunkName: "diary" */ '@/views/diary/pages/add.vue'),
+        meta: { title: '新增' }
+    },
+    {
+        path: '/diary/list',
+        name: 'diaryList',
+        component: () => import(/* webpackChunkName: "diary" */ '@/views/diary/pages/list.vue'),
+        meta: { title: '日记列表' }
+    },
+    {
+        path: '/diary/detail/:id',
+        name: 'diary',
+        component: () => import(/* webpackChunkName: "diary" */ '@/views/diary/pages/detail.vue'),
+        meta: { title: '详情' }
+    },
+
 ]

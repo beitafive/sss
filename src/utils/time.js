@@ -1,6 +1,8 @@
+const week = ['日','一','二','三','四','五','六']
 export function time2Obj(time, symbol = '/') {
     time = time ? new Date(time) : new Date();
     let obj = new Object();
+    obj.week = '周' + week[time.getDay()]
     obj.year = time.getFullYear();
     obj.month = (time.getMonth() + 1) >= 10 ? (time.getMonth() + 1) : '0' + (time.getMonth() + 1).toString();
     obj.day = time.getDate() >= 10 ? time.getDate() : '0' + time.getDate().toString();

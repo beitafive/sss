@@ -18,5 +18,13 @@ export default {
         list: '/pri/position/reportlist.action',
         upload: '/pri/position/reportadd.action'
     },
-    feedback: '/pri/problem/add.action'
+    feedback: '/pri/problem/add.action',
+    diary: {
+        list: '/pri/diary/list.action',
+        add: '/pri/diary/add.action',
+        detail: '/pri/diary/view.action',
+        day_detail: '/pri/diary/calendar/list.action',
+        month_detail: '/pri/diary/statistics.action',
+        mood: '/pri/diarymood/list.action'
+    }
 }

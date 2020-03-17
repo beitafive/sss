@@ -7,7 +7,7 @@ const http = axios.create({
 })
 
 http.interceptors.request.use((config) => {
-    config.url = '/webapi' + config.url
+    config.url = '/JudicialZjjzFx' + config.url
     return config
 })
 
