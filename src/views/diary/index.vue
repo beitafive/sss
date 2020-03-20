@@ -74,7 +74,8 @@
         })
       },
       toAdd () {
-        this.$push('/diary/add?date=' + this.dateInfo.dateStr2)
+        const type = this.currentIndex % 7 === 0 ? 'YMQ02' : 'YMQ01'
+        this.$push('/diary/add?date=' + this.dateInfo.dateStr2 + '&type=' + type)
       }
     }
   }

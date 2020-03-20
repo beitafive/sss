@@ -11,6 +11,14 @@
         <div class="mine-title">日常管理</div>
         <div class="mine-list w-flex">
             <div class="mine-item" @click="blankTips">
+                <img src="@/assets/img/icon_jzxz@2x.png" />
+                矫正小组
+            </div>
+            <div class="mine-item" @click="toDiary">
+                <img src="@/assets/img/icon_jxrj@2x.png" />
+                交心日记
+            </div>
+            <div class="mine-item" @click="blankTips">
                 <img src="@/assets/img/xuexi.png" />
                 在线学习
             </div>
@@ -22,11 +30,11 @@
                 <img src="@/assets/img/wenti.png" />
                 问题反馈
             </div>
-            <div class="mine-item" @click="blankTips">
+            <div class="mine-item" @click="toGroup">
                 <img src="@/assets/img/jiaozheng.png" />
                 矫正小组
             </div>
-            <div class="mine-item" @click="blankTips">
+            <div class="mine-item" @click="changePwd">
                 <img src="@/assets/img/password.png" />
                 修改密码
             </div>
@@ -46,8 +54,17 @@
             toQa () {
                 this.$push('/feedback')
             },
+            toDiary () {
+                this.$push('/diary')
+            },
             blankTips () {
                 this.$toast('此功能尚未开放')
+            },
+            changePwd () {
+                this.$push('/change/password')
+            },
+            toGroup () {
+                this.$push('/gourplist')
             }
         }
     }

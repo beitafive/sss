@@ -63,8 +63,20 @@ export default [
     {
         path: '/feedback',
         name: 'feedback',
-        component:  () => import(/* webpackChunkName: "rule" */ '@/views/feedback/index.vue'),
+        component:  () => import(/* webpackChunkName: "mine" */ '@/views/feedback/index.vue'),
         meta: { title: '问题反馈' }
+    },
+    {
+        path: '/change/password',
+        name: 'changePassword',
+        component:  () => import(/* webpackChunkName: "mine" */ '@/views/mine/changePwd.vue'),
+        meta: { title: '修改密码' }
+    },
+    {
+        path: '/grouplist',
+        name: 'groupList',
+        component:  () => import(/* webpackChunkName: "mine" */ '@/views/mine/groupList.vue'),
+        meta: { title: '矫正小组' }
     },
     {
         path: '/StatisticalCommand',

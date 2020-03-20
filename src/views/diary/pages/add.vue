@@ -1,13 +1,109 @@
 <template>
-  <div class="diary-add"></div>
+  <div class="diary-add">
+    <div class="add-box">
+      <div class="add-item w-flex">
+        <div class="add-label">标题</div>
+        <input v-model="title" placeholder="请输入标题" class="add-value" />
+      </div>
+      <div class="add-item w-flex">
+        <div class="add-label">类型</div>
+        <div class="add-value">{{$route.query.type === 'YMQ01' ? '日记' : '周记'}}</div>
+      </div>
+      <div class="add-item w-flex">
+        <div class="add-label">心情</div>
+        <div class="add-value" style="text-align: right;" @click="moodShow = true">{{moodList.length ? moodList[selectIndex].text : ''}}</div>
+        <img src="@/assets/img/icon_more@3x.png"  @click="moodShow = true"  />
+      </div>
+      <div class="add-item w-flex">
+        <div class="add-label">日记内容</div>
+        <div class="add-value"></div>
+      </div>
+      <textarea v-model="content" placeholder="请输入日记内容" class="text-input" maxlength="500"></textarea>
+    </div>
+    <div class="text-num">
+      {{content.length}}/500 <button @click="onSubmit">提交</button>
+    </div>
+    <van-popup
+      v-model="moodShow"
+      position="bottom"
+      :style="{ height: '30%' }">
+      <van-picker :columns="moodList" @change="onChange"  show-toolbar @cancel="onCancel" @confirm="onConfirm"/>
+    </van-popup>
+  </div>
 </template>
 
 <script>
+  import { getNum } from '@/utils/common'
   export default {
-    name: 'add'
+    name: 'add',
+    data () {
+      return {
+        title: '',
+        type: '',
+        moodList: [],
+        content: '',
+        selectIndex: 0,
+        moodShow: false
+      }
+    },
+    mounted () {
+      this.getMood()
+    },
+    methods: {
+      getMood () {
+        this.$http.get(this.$api.diary.mood, {
+          useruuid: localStorage.uuid
+        }).then(res => {
+          this.moodList = res.data
+        })
+      },
+      onChange (picker, value, index) {
+        this.selectIndex = index
+      },
+      onCancel () {
+        this.moodShow = false
+      },
+      onConfirm () {
+        this.mood = this.moodList[this.selectIndex].value
+        this.moodShow = false
+      },
+      onSubmit () {
+        this.$http.get(this.$api.diary.add, {
+          useruuid: localStorage.uuid,
+          diaryId: getNum(),
+          diaryTitle: this.title,
+          selectionDate: this.$route.query.date,
+          diaryType: this.$route.query.type,
+          mood: this.moodList[this.selectIndex].value,
+          diaryContent: this.content
+        })
+      }
+    }
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .diary-add {
+    .add-box {
+      padding-left: .32rem;
+      .add-item {
+        height: .88rem; align-items: center; border-bottom: 1px solid #DDDCDE; font-size: .32rem;
+        .add-label {
+          color: #333333; width: 1.8rem;
+        }
+        .add-value {
+          color: #8F8E94; height: .88rem; flex: 1; line-height: .88rem;
+        }
+        img {
+          width: .2rem; margin: 0 .32rem 0 .2rem;
+        }
+      }
+      .text-input {
+        width: 100%; height: calc(100vh - 4.8rem); resize: none; box-sizing: border-box; padding: .2rem 0; color: #8F8E94; font-size: .32rem; line-height: .44rem;
+      }
+    }
+    .text-num {
+      padding: .2rem .32rem 0; border-top: 1px solid #DDDCDE; font-size: .32rem; color: #8F8E94; text-align: right;
+    }
+  }
 </style>
