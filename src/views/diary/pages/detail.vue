@@ -24,11 +24,11 @@
       <p class="content">
         {{info.diaryContent}}
       </p>
-      <div class="add-item w-flex">
+      <div class="add-item w-flex" v-if="info.diaryTypeName === '周记'">
         <div class="add-label">点评</div>
         <div class="add-value"></div>
       </div>
-      <p class="content">
+      <p class="content" v-if="info.diaryTypeName === '周记'">
         {{info.comment}}
       </p>
     </div>

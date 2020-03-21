@@ -10,7 +10,7 @@
         </div>
         <div class="mine-title">日常管理</div>
         <div class="mine-list w-flex">
-            <div class="mine-item" @click="blankTips">
+            <div class="mine-item" @click="toGroup">
                 <img src="@/assets/img/icon_jzxz@2x.png" />
                 矫正小组
             </div>
@@ -30,13 +30,13 @@
                 <img src="@/assets/img/wenti.png" />
                 问题反馈
             </div>
-            <div class="mine-item" @click="toGroup">
-                <img src="@/assets/img/jiaozheng.png" />
-                矫正小组
-            </div>
             <div class="mine-item" @click="changePwd">
                 <img src="@/assets/img/password.png" />
                 修改密码
+            </div>
+            <div class="mine-item" @click="blankTips">
+                <img src="@/assets/img/icon_banb@2x.png" />
+                版本检测
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
                 this.$push('/change/password')
             },
             toGroup () {
-                this.$push('/gourplist')
+                this.$push('/grouplist')
             }
         }
     }

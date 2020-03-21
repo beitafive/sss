@@ -39,7 +39,7 @@
             useruuid: localStorage.uuid,
             newpwd: this.new_pwd
           }).then(res => {
-            if (res.code) {
+            if (res.state === '1') {
               // eslint-disable-next-line no-console
               this.$push('/mine')
             }
