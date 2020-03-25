@@ -18,7 +18,7 @@
                 <img src="@/assets/img/icon_jxrj@2x.png" />
                 交心日记
             </div>
-            <div class="mine-item" @click="blankTips">
+            <div class="mine-item" @click="toLearn">
                 <img src="@/assets/img/xuexi.png" />
                 在线学习
             </div>
@@ -65,6 +65,13 @@
             },
             toGroup () {
                 this.$push('/grouplist')
+            },
+            toLearn () {
+                this.$http.get(this.$api.learning, {
+                    useruuid: localStorage.uuid
+                }).then(res => {
+                    window.location.href = "http://page.xinan.zhanyaa.com?parameter=" + res.data[0].userUuid
+                })
             }
         }
     }

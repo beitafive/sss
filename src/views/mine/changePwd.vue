@@ -2,6 +2,10 @@
   <div class="change-pwd">
     <div class="add-box">
       <div class="add-item w-flex">
+        <div class="add-label">原密码</div>
+        <input v-model="old_pwd" placeholder="请输入原密码" type="password" class="add-value" />
+      </div>
+      <div class="add-item w-flex">
         <div class="add-label">新密码</div>
         <input v-model="new_pwd" placeholder="请输入新密码" type="password" class="add-value" />
       </div>
@@ -16,6 +20,7 @@
 </template>
 
 <script>
+  import MD5 from 'md5'
   export default {
     name: 'changePwd',
     data () {
@@ -37,10 +42,10 @@
         if (this.new_pwd === this.confirm_pwd) {
           this.$http.get(this.$api.change_pwd, {
             useruuid: localStorage.uuid,
-            newpwd: this.new_pwd
+            oldpwd: MD5(this.old_pwd),
+            newpwd: MD5(this.new_pwd)
           }).then(res => {
             if (res.state === '1') {
-              // eslint-disable-next-line no-console
               this.$push('/mine')
             }
           })

@@ -21,7 +21,7 @@
       <textarea v-model="content" placeholder="请输入日记内容" class="text-input" maxlength="500"></textarea>
     </div>
     <div class="text-num">
-      {{content.length}}/500 <button @click="onSubmit">提交</button>
+      {{content.length}}/500
     </div>
     <van-popup
       v-model="moodShow"

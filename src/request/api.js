@@ -4,6 +4,7 @@ export default {
     change_pwd: '/pri/userpwd/update.action',
     get_user_info: '/pri/getuserinfo.action',
     team_list: '/pri/prison/grouplist.action',
+    learning: '/pri/online/aes.action',
     index: {
         base_info: '/pri/index/corrperstat.action'
     },
