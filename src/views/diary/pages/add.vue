@@ -23,6 +23,7 @@
     <div class="text-num">
       {{content.length}}/500
     </div>
+    <div class="confirm-btn" @click="onSubmit"> 提 交 </div>
     <van-popup
       v-model="moodShow"
       position="bottom"
@@ -76,6 +77,10 @@
           diaryType: this.$route.query.type,
           mood: this.moodList[this.selectIndex].value,
           diaryContent: this.content
+        }).then(res => {
+          if (res.state === '1') {
+            this.$push('/diary/list')
+          }
         })
       }
     }
@@ -99,11 +104,14 @@
         }
       }
       .text-input {
-        width: 100%; height: calc(100vh - 4.8rem); resize: none; box-sizing: border-box; padding: .2rem 0; color: #8F8E94; font-size: .32rem; line-height: .44rem;
+        width: 100%; height: calc(100vh - 6rem); resize: none; box-sizing: border-box; padding: .2rem 0; color: #8F8E94; font-size: .32rem; line-height: .44rem;
       }
     }
     .text-num {
       padding: .2rem .32rem 0; border-top: 1px solid #DDDCDE; font-size: .32rem; color: #8F8E94; text-align: right;
+    }
+    .confirm-btn {
+      margin: 4rem auto 0; position: fixed; bottom: .3rem; left:0; right:0; background: #4A5AFF; color: #fff; width: 4.8rem; height: .94rem; line-height: .94rem; border-radius: .47rem; text-align: center; font-size: .32rem;
     }
   }
 </style>
