@@ -91,7 +91,7 @@
             },
             toLocation () {
                 this.$app.face_location(function () {
-                    ZLJNativeApi.push({ urlStr: 'http://msj.zjsft.gov.cn/#/location?type=1&face=1'})
+                    ZLJNativeApi.push({ urlStr: 'http://223.4.74.40:7080/#/location?type=1&face=1'})
                 })
             },
             toRecord () {

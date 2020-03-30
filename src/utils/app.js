@@ -1,6 +1,7 @@
 
 // 调用app方法
-
+// http://223.4.74.40:7080/#/
+//
 export default {
     // 人脸登陆
     face_login: () => {
@@ -15,11 +16,11 @@ export default {
     },
     // 跳转
     open_new_url (url) {
-        ZLJNativeApi.push({urlStr: 'http://msj.zjsft.gov.cn/#' + url})
+        ZLJNativeApi.push({urlStr: 'http://223.4.74.40:7080/#' + url})
     },
     // 跳转
     replace_new_url (url) {
-        ZLJNativeApi.pushReplace({urlStr: 'http://msj.zjsft.gov.cn/#' + url})
+        ZLJNativeApi.pushReplace({urlStr: 'http://223.4.74.40:7080/#' + url})
     },
     // 传给app uuid
     send_uuid (uuid) {

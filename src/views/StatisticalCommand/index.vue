@@ -109,7 +109,7 @@ export default {
       } else {
         localStorage.ids = item.orderId
         this.$app.face_location(function () {
-          ZLJNativeApi.push({ urlStr: `http://msj.zjsft.gov.cn/#/location?type=2&id=${localStorage.ids}`})
+          ZLJNativeApi.push({ urlStr: `http://223.4.74.40:7080/#/location?type=2&id=${localStorage.ids}`})
         })
       }
     },
