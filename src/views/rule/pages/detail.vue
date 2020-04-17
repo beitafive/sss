@@ -30,7 +30,7 @@
 				附件
 			</div>
 			<div class="pic-list w-flex" >
-				<img class="LabelImg" src="@/assets/img/icon_fjxz.png" /><a :href="'/webapi/app/file/download.action?fileuuid=' + info.fileIds" download="filename">{{info.fileNames}}</a><img class="rightImg" src="@/assets/img/right.png" />
+				<img class="LabelImg" src="@/assets/img/icon_fjxz.png" /><a :href="'/JudicialZjjzFx/app/file/download.action?fileuuid=' + info.fileIds" download="filename">{{info.fileNames}}</a><img class="rightImg" src="@/assets/img/right.png" />
 			</div>
 		</div>
 	</div>

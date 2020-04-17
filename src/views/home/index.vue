@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="home-nav w-flex">
-            <div class="nav-item" v-for="(item, index) in navList" :key="index" @click="blankTips">
+            <div class="nav-item" v-for="(item, index) in navList" :key="index" @click="blankTips(index)">
                 <img :src="item.img" />
                 <div v-if="item.count">{{item.count}}</div>
             </div>
@@ -75,6 +75,7 @@
         },
         mounted () {
             this.getInfo()
+            this.navList[0].count = this.$app.get_msg_num()
         },
         methods: {
             getInfo () {
@@ -97,7 +98,10 @@
             toRecord () {
                 this.$push('/location/record')
             },
-            blankTips () {
+            blankTips (index) {
+                if (index === 0) {
+                   this.$app.to_socket()
+                }
                 this.$toast('此功能尚未开放')
             }
         }

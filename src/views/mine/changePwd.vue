@@ -3,15 +3,15 @@
     <div class="add-box">
       <div class="add-item w-flex">
         <div class="add-label">原密码</div>
-        <input v-model="old_pwd" placeholder="请输入原密码" type="password" class="add-value" />
+        <input v-model="old_pwd" placeholder="请输入原密码" maxlength="20" type="password" class="add-value" />
       </div>
       <div class="add-item w-flex">
         <div class="add-label">新密码</div>
-        <input v-model="new_pwd" placeholder="请输入新密码" type="password" class="add-value" />
+        <input v-model="new_pwd" placeholder="请输入新密码" maxlength="20" type="password" class="add-value" />
       </div>
       <div class="add-item w-flex">
         <div class="add-label">确认密码</div>
-        <input v-model="confirm_pwd" placeholder="请再次输写确认新密码" type="password" class="add-value" />
+        <input v-model="confirm_pwd" placeholder="请再次输写确认新密码" maxlength="20" type="password" class="add-value" />
       </div>
       <div class="tips">密码必须包含英文字符及数字，且长度在6~20字符之间</div>
     </div>
@@ -39,6 +39,14 @@
     },
     methods: {
       onSubmit () {
+        if (!this.old_pwd) {
+          return this.$toast.fail('请输入原密码')
+        }
+        if (!this.new_pwd) {
+          return this.$toast.fail('请输入新密码')
+        }
+        var reg = new RegExp(/^(?![^a-zA-Z]+$)(?!\D+$)/);
+        if (!reg.test(this.new_pwd || this.new_pwd.length < 6)) return this.$toast.fail('密码必须6-20位且包含字母和数字')
         if (this.new_pwd === this.confirm_pwd) {
           this.$http.get(this.$api.change_pwd, {
             useruuid: localStorage.uuid,

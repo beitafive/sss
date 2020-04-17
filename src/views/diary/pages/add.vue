@@ -3,7 +3,7 @@
     <div class="add-box">
       <div class="add-item w-flex">
         <div class="add-label">标题</div>
-        <input v-model="title" placeholder="请输入标题" class="add-value" />
+        <input v-model="title" placeholder="请输入标题（暂不支持特殊字符和表情）" maxlength="50" class="add-value" />
       </div>
       <div class="add-item w-flex">
         <div class="add-label">类型</div>
@@ -18,7 +18,7 @@
         <div class="add-label">日记内容</div>
         <div class="add-value"></div>
       </div>
-      <textarea v-model="content" placeholder="请输入日记内容" class="text-input" maxlength="500"></textarea>
+      <textarea v-model="content" placeholder="请输入日记内容（暂不支持特殊字符和表情）" class="text-input" maxlength="500"></textarea>
     </div>
     <div class="text-num">
       {{content.length}}/500
@@ -69,6 +69,12 @@
         this.moodShow = false
       },
       onSubmit () {
+        if (!this.title) {
+          return this.$toast('请输入标题')
+        }
+        if (!this.content) {
+          return this.$toast('请输入日记内容')
+        }
         this.$http.get(this.$api.diary.add, {
           useruuid: localStorage.uuid,
           diaryId: getNum(),
@@ -79,7 +85,7 @@
           diaryContent: this.content
         }).then(res => {
           if (res.state === '1') {
-            this.$push('/diary/list')
+            this.$app.replace_new_url('/diary/list')
           }
         })
       }
@@ -92,7 +98,7 @@
     .add-box {
       padding-left: .32rem;
       .add-item {
-        height: .88rem; align-items: center; border-bottom: 1px solid #DDDCDE; font-size: .32rem;
+        height: .88rem; align-items: center; border-bottom: 1px solid #DDDCDE; font-size: .28rem;
         .add-label {
           color: #333333; width: 1.8rem;
         }

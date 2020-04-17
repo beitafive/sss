@@ -1,7 +1,7 @@
 <template>
   <div class="diary">
-    <w-calendar :list="calendarList" :selectIndex="currentIndex" @callback="handleIndex" />
-    <img src="@/assets/img/diary_add.png" class="add-btn" v-show="calendarList[currentIndex].isButton === '1'" @click="toAdd" />
+    <w-calendar :list="calendarList" :selectIndex="currentIndex" @callback="handleIndex" @change="changeList" />
+    <img src="@/assets/img/diary_add.png" class="add-btn" v-show="currentIndex !== 100 && calendarList[currentIndex].isButton === '0'" @click="toAdd" />
     <div class="diary-info">
       <div class="tips">周一至周六写日记，周日写周记</div>
       <div class="date-view">{{dateInfo.year}}年{{dateInfo.month}}月{{dateInfo.day}}日 {{dateInfo.week}}</div>
@@ -43,6 +43,11 @@
         this.currentIndex = index
         this.dateInfo = time2Obj(this.calendarList[this.currentIndex].date)
       },
+      changeList (item) {
+        this.dateInfo = time2Obj(item.date)
+        console.log(this.dateInfo)
+        this.getList()
+      },
       getList () {
         this.$http.get(this.$api.diary.day_detail, {
           useruuid: localStorage.uuid,
@@ -57,9 +62,9 @@
             }
             this.calendarList = createList(res.data)
             for (let i = 0, len = this.calendarList.length; i < len; i++) {
-              if (this.calendarList[i].name === new Date().getDate()) {
+              if (this.calendarList[i].name === new Date(this.dateInfo.symbolStr).getDate()) {
                 this.currentIndex = i
-                continue
+                break
               }
             }
           }

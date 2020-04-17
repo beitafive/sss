@@ -11,7 +11,7 @@
     </div>
     <div class="list-box w-flex">
       <div :class="['date-item', selectIndex === index ? 'active-item' : '']" v-for="(item, index) in list" :key="index" @click="selectItem(item, index)">
-        <div :style="{ color: selectIndex === index ? '#fff' : item.fillSituation ? '#444' : '' }">{{item.name}}</div>
+        <div :style="{ color: selectIndex === index ? '#fff' : item.fillSituation ? '#000' : '' }">{{item.name}}</div>
         <div>{{item.lunar}}</div>
         <img src="@/assets/img/diary_que.png" v-if="item.fillSituation === '缺'"/>
       </div>
@@ -37,6 +37,8 @@
       selectItem (item, index) {
         if (item.fillSituation) {
           this.$emit('callback', index)
+        } else {
+          this.$emit('change', item)
         }
       }
     }

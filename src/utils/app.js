@@ -25,5 +25,21 @@ export default {
     // 传给app uuid
     send_uuid (uuid) {
         ZLJNativeApi.sendloginInfo({uuid: uuid})
+    },
+    // 版本检测
+    check_version() {
+        ZLJNativeApi.checkupdate()
+    },
+    // 首页跳转消息通知
+    to_msg() {
+        ZLJNativeApi.systemnotification()
+    },
+    // 实时通讯
+    to_socket() {
+        ZLJNativeApi.im()
+    },
+    // 获取实时通讯数量
+    get_msg_num() {
+        return ZLJNativeApi.msgreadnum()
     }
 }

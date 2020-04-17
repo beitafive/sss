@@ -70,6 +70,12 @@
       background: #fff; border-radius: 6px; height: 3rem; margin: 0 .24rem .2rem; font-size: .32rem;
       .diary-title {
         height: .8rem; align-items: center; justify-content: space-between; padding: 0 .24rem;
+        span {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          word-break: break-all;
+        }
         img {
           width: .14rem;
         }
@@ -79,6 +85,8 @@
       }
       p {
         border-bottom: 1px solid #E9E9E9; height: .9rem; padding: .06rem .24rem .1rem; font-size: .28rem; color: #666; line-height: .48rem; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
       }
       .type-date {
         justify-content: space-between; align-items: center; height: .8rem; padding: 0 .24rem;
@@ -87,6 +95,7 @@
         }
         span:nth-of-type(2) {
           color: #666666; font-size: .26rem;
+
         }
       }
     }

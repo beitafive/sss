@@ -1,7 +1,7 @@
 <template>
   <div class="box w-flex">
     <div class="header w-flex">
-      <img :src="'/webapi/app/file/download.action?fileuuid=' + mine.faceImgids" class="header-img" />
+      <img :src="'/JudicialZjjzFx/app/file/download.action?fileuuid=' + mine.faceImgids" class="header-img" />
       <div class="header-name w-flex">
         <span>{{mine.userCName}}</span>
         <img src="@/assets/img/pic_wwc@3x.png" alt="" v-if="total !== success" />

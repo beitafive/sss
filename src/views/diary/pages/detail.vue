@@ -66,19 +66,19 @@
     .detail-box {
       padding-left: .32rem;
       .add-item {
-        height: .88rem; align-items: center; border-bottom: 1px solid #DDDCDE; font-size: .32rem;
+        box-sizing: border-box; padding: .3rem .2rem .3rem 0; border-bottom: 1px solid #DDDCDE; font-size: .32rem;
         .add-label {
           color: #333333; width: 1.8rem;
         }
         .add-value {
-          color: #8F8E94; height: .88rem; flex: 1; line-height: .88rem;
+          color: #8F8E94; flex: 1; line-height: .38rem; word-break: break-all;
         }
         img {
           width: .2rem; margin: 0 .32rem 0 .2rem;
         }
       }
       .content {
-        color: #8F8E94; font-size: .32rem; line-height: .44rem; margin: .1rem 0 .16rem;
+        color: #8F8E94; font-size: .32rem; line-height: .44rem; margin: .1rem 0 .16rem; word-break: break-all; padding-right: .2rem;
       }
     }
   }

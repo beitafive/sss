@@ -2,7 +2,7 @@
   <div class="record-detail">
     <div id="maps"></div>
     <div class="user-info w-flex">
-        <img :src="'/webapi/app/file/download.action?fileuuid=' + mine.faceImgids" />
+        <img :src="'/JudicialZjjzFx/app/file/download.action?fileuuid=' + mine.faceImgids" />
         <div>
             <p>{{mine.userCName}}</p>
             <p>{{mine.companyName}}</p>

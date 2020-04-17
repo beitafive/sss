@@ -1,7 +1,7 @@
 <template>
     <div class="mine">
         <div class="mine-info w-flex">
-            <img :src="'/webapi/app/file/download.action?fileuuid=' + userInfo.faceImgids" />
+            <img :src="'/JudicialZjjzFx/app/file/download.action?fileuuid=' + userInfo.faceImgids" />
             <div>
                 <p><span>{{userInfo.userCName}}</span> / {{userInfo.departmentName}}</p>
                 <p>管理等级：{{userInfo.mangaerLevel}}</p>
