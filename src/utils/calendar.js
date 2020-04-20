@@ -101,7 +101,7 @@ export function createList ( currentList ) {
   const num = currentList.length
   let list = [].concat(currentList)
   // 加上 前面日期  86400000
-  const nums = new Date(list[0].date).getDay()
+  const nums = new Date(list[0].date).getDay() === 0 ? 7 : new Date(list[0].date).getDay()
   const fristDay = Date.parse(new Date(list[0].date)) // 当前月 第一天
   const lastDay = Date.parse(new Date(list[num-1].date)) // 当前月最后一天
   for (let j = 0; j < nums; j++) {

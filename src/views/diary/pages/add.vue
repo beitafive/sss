@@ -3,7 +3,8 @@
     <div class="add-box">
       <div class="add-item w-flex">
         <div class="add-label">标题</div>
-        <input v-model="title" placeholder="请输入标题（暂不支持特殊字符和表情）" maxlength="50" class="add-value" />
+        <input v-model="title"  placeholder="请输入标题（暂不支持特殊字符和表情）" maxlength="50" v-show="isInput" @focus="handleFocus" class="add-value add-input" />
+        <div class="add-value">{{title}}<span></span></div>
       </div>
       <div class="add-item w-flex">
         <div class="add-label">类型</div>
@@ -39,6 +40,7 @@
     name: 'add',
     data () {
       return {
+        isInput: true,
         title: '',
         type: '',
         moodList: [],
@@ -51,6 +53,9 @@
       this.getMood()
     },
     methods: {
+      handleFocus (e) {
+        this.isInput = false
+      },
       getMood () {
         this.$http.get(this.$api.diary.mood, {
           useruuid: localStorage.uuid
@@ -95,6 +100,7 @@
 
 <style scoped lang="scss">
   .diary-add {
+    overflow: hidden;
     .add-box {
       padding-left: .32rem;
       .add-item {
@@ -105,6 +111,7 @@
         .add-value {
           color: #8F8E94; height: .88rem; flex: 1; line-height: .88rem;
         }
+        .add-input { padding-right: .5rem; }
         img {
           width: .2rem; margin: 0 .32rem 0 .2rem;
         }
@@ -113,6 +120,7 @@
         width: 100%; height: calc(100vh - 6rem); resize: none; box-sizing: border-box; padding: .2rem 0; color: #8F8E94; font-size: .32rem; line-height: .44rem;
       }
     }
+
     .text-num {
       padding: .2rem .32rem 0; border-top: 1px solid #DDDCDE; font-size: .32rem; color: #8F8E94; text-align: right;
     }
