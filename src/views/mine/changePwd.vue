@@ -54,7 +54,7 @@
             newpwd: MD5(this.new_pwd)
           }).then(res => {
             if (res.state === '1') {
-              this.$push('/mine')
+              this.$app.replace_new_url('/mine')
             }
           })
         }else {

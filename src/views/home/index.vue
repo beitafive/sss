@@ -17,7 +17,7 @@
                 <div v-if="item.count">{{item.count}}</div>
             </div>
         </div>
-        <div class="home-tips w-flex">
+        <div class="home-tips w-flex" @click="toMsg">
             <img src="@/assets/img/home_tips.png" />
             <div> 暂无通知 </div>
             <span v-if="info.noticeNum !== '0'">{{info.noticeNum}}</span>
@@ -78,6 +78,9 @@
             this.navList[0].count = this.$app.get_msg_num()
         },
         methods: {
+            toMsg () {
+              this.$api.to_msg()
+            },
             getInfo () {
                 this.$http.get(this.$api.index.base_info, {
                     useruuid: localStorage.uuid
@@ -101,8 +104,9 @@
             blankTips (index) {
                 if (index === 0) {
                    this.$app.to_socket()
+                } else {
+                    this.$toast('此功能尚未开放')
                 }
-                this.$toast('此功能尚未开放')
             }
         }
     }

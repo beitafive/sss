@@ -3,8 +3,7 @@
     <div class="add-box">
       <div class="add-item w-flex">
         <div class="add-label">标题</div>
-        <input v-model="title"  placeholder="请输入标题（暂不支持特殊字符和表情）" maxlength="50" v-show="isInput" @focus="handleFocus" class="add-value add-input" />
-        <div class="add-value">{{title}}<span></span></div>
+        <input v-model="title"  placeholder="请输入标题（暂不支持特殊字符和表情）" maxlength="50" id="inputs" class="add-value add-input" @focus="handleFocus" />
       </div>
       <div class="add-item w-flex">
         <div class="add-label">类型</div>
@@ -53,8 +52,19 @@
       this.getMood()
     },
     methods: {
-      handleFocus (e) {
-        this.isInput = false
+      handleFocus () {
+        setTimeout(() => {
+          let obj = this.$refs['inputs'];
+          let value = obj.value;
+          if (document.selection) {
+            var sel = obj.createTextRange();
+            sel.moveStart('character', value.length);
+            sel.collapse();
+            sel.select();
+          } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+            obj.selectionStart = obj.selectionEnd = value.length;
+          }
+        }, 0);
       },
       getMood () {
         this.$http.get(this.$api.diary.mood, {
@@ -111,7 +121,6 @@
         .add-value {
           color: #8F8E94; height: .88rem; flex: 1; line-height: .88rem;
         }
-        .add-input { padding-right: .5rem; }
         img {
           width: .2rem; margin: 0 .32rem 0 .2rem;
         }

@@ -34,7 +34,7 @@
                 <img src="@/assets/img/password.png" />
                 修改密码
             </div>
-            <div class="mine-item" @click="blankTips">
+            <div class="mine-item" @click="checkVersion">
                 <img src="@/assets/img/icon_banb@2x.png" />
                 版本检测
             </div>
@@ -56,6 +56,9 @@
             },
             toDiary () {
                 this.$push('/diary')
+            },
+            checkVersion () {
+                this.$api.check_version()
             },
             blankTips () {
                 this.$toast('此功能尚未开放')
