@@ -73,6 +73,7 @@
                 this.$http.get(this.$api.learning, {
                     useruuid: localStorage.uuid
                 }).then(res => {
+                    // alert(res.data[0].userUuid)
                     window.location.href = "http://page.xinan.zhanyaa.com?parameter=" + res.data[0].userUuid
                 })
             }
