@@ -41,7 +41,11 @@
       }
     },
     mounted () {
+      document.addEventListener('visibilitychange', this.getList)
       this.getList()
+    },
+    destroyed () {
+      document.removeEventListener('visibilitychange', this.getList, false)
     },
     methods: {
       handleIndex (index) {
@@ -50,7 +54,6 @@
       },
       changeList (item) {
         this.dateInfo = time2Obj(item.date)
-        console.log(this.dateInfo)
         this.getList()
       },
       getList () {
@@ -97,7 +100,6 @@
                 }
               })
             }
-            console.log(dateList)
             this.statList = dateList
           }
         })
