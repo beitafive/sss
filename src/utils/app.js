@@ -18,6 +18,9 @@ export default {
     open_new_url (url) {
         ZLJNativeApi.push({urlStr: 'http://223.4.74.40:7080/#' + url})
     },
+    pop () {
+        ZLJNativeApi.pop()
+    },
     // 跳转
     replace_new_url (url) {
         ZLJNativeApi.pushReplace({urlStr: 'http://223.4.74.40:7080/#' + url})

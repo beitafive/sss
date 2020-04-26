@@ -79,7 +79,7 @@
         },
         methods: {
             toMsg () {
-              this.$api.to_msg()
+              this.$app.to_msg()
             },
             getInfo () {
                 this.$http.get(this.$api.index.base_info, {

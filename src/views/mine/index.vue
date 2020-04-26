@@ -58,7 +58,7 @@
                 this.$push('/diary')
             },
             checkVersion () {
-                this.$api.check_version()
+                this.$app.check_version()
             },
             blankTips () {
                 this.$toast('此功能尚未开放')

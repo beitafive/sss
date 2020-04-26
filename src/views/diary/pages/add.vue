@@ -100,7 +100,7 @@
           diaryContent: this.content
         }).then(res => {
           if (res.state === '1') {
-            this.$app.replace_new_url('/diary/list')
+            this.$app.pop('/diary/list')
           }
         })
       }
