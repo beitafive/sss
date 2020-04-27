@@ -3,7 +3,7 @@
     <div class="add-box">
       <div class="add-item w-flex">
         <div class="add-label">标题</div>
-        <input v-model="title"  placeholder="请输入标题（暂不支持特殊字符和表情）" maxlength="50" id="inputs" class="add-value add-input" @focus="handleFocus" />
+        <input v-model="title"  placeholder="请输入标题（暂不支持特殊字符和表情）" maxlength="50" id="inputs" class="add-value add-input" />
       </div>
       <div class="add-item w-flex">
         <div class="add-label">类型</div>
@@ -52,20 +52,20 @@
       this.getMood()
     },
     methods: {
-      handleFocus () {
-        setTimeout(() => {
-          let obj = this.$refs['inputs'];
-          let value = obj.value;
-          if (document.selection) {
-            var sel = obj.createTextRange();
-            sel.moveStart('character', value.length);
-            sel.collapse();
-            sel.select();
-          } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
-            obj.selectionStart = obj.selectionEnd = value.length;
-          }
-        }, 0);
-      },
+      // handleFocus () {
+      //   setTimeout(() => {
+      //     let obj = this.$refs['inputs'];
+      //     let value = obj.value;
+      //     if (document.selection) {
+      //       var sel = obj.createTextRange();
+      //       sel.moveStart('character', value.length);
+      //       sel.collapse();
+      //       sel.select();
+      //     } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+      //       obj.selectionStart = obj.selectionEnd = value.length;
+      //     }
+      //   }, 0);
+      // },
       getMood () {
         this.$http.get(this.$api.diary.mood, {
           useruuid: localStorage.uuid
@@ -80,7 +80,7 @@
         this.moodShow = false
       },
       onConfirm () {
-        this.mood = this.moodList[this.selectIndex].value
+        // this.mood = this.moodList[this.selectIndex].value
         this.moodShow = false
       },
       onSubmit () {
