@@ -74,7 +74,7 @@
             }
         },
         mounted () {
-            // this.getInfo()
+            this.getInfo()
             this.navList[0].count = this.$app.get_msg_num()
         },
         methods: {
