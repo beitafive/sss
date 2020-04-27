@@ -28,6 +28,7 @@ export default {
         detail: '/pri/diary/view.action',
         day_detail: '/pri/diary/calendar/list.action',
         month_detail: '/pri/diary/statistics.action',
-        mood: '/pri/diarymood/list.action'
+        mood: '/pri/diarymood/list.action',
+        check: '/pri/diary/judge.action'
     }
 }

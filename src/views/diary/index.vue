@@ -105,8 +105,20 @@
         })
       },
       toAdd () {
-        const type = this.currentIndex % 7 === 0 ? 'YMQ02' : 'YMQ01'
-        this.$push('/diary/add?date=' + this.dateInfo.dateStr2 + '&type=' + type)
+        this.$http.get(this.$api.diary.check, {
+          useruuid: localStorage.uuid,
+          selectionDate: this.dateInfo.dateStr2
+        }).then(res => {
+          if (res) {
+            if (res.state === '1') {
+              const type = this.currentIndex % 7 === 0 ? 'YMQ02' : 'YMQ01'
+              this.$push('/diary/add?date=' + this.dateInfo.dateStr2 + '&type=' + type)
+            } else {
+              this.$toast(res.message)
+            }
+
+          }
+        })
       }
     }
   }
