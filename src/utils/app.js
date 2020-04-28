@@ -18,8 +18,18 @@ export default {
     open_new_url (url) {
         ZLJNativeApi.push({urlStr: 'http://223.4.74.40:7080/#' + url})
     },
+    // 返回
     pop () {
         ZLJNativeApi.pop()
+    },
+    // 跳转
+    customPush(url, rightTitle, actionType, actionUrl) {
+        ZLJNativeApi.customPush({
+            urlStr: url,
+            rightTitle,
+            actionType,
+            actionUrl: 'http://223.4.74.40:7080/#' + actionUrl
+        })
     },
     // 跳转
     replace_new_url (url) {

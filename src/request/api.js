@@ -6,7 +6,8 @@ export default {
     team_list: '/pri/prison/grouplist.action',
     learning: '/pri/online/aes.action',
     index: {
-        base_info: '/pri/index/corrperstat.action'
+        base_info: '/pri/index/corrperstat.action',
+        msg_list: '/pri/message/list.action'
     },
     rule: {
         list: '/pri/law/list.action',

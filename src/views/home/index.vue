@@ -75,6 +75,7 @@
         },
         mounted () {
             this.getInfo()
+            this.getMsg()
             this.navList[0].count = this.$app.get_msg_num()
         },
         methods: {
@@ -89,6 +90,16 @@
                         this.info = res.data[0]
                     }
                 })
+            },
+            getMsg () {
+              this.$http.get(this.$api.index.msg_list, {
+                useruuid: localStorage.uuid,
+                isReaded: 0
+              }).then(res => {
+                // if (res.state === '1') {
+                //   this.info = res.data[0]
+                // }
+              })
             },
             toCmd () {
                 this.$push('/StatisticalCommand')

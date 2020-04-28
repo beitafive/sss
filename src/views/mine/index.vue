@@ -74,7 +74,7 @@
                     useruuid: localStorage.uuid
                 }).then(res => {
                     // alert(res.data[0].userUuid)
-                    window.location.href = "http://page.xinan.zhanyaa.com?parameter=" + res.data[0].userUuid
+                  this.$app.customPush("http://page.xinan.zhanyaa.com?parameter=" + res.data[0].userUuid, '在线学习', 'push', '/mine')
                 })
             }
         }

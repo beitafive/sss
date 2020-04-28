@@ -37,15 +37,18 @@
         calendarList: [],
         currentIndex: 100,
         dateInfo: time2Obj(),
-        statList: []
+        statList: [],
+        inter: ''
       }
     },
     mounted () {
-      document.addEventListener('visibilitychange', this.getList)
       this.getList()
+      this.inter = setInterval(() => {
+        this.getList()
+      }, 4000)
     },
-    destroyed () {
-      document.removeEventListener('visibilitychange', this.getList, false)
+    destroyed() {
+      clearInterval(this.inter)
     },
     methods: {
       handleIndex (index) {
@@ -70,7 +73,7 @@
             }
             this.calendarList = createList(res.data)
             for (let i = 0, len = this.calendarList.length; i < len; i++) {
-              if (this.calendarList[i].name === new Date(this.dateInfo.symbolStr).getDate()) {
+              if (this.calendarList[i].date === this.dateInfo.symbolStr) {
                 this.currentIndex = i
                 break
               }
