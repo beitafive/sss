@@ -94,7 +94,8 @@
             getMsg () {
               this.$http.get(this.$api.index.msg_list, {
                 useruuid: localStorage.uuid,
-                isReaded: 0
+                isReaded: 0,
+                page: 1
               }).then(res => {
                 // if (res.state === '1') {
                 //   this.info = res.data[0]
