@@ -19,7 +19,7 @@
         </div>
         <div class="home-tips w-flex" @click="toMsg">
             <img src="@/assets/img/home_tips.png" />
-            <div> 暂无通知 </div>
+            <w-message :list="msg_list" />
             <span v-if="info.noticeNum !== '0'">{{info.noticeNum}}</span>
         </div>
 
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+    import wMessage from './w-message'
     export default {
         name: "index",
         data () {
@@ -65,8 +66,12 @@
                 tips_count: 0,
                 info: {
                     noticeNum: 0
-                }
+                },
+                msg_list: []
             }
+        },
+        components: {
+            wMessage
         },
         computed: {
             mine () {
@@ -92,15 +97,21 @@
                 })
             },
             getMsg () {
-              this.$http.get(this.$api.index.msg_list, {
-                useruuid: localStorage.uuid,
-                isReaded: 0,
-                page: 1
-              }).then(res => {
-                // if (res.state === '1') {
-                //   this.info = res.data[0]
-                // }
-              })
+                try {
+                    this.navList[0].count = this.$app.get_msg_num()
+                }
+                catch {
+                    console.log('err')
+                }
+                this.$http.get(this.$api.index.msg_list, {
+                    useruuid: localStorage.uuid,
+                    isReaded: 0,
+                    page: 1
+                }).then(res => {
+                    if (res.state === '1') {
+                    this.msg_list = res.data
+                    }
+                })
             },
             toCmd () {
                 this.$push('/StatisticalCommand')
@@ -152,7 +163,7 @@
 
         .home-tips {
             color: #333;  position: relative; align-items: center; margin-top: .2rem;
-            img { width: .32rem; height: .32rem; line-height: .3rem; margin-right: .1rem; }
+            img { width: .32rem; height: .32rem; line-height: .3rem; margin-right: .2rem; }
             div { flex: 1; white-space: nowrap; text-overflow:ellipsis; overflow:hidden;}
             span { color: #fff; font-size: .24rem; position: absolute; width: .36rem; height: .36rem; text-align: center; line-height: .36rem; left: .1rem; top: -.22rem; background: #F52323; border-radius: 100%; }
         }
