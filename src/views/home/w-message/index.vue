@@ -14,7 +14,7 @@
         name: 'wMessage',
         data () {
             return {
-                mySwiper: {}
+                mySwiper: ""
             }
         },
         props: {
@@ -24,13 +24,14 @@
             list: {
                 handler (val) {
                     if (val.length) {
-                        console.log('1')
                         this.$nextTick(() => {
+                            if (this.mySwiper) this.mySwiper.destroy(false)
                             this.init()
                         })
                     }
                 },
-                immediate: true
+                immediate: true,
+                deep: true
             }
         },
         methods: {
@@ -48,9 +49,9 @@
 
 <style scoped lang='scss'>
 .swiper-container {
-    height: .3rem;
+    height: .28rem;
     .swiper-slide {
-        height: .3rem;
+        height: .28rem;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;

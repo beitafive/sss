@@ -19,7 +19,8 @@
         </div>
         <div class="home-tips w-flex" @click="toMsg">
             <img src="@/assets/img/home_tips.png" />
-            <w-message :list="msg_list" />
+            <w-message :list="msg_list" v-if="msg_list.length"/>
+            <div v-else>暂无通知</div>
             <span v-if="info.noticeNum !== '0'">{{info.noticeNum}}</span>
         </div>
 
@@ -79,9 +80,15 @@
             }
         },
         mounted () {
+            this.inter = setInterval(() => {
+                this.getMsg()
+            }, 15000)
             this.getInfo()
             this.getMsg()
             this.navList[0].count = this.$app.get_msg_num()
+        },
+        destroyed() {
+            clearInterval(this.inter)
         },
         methods: {
             toMsg () {
@@ -109,7 +116,7 @@
                     page: 1
                 }).then(res => {
                     if (res.state === '1') {
-                    this.msg_list = res.data
+                        this.msg_list = res.data
                     }
                 })
             },
