@@ -21,7 +21,7 @@
             <img src="@/assets/img/home_tips.png" />
             <w-message :list="msg_list" v-if="msg_list.length"/>
             <div v-else>暂无通知</div>
-            <span v-if="info.noticeNum !== '0'">{{info.noticeNum}}</span>
+            <span v-if="msg_list.length !== '0'">{{msg_list.length}}</span>
         </div>
 
         <div class="home-record">
