@@ -21,7 +21,7 @@
             <img src="@/assets/img/home_tips.png" />
             <w-message :list="msg_list" v-if="msg_list.length"/>
             <div v-else>暂无通知</div>
-            <span v-if="msg_list.length !== '0'">{{msg_list.length}}</span>
+            <span v-if="msg_list.length">{{msg_list.length}}</span>
         </div>
 
         <div class="home-record">
@@ -82,6 +82,8 @@
         mounted () {
             this.inter = setInterval(() => {
                 this.getMsg()
+                this.getInfo()
+                this.navList[0].count = this.$app.get_msg_num()
             }, 15000)
             this.getInfo()
             this.getMsg()
