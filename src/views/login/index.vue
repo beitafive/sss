@@ -71,11 +71,32 @@
                         userpwd: this.password
                     }).then(res => {
                         if (res.state === '1') {
+                            try {
+                                const systemInfo = this.$app.get_system()
+                            } catch (error) {
+                                
+                            }
+                            this.$http.get(this.$api.check_set, {
+                                useruuid: res.data[0].userUuid,
+                                equipNo: '',
+                                equipType: '',
+                                equopName: '',
+                                equipModel: '',
+                                deptId: res.data[0].departmentId,
+                                netType: '',
+                                dwfwzz: '',
+                                sqzjryId: res.data[0].userUuid,
+                                sqzjryName: res.data[0].userCName,
+                                simName: '',
+                                sbyxjcsj: time2Obj().timeStr,
+                                enterDeptId: res.data[0].departmentId,
+                                isActive: 1
+                            })
                             if (this.remember) {
-                            localStorage.account = this.username
-                        } else {
-                            localStorage.removeItem('account')
-                        }
+                                localStorage.account = this.username
+                            } else {
+                                localStorage.removeItem('account')
+                            }
                             let times = formatTimeObj(res.data[0].sqjzjsrq)
                             res.data[0].overDate = times.year + '年' + times.month + '月' + times.day + '日'
                             res.data[0].overTime = getOverTime(res.data[0].sqjzjsrq, res.data[0].sqjzksrq)

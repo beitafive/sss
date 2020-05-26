@@ -3,6 +3,10 @@
 // http://223.4.74.40:7080/#/
 //
 export default {
+    // 获取系统信息
+    get_system: () => {
+        ZLJNativeApi.bindDevice()
+    },
     // 人脸登陆
     face_login: () => {
         ZLJNativeApi.facelogin()

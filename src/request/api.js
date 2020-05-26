@@ -1,6 +1,7 @@
 
 export default {
     login: '/pri/userlogin.action',
+    check_set: '/pri/equipcheck.action',
     change_pwd: '/pri/userpwd/update.action',
     get_user_info: '/pri/getuserinfo.action',
     team_list: '/pri/prison/grouplist.action',

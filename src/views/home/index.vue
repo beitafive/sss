@@ -84,7 +84,7 @@
                 this.getMsg()
                 this.getInfo()
                 this.navList[0].count = this.$app.get_msg_num()
-            }, 15000)
+            }, 4000)
             this.getInfo()
             this.getMsg()
             this.navList[0].count = this.$app.get_msg_num()
