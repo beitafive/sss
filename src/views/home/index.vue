@@ -107,7 +107,10 @@
             },
             getMsg () {
                 try {
-                    this.navList[0].count = this.$app.get_msg_num()
+                    this.$app.get_msg_num(function(num) {
+                        localStorage.msg_num = num
+                    })
+                    this.navList[0].count = localStorage.msg_num || 0
                 }
                 catch {
                     console.log('err')

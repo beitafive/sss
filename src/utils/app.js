@@ -56,7 +56,7 @@ export default {
         ZLJNativeApi.im()
     },
     // 获取实时通讯数量
-    get_msg_num() {
-        return ZLJNativeApi.msgreadnum()
+    get_msg_num(cb) {
+        ZLJNativeApi.msgreadnum({callback:cb})
     }
 }

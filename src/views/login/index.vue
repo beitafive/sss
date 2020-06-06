@@ -74,7 +74,7 @@
                             try {
                                 const systemInfo = this.$app.get_system()
                             } catch (error) {
-                                
+                                this.$
                             }
                             this.$http.get(this.$api.check_set, {
                                 useruuid: res.data[0].userUuid,
