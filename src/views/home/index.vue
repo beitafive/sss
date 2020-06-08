@@ -83,11 +83,9 @@
             this.inter = setInterval(() => {
                 this.getMsg()
                 this.getInfo()
-                this.navList[0].count = this.$app.get_msg_num()
             }, 4000)
             this.getInfo()
             this.getMsg()
-            this.navList[0].count = this.$app.get_msg_num()
         },
         destroyed() {
             clearInterval(this.inter)

@@ -69,7 +69,16 @@ export default {
         }
       })
       this.$app.get_location(function(info) {
-        let ios = JSON.parse(info)
+        let ios = ''
+        try {
+          ios = JSON.parse(info)
+        }
+        catch {
+          this.$toast('位置信号弱 无法获取位置信息')
+        }
+        if (!ios.lon) {
+          return this.$toast('位置信号弱 无法获取位置信息')
+        }
         var icon = new AMap.Icon({
           size: new AMap.Size(40, 50),    // 图标尺寸
           image: 'static/img/map_icon.png',  // Icon的图像
