@@ -121,7 +121,17 @@ export default {
     upload () {
       if (this.$route.query.type === '1') {
         this.$http.get(this.$api.location.upload, {
-          useruuid: localStorage.uuid,
+          pushtosjt_user_deptid: '',
+          pushtosjt_user_id: this.mine.userUuid,
+          pushtosjt_user_name: this.mine.userCName,
+          pushtosjt_type: '01',
+          sfzh: this.mine.sfzh,
+          errorInfo: '',
+          dwhm: '',
+          dwzt: '',
+          dwsblx: 'Y5703',
+          activeReportFlag: '',
+          uuid: localStorage.uuid,
           sqjzryXm: this.$store.state.userInfo.userCName,
           longitude: this.system.lon,
           latitude: this.system.lat,

@@ -4,8 +4,8 @@
 //
 export default {
     // 获取系统信息
-    get_system: () => {
-        ZLJNativeApi.bindDevice()
+    get_system: (cb) => {
+        ZLJNativeApi.bindDevice({callback: cb})
     },
     // 人脸登陆
     face_login: () => {

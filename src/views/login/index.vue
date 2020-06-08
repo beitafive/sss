@@ -52,6 +52,13 @@
             }
         },
         mounted () {
+            try {
+                this.$app.get_system(function(info) {
+                    localStorage.deviceInfo = info
+                })
+            } catch (error) {
+                console.log('error')
+            }
 //        this.remember = localStorage.account ? true : false
         },
         methods: {
@@ -72,26 +79,26 @@
                     }).then(res => {
                         if (res.state === '1') {
                             try {
-                                const systemInfo = this.$app.get_system()
+                                const systemInfo = JSON.parse(localStorage.info)
+                                this.$http.get(this.$api.check_set, {
+                                    useruuid: res.data[0].userUuid,
+                                    equipNo: systemInfo.equipNo,
+                                    equipType: systemInfo.equipType,
+                                    equopName: systemInfo.equopName,
+                                    equipModel: systemInfo.equipModel,
+                                    deptId: res.data[0].departmentId,
+                                    netType: systemInfo.netType,
+                                    dwfwzz: systemInfo.dwfwzz,
+                                    sqzjryId: res.data[0].userUuid,
+                                    sqzjryName: res.data[0].userCName,
+                                    simName: systemInfo.simName,
+                                    sbyxjcsj: time2Obj().timeStr,
+                                    enterDeptId: res.data[0].departmentId,
+                                    isActive: 1
+                                })
                             } catch (error) {
-                                this.$
+                                this.$toast('获取设备信息失败')
                             }
-                            this.$http.get(this.$api.check_set, {
-                                useruuid: res.data[0].userUuid,
-                                equipNo: '',
-                                equipType: '',
-                                equopName: '',
-                                equipModel: '',
-                                deptId: res.data[0].departmentId,
-                                netType: '',
-                                dwfwzz: '',
-                                sqzjryId: res.data[0].userUuid,
-                                sqzjryName: res.data[0].userCName,
-                                simName: '',
-                                sbyxjcsj: time2Obj().timeStr,
-                                enterDeptId: res.data[0].departmentId,
-                                isActive: 1
-                            })
                             if (this.remember) {
                                 localStorage.account = this.username
                             } else {
