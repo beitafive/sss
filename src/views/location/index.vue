@@ -44,6 +44,12 @@ export default {
     }
   },
   mounted() {
+    try {
+      this.systemInfo = JSON.parse(localStorage.info)
+    }
+    catch {
+      this.$toast('未读取到设备信息，请重新登录')
+    }
     this.initMap();
     this.nowDate = time2Obj().symbolStr;
     this.nowTime = time2Obj()
@@ -121,6 +127,9 @@ export default {
     upload () {
       if (this.$route.query.type === '1') {
         this.$http.get(this.$api.location.upload, {
+          pushtosjt_user_companyname: this.mine.companyName,
+          pushtosjt_user_companyid: this.mine.companyId,
+          pushtosjt_user_deptname: this.mine.departmentName,
           pushtosjt_user_deptid: '',
           pushtosjt_user_id: this.mine.userUuid,
           pushtosjt_user_name: this.mine.userCName,
@@ -128,7 +137,8 @@ export default {
           sfzh: this.mine.sfzh,
           errorInfo: '',
           dwhm: '',
-          dwzt: '',
+          dwzt: 'Y690101',
+          dwsbh: this.systemInfo.equipModel,
           dwsblx: 'Y5703',
           activeReportFlag: '',
           uuid: localStorage.uuid,
@@ -136,7 +146,7 @@ export default {
           longitude: this.system.lon,
           latitude: this.system.lat,
           posName: this.location,
-          detailAddr: this.address,
+          pushtosjt_address: this.address,
           posreportTime: time2Obj().dateStr3,
           corrpsnappaccName: this.$store.state.userInfo.userName
         }).then(res => {
@@ -153,15 +163,27 @@ export default {
       this.$http.get(this.$api.cmd.upload, {
         useruuid: localStorage.uuid,
         orderId: this.$route.query.id,
+        orderdwzt: 'Y6901',
+        activeReportFlag: '',
         dwrq: time2Obj().dateStr2,
         dwsj: time2Obj().dateStr4,
-        dwsblx: this.system.device,
-        // dwsbh: this.system.deviceToken,
-        jd: this.system.lon,
-        wd: this.system.lat,
+        dwsblx: 'Y5703',
+        dwsbh: this.systemInfo.equipModel,
+        longitude: this.system.lon,
+        latitude: this.system.lat,
         posName: this.township,
         dwszdmc: this.address,
-        dwzt: 'Y6901'
+        dwzt: 'Y6901',
+        sfzh: this.mine.sfzh,
+        errorInfo: '',
+        pushtosjt_address: this.address,
+        pushtosjt_user_companyname: this.mine.companyName,
+        pushtosjt_user_companyid: this.mine.companyId,
+        pushtosjt_user_deptname: this.mine.departmentName,
+        pushtosjt_user_deptid: '',
+        pushtosjt_user_id: this.mine.userUuid,
+        pushtosjt_user_name: this.mine.userCName,
+        pushtosjt_type: '02',
       }).then(res => {
         if (res.state === '1') {
           this.$app.replace_new_url('/location/record')
